@@ -210,7 +210,7 @@ img.flag,img.fl{object-fit:cover}
 .fab:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 18px 44px rgba(20,196,106,.55)}
 .fab .fab-ic{font-size:17px;line-height:1}
 @keyframes fabpop{0%,92%,100%{transform:translateY(0)}96%{transform:translateY(-4px)}}
-@media(max-width:560px){.fab .fab-tx{display:none}.fab{padding:16px;border-radius:50%}}
+@media(max-width:560px){.fab{right:14px;bottom:14px;padding:13px 18px;font-size:12px}.fab .fab-ic{font-size:15px}}
 
 .leaguepanel{position:fixed;right:22px;bottom:88px;z-index:81;width:min(348px,calc(100vw - 44px));
  background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line2);border-radius:22px;
@@ -256,6 +256,16 @@ tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;
 .synced .livedot{width:8px;height:8px;border-radius:50%;background:var(--grass);box-shadow:0 0 0 4px rgba(20,196,106,.22);animation:pulse 1.8s infinite;flex:0 0 auto}
 @media(max-width:560px){.synced{font-size:11px;padding:8px 12px}}
 .emptybox{padding:34px 22px;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:600px){
+  .topbar{padding:10px 12px}
+  .topbar.stuck{padding:8px 12px}
+  .logo{gap:8px}
+  .logo .mark{width:34px;height:34px;font-size:10px}
+  .logo b{font-size:14px;letter-spacing:0}
+  .topnav{gap:3px;padding:4px}
+  .topnav button{padding:8px 10px;font-size:11px;letter-spacing:0}
+}
+@media(max-width:520px){.logo b{display:none}}
 </style>
 </head>
 <body>
@@ -494,10 +504,13 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled daily during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-09T15:18:25.186Z";
+const LAST_UPDATED="";
 const SCORERS=[];
 const OFFICIAL_BYKEY={
-
+  // === AUTO-UPDATED DAILY DURING THE TOURNAMENT ===
+  // Add one line per finished match. Format:
+  //   "YYYY-MM-DD|Home|Away":{h:homeGoals,a:awayGoals},
+  // Use the EXACT date, home and away strings from the M array above.
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
