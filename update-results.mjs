@@ -1,10 +1,11 @@
-// Auto-updates index.html with finished 2026 World Cup results + a last-updated timestamp.
+// Auto-updates index.html with finished 2026 World Cup results, top scorers, and a timestamp.
 // Runs in GitHub Actions every 15 min. Data: football-data.org (free tier includes the World Cup).
 // Needs repo secret FOOTBALL_DATA_TOKEN. No dependencies.
 import { readFile, writeFile } from 'node:fs/promises';
 
 const FILE = 'index.html';
 const TOKEN = process.env.FOOTBALL_DATA_TOKEN;
+const BASE = 'https://api.football-data.org/v4/competitions/WC';
 
 const CANON = ["Mexico","South Africa","South Korea","Czechia","Canada","Bosnia & Herzegovina","Qatar","Switzerland","Brazil","Morocco","Haiti","Scotland","USA","Paraguay","Australia","Türkiye","Germany","Curaçao","Ivory Coast","Ecuador","Netherlands","Japan","Sweden","Tunisia","Belgium","Egypt","Iran","New Zealand","Spain","Cape Verde","Saudi Arabia","Uruguay","France","Senegal","Iraq","Norway","Argentina","Algeria","Austria","Jordan","Portugal","DR Congo","Uzbekistan","Colombia","England","Croatia","Ghana","Panama"];
 const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]/g,'');
@@ -17,6 +18,7 @@ Object.entries({
   'democraticrepublicofcongo':'DR Congo','democraticrepublicofthecongo':'DR Congo','bosniaandherzegovina':'Bosnia & Herzegovina'
 }).forEach(([k,v]) => NAME[k] = v);
 const toCanon = s => NAME[norm(s||'')] || null;
+const get = (url) => fetch(url, { headers: { 'X-Auth-Token': TOKEN } });
 
 const src = await readFile(FILE, 'utf8');
 
@@ -33,9 +35,11 @@ const er = /"([^"]+)":\{h:(\d+),a:(\d+)\}/g; let em;
 while ((em = er.exec(block[1]))) results[em[1]] = {h:+em[2], a:+em[3]};
 
 let added = 0;
+let scorers = [];
 if (TOKEN) {
+  // --- results ---
   try {
-    const res = await fetch('https://api.football-data.org/v4/competitions/WC/matches?season=2026', { headers: { 'X-Auth-Token': TOKEN } });
+    const res = await get(`${BASE}/matches?season=2026`);
     if (res.ok) {
       const data = await res.json();
       for (const mt of (data.matches || [])) {
@@ -51,14 +55,32 @@ if (TOKEN) {
         const p = results[key];
         if (!p || p.h !== h || p.a !== a) { results[key] = {h, a}; added++; }
       }
-    } else { console.error('API HTTP', res.status); }
-  } catch (e) { console.error('Fetch failed:', e.message); }
+    } else { console.error('Matches API HTTP', res.status); }
+  } catch (e) { console.error('Matches fetch failed:', e.message); }
+
+  // --- top scorers ---
+  try {
+    const r2 = await get(`${BASE}/scorers?season=2026&limit=25`);
+    if (r2.ok) {
+      const d2 = await r2.json();
+      for (const sc of (d2.scorers || [])) {
+        const name = sc.player && sc.player.name;
+        const goals = sc.goals;
+        if (!name || goals == null) continue;
+        const teamRaw = sc.team && sc.team.name;
+        scorers.push({ n: name, t: toCanon(teamRaw) || teamRaw || '', g: goals });
+      }
+    } else { console.error('Scorers API HTTP', r2.status); }
+  } catch (e) { console.error('Scorers fetch failed:', e.message); }
 } else { console.log('FOOTBALL_DATA_TOKEN not set.'); }
 
 const keys = Object.keys(results).sort();
 const body = keys.map(k => `  "${k}":{h:${results[k].h},a:${results[k].a}},`).join('\n');
 const newBlock = `const OFFICIAL_BYKEY={\n${body}\n};`;
 const stamp = new Date().toISOString();
-let out = src.replace(blockRe, newBlock).replace(/const LAST_UPDATED="[^"]*";/, `const LAST_UPDATED="${stamp}";`);
+let out = src
+  .replace(blockRe, newBlock)
+  .replace(/const LAST_UPDATED="[^"]*";/, `const LAST_UPDATED="${stamp}";`)
+  .replace(/const SCORERS=\[[\s\S]*?\];/, `const SCORERS=${JSON.stringify(scorers)};`);
 await writeFile(FILE, out);
-console.log(`Updated ${added} result(s); ${keys.length} total. Stamped ${stamp}.`);
+console.log(`Results updated ${added}; ${keys.length} recorded. Scorers ${scorers.length}. Stamped ${stamp}.`);

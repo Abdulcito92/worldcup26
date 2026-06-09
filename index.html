@@ -255,6 +255,7 @@ tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;
 .synced b{color:var(--ink);font-weight:700}
 .synced .livedot{width:8px;height:8px;border-radius:50%;background:var(--grass);box-shadow:0 0 0 4px rgba(20,196,106,.22);animation:pulse 1.8s infinite;flex:0 0 auto}
 @media(max-width:560px){.synced{font-size:11px;padding:8px 12px}}
+.emptybox{padding:34px 22px;text-align:center;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
@@ -266,6 +267,7 @@ tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;
   <div class="topnav">
     <button class="active" data-view="matches">Fixtures</button>
     <button data-view="standings">Standings</button>
+    <button data-view="scorers">Scorers</button>
     <button data-view="fantasy">Fantasy</button>
   </div>
 </div>
@@ -328,6 +330,11 @@ tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;
     <div class="toolbar"><a class="btn p" href="https://play.fifa.com/fantasy/leagues/94211/table" target="_blank" rel="noopener" style="padding:12px 18px">Open league on FIFA</a><span class="hint">League code P2XKZ4FQ. Use the Join my league button to invite friends.</span></div>
     <div class="thirds" id="fantasyList" style="margin-top:18px"></div>
   </section>
+
+  <section id="scorersView" class="hidden">
+    <div class="sectionhead"><div class="t">Golden <em>Boot</em></div><div class="d">Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.</div></div>
+    <div class="thirds" id="scorersList" style="margin-top:18px"></div>
+  </section>
 </div>
 
 <footer>
@@ -378,7 +385,7 @@ const CODE={
 };
 const SHORT={"Bosnia & Herzegovina":"Bosnia"};
 const flagUrl=t=>`https://flagcdn.com/w160/${ISO[t]}.png`;
-function flagHTML(t,cls){return `<img class="${cls}" loading="lazy" src="${flagUrl(t)}" alt="${t}" onerror="this.onerror=null;var s=document.createElement('span');s.className='${cls} flagfb';s.textContent='${CODE[t]}';this.replaceWith(s);">`;}
+function flagHTML(t,cls){return `<img class="${cls}" loading="lazy" src="${flagUrl(t)}" alt="${t}" onerror="this.onerror=null;var s=document.createElement('span');s.className='${cls} flagfb';s.textContent='${CODE[t]||(t||'').slice(0,3).toUpperCase()}';this.replaceWith(s);">`;}
 const sname=n=>SHORT[n]||n;
 
 const GROUPS={
@@ -487,9 +494,13 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled daily during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-09T14:57:00.322Z";
+const LAST_UPDATED="";
+const SCORERS=[];
 const OFFICIAL_BYKEY={
-
+  // === AUTO-UPDATED DAILY DURING THE TOURNAMENT ===
+  // Add one line per finished match. Format:
+  //   "YYYY-MM-DD|Home|Away":{h:homeGoals,a:awayGoals},
+  // Use the EXACT date, home and away strings from the M array above.
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
@@ -648,11 +659,25 @@ const FANTASY={league:"ABDULCITO",code:"P2XKZ4FQ",me:"Abdulcito",rows:[
 function buildFantasy(){
  const wrap=document.getElementById("fantasyList");if(!wrap)return;
  const rows=FANTASY.rows.map((n,i)=>{const me=n===FANTASY.me;const ini=n.trim().charAt(0).toUpperCase();
-  return `<tr class="${me?"fme":""}"><td class="pos">${i+1}</td>
-   <td class="tm"><span class="initav">${ini}</span><span class="nm">${n}${me?' <span class="youtag">You</span>':''}</span></td>
+  return `<tr><td class="pos">${i+1}</td>
+   <td class="tm"><span class="initav">${ini}</span><span class="nm">${n}</span></td>
    <td>-</td><td class="pts">-</td></tr>`;}).join("");
  wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--grad)">&#9733;</div><h4>${FANTASY.league} League</h4><small>${FANTASY.rows.length} managers</small></div>
   <table><thead><tr><th>#</th><th class="tm">Manager</th><th>MD pts</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+// ---------- TOP SCORERS ----------
+function buildScorers(){
+ const wrap=document.getElementById("scorersList");if(!wrap)return;
+ if(!SCORERS.length){wrap.innerHTML=`<div class="gcard"><div class="emptybox">&#9917; No goals yet. The race for the Golden Boot kicks off on June 11.</div></div>`;return;}
+ const rows=SCORERS.map((p,i)=>`<tr>
+   <td class="pos">${i+1}</td>
+   <td class="tm">${flagHTML(p.t,"fl")}<span class="nm">${p.n}</span></td>
+   <td>${CODE[p.t]||sname(p.t||"")}</td>
+   <td class="pts">${p.g}</td>
+  </tr>`).join("");
+ wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--gold)">&#9917;</div><h4>Golden Boot Race</h4><small>${SCORERS.length} scorers</small></div>
+  <table><thead><tr><th>#</th><th class="tm">Player</th><th>Team</th><th>Goals</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // ---------- LAST UPDATED ----------
@@ -684,7 +709,9 @@ function setView(v){
  document.getElementById("matchesView").classList.toggle("hidden",v!=="matches");
  document.getElementById("standingsView").classList.toggle("hidden",v!=="standings");
  document.getElementById("fantasyView").classList.toggle("hidden",v!=="fantasy");
+ document.getElementById("scorersView").classList.toggle("hidden",v!=="scorers");
  if(v==="fantasy")buildFantasy();
+ if(v==="scorers")buildScorers();
  if(v==="standings")buildGroups();
  document.querySelector(".shell").scrollIntoView({behavior:"smooth",block:"start"});
 }
@@ -705,7 +732,7 @@ function onScroll(){
 window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
 
 // ---------- INIT ----------
-buildStats();buildRail();buildMatches();buildGroups();buildFantasy();showUpdated();observeReveal();onScroll();
+buildStats();buildRail();buildMatches();buildGroups();buildFantasy();buildScorers();showUpdated();observeReveal();onScroll();
 
 // ---------- LEAGUE PANEL ----------
 (function(){
