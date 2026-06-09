@@ -251,6 +251,10 @@ tbody tr.qno td{opacity:.62}
 .youtag{font-family:'Archivo';font-weight:900;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:#05241a;background:var(--gold);padding:2px 7px;border-radius:20px;margin-left:6px}
 tbody tr.fme{background:linear-gradient(90deg,rgba(255,206,58,.14),transparent 60%)}
 tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:3px;background:var(--gold)}
+.synced{display:flex;align-items:center;justify-content:center;gap:9px;margin:18px auto 0;padding:9px 16px;width:max-content;max-width:100%;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:30px;font-size:12px;color:var(--muted);text-align:center}
+.synced b{color:var(--ink);font-weight:700}
+.synced .livedot{width:8px;height:8px;border-radius:50%;background:var(--grass);box-shadow:0 0 0 4px rgba(20,196,106,.22);animation:pulse 1.8s infinite;flex:0 0 auto}
+@media(max-width:560px){.synced{font-size:11px;padding:8px 12px}}
 </style>
 </head>
 <body>
@@ -287,6 +291,7 @@ tbody tr.fme td:first-child::before{content:"";position:absolute;left:0;top:7px;
 
 <!-- SHELL -->
 <div class="shell">
+  <div class="synced"><span class="livedot"></span> Auto-refreshes every 15 min &middot; <b>Last updated <span id="lastUpdated">just now</span></b></div>
   <!-- MATCHES -->
   <section id="matchesView">
     <div class="sectionhead">
@@ -482,8 +487,12 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled daily during the tournament. id:{h,a}
+const LAST_UPDATED="";
 const OFFICIAL_BYKEY={
-
+  // === AUTO-UPDATED DAILY DURING THE TOURNAMENT ===
+  // Add one line per finished match. Format:
+  //   "YYYY-MM-DD|Home|Away":{h:homeGoals,a:awayGoals},
+  // Use the EXACT date, home and away strings from the M array above.
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
@@ -649,6 +658,14 @@ function buildFantasy(){
   <table><thead><tr><th>#</th><th class="tm">Manager</th><th>MD pts</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
+// ---------- LAST UPDATED ----------
+function showUpdated(){
+ const el=document.getElementById("lastUpdated");if(!el)return;
+ if(!LAST_UPDATED){el.textContent="awaiting first sync";return;}
+ try{ el.textContent=new Date(LAST_UPDATED).toLocaleString("en-GB",{timeZone:"Asia/Riyadh",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit",hour12:true})+" KSA"; }
+ catch(e){ el.textContent=LAST_UPDATED; }
+}
+
 // ---------- REVEAL + COUNTUP ----------
 let io;
 function observeReveal(){
@@ -691,7 +708,7 @@ function onScroll(){
 window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
 
 // ---------- INIT ----------
-buildStats();buildRail();buildMatches();buildGroups();buildFantasy();observeReveal();onScroll();
+buildStats();buildRail();buildMatches();buildGroups();buildFantasy();showUpdated();observeReveal();onScroll();
 
 // ---------- LEAGUE PANEL ----------
 (function(){
