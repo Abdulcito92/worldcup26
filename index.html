@@ -184,6 +184,17 @@ html[lang="ar"] .gpill{font-family:'Changa';letter-spacing:0}
 .venue{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:var(--dim);font-size:12px;margin-top:6px;flex-wrap:wrap}
 .venue b{color:var(--muted);font-weight:600}
 .ft{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grass);font-weight:900}
+/* qualification picture (final group matchday) */
+.qualrow{grid-column:1/-1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;padding-top:11px;border-top:1px dashed var(--line2)}
+.qhead{font-family:'Archivo';font-weight:900;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+html[lang="ar"] .qhead{font-family:'Changa';letter-spacing:0}
+.ql{font-size:12px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px 11px}
+.ql b{font-family:'Archivo';font-weight:900;font-size:10px;letter-spacing:1px;color:var(--gold);margin-inline-end:6px}
+.ql.ok{color:#5be8a0;border-color:rgba(20,196,106,.4)}
+.ql.bad{color:#ff8a8a;border-color:rgba(255,107,107,.35)}
+.qmini{font-family:'Archivo';font-weight:900;font-size:9px;padding:2px 6px;border-radius:8px;margin-inline-start:7px}
+.qmini.in{background:rgba(20,196,106,.18);color:#5be8a0;border:1px solid rgba(20,196,106,.45)}
+.qmini.out{background:rgba(255,107,107,.12);color:#ff8a8a;border:1px solid rgba(255,107,107,.35)}
 html[lang="ar"] .ft{letter-spacing:0}
 .win-l .side.home .tname,.win-r .side.away .tname{color:#fff}
 .win-l .side.away,.win-r .side.home{opacity:.62}
@@ -719,10 +730,18 @@ en:{
  fabTx:"Join my league",lpRole:"League admin · FIFA Fantasy",lpCode:"League code",copy:"Copy",copied:"Copied!",lpJoin:"▶ Join on FIFA Fantasy",
  md:"Matchday",games:"games",ft:"Full time",official:"✓ Official",grp:"Group",played:"played",
  thTeam:"Team",status:"Status",
- awaiting:"awaiting first sync"
+ awaiting:"awaiting first sync",
+ qHead:"Qualification picture",
+ qAlready:"Already through to the Round of 32",
+ qDraw:"A draw is enough",
+ qWin:"Win and they're through",
+ qDrawH:"A draw might be enough — depends on the other game",
+ qWinH:"Must win and needs help from the other game",
+ qThird:"Out of the top two — best-thirds route only",
+ qOut:"Eliminated"
 },
 ar:{
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتازيا",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -741,7 +760,7 @@ ar:{
  brHint:"هيكل FIFA الرسمي (المباريات 73–104). مواجهات أصحاب المركز الثالث تتبع المجموعات المسموحة لكل خانة، وتؤكدها FIFA بعد نهاية دور المجموعات.",
  r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",fin:"النهائي",third:"المركز الثالث",
  w1:"متصدر",w2:"وصيف",t3:"ثالث",wOf:"الفائز بـ م",lOf:"الخاسر من م",
- fnTitle:'دوري <em>الفانتازيا</em>',fnDesc:"دوريك ABDULCITO في FIFA Fantasy. النقاط تُحتسب مع انطلاق الجولات. آخر لقطة 9 يونيو 2026.",
+ fnTitle:'دوري <em>الفانتزي</em>',fnDesc:"دوريك ABDULCITO في FIFA Fantasy. النقاط تُحتسب مع انطلاق الجولات. آخر لقطة 9 يونيو 2026.",
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
  scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
@@ -752,7 +771,15 @@ ar:{
  fabTx:"انضم لدوريي",lpRole:"مدير الدوري · FIFA Fantasy",lpCode:"رمز الدوري",copy:"نسخ",copied:"تم النسخ!",lpJoin:"▶ انضم عبر FIFA Fantasy",
  md:"الجولة",games:"مباريات",ft:"النتيجة النهائية",official:"✓ رسمية",grp:"المجموعة",played:"لُعبت",
  thTeam:"المنتخب",status:"الحالة",
- awaiting:"بانتظار أول مزامنة"
+ awaiting:"بانتظار أول مزامنة",
+ qHead:"صورة التأهل",
+ qAlready:"ضمن التأهل لدور الـ32",
+ qDraw:"يكفيه التعادل",
+ qWin:"الفوز يعني التأهل",
+ qDrawH:"قد يكفيه التعادل حسب نتيجة المباراة الأخرى",
+ qWinH:"يجب أن يفوز وينتظر مساعدة من المباراة الأخرى",
+ qThird:"خارج أول مركزين — طريقه عبر أفضل الثوالث",
+ qOut:"أُقصي من البطولة"
 }};
 let LANG=(()=>{try{return localStorage.getItem("wc26lang")||"en";}catch(e){return "en";}})();
 const T=k=>(STR[LANG]&&STR[LANG][k]!==undefined)?STR[LANG][k]:STR.en[k];
@@ -826,7 +853,10 @@ function buildRail(){
   el.onclick=()=>{activeDate=d;buildRail();buildMatches();document.getElementById("dayTitle").scrollIntoView({behavior:"smooth",block:"center"});};
   rail.appendChild(el);
  });
- const a=rail.querySelector(".active");if(a)a.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+ /* center the active pill by scrolling the rail only — never the page */
+ const a=rail.querySelector(".active");
+ if(a){const ar=a.getBoundingClientRect(),rr=rail.getBoundingClientRect();
+  rail.scrollTo({left:rail.scrollLeft+(ar.left-rr.left)-rail.clientWidth/2+ar.width/2,behavior:"smooth"});}
 }
 
 // ---------- MATCHES ----------
@@ -863,13 +893,23 @@ function buildMatches(){
   const scoreHtml=played
    ?`<div class="ft">${T("ft")}</div><div class="score"><span class="v">${r.h}</span><span style="color:var(--dim)">&ndash;</span><span class="v">${r.a}</span></div>`
    :`<div class="score tbd">VS</div><div class="ktime">${ksaDisp(ksa)} <span style="color:var(--cyan)">KSA</span></div>`;
+  let qualHtml="";
+  if(!played){
+   const qi=qualInfo(m.group);
+   if(qi.rem.length&&qi.rem.length<=2&&qi.rem.some(x=>x.id===m.id)){
+    const lh=qualLine(qi,m.home),la=qualLine(qi,m.away);
+    if(lh||la)qualHtml=`<div class="qualrow"><span class="qhead">${T("qHead")}</span>
+     ${lh?`<span class="ql ${lh.cls}"><b>${CODE[m.home]}</b>${lh.txt}</span>`:""}
+     ${la?`<span class="ql ${la.cls}"><b>${CODE[m.away]}</b>${la.txt}</span>`:""}</div>`;
+   }
+  }
   card.innerHTML=`
    ${isFav?`<span class="favtag">★ ${T("fav")}</span>`:""}
    <div class="gtag" style="background:${col}"></div>
    <div class="side home">${flagHTML(m.home,"flag")}<div class="tinfo"><div class="tname">${sname(m.home)}</div><div class="tcode">${CODE[m.home]}</div></div></div>
    <div class="center"><span class="gpill" style="background:${col}">${T("grp")} ${m.group}</span>${scoreHtml}</div>
    <div class="side away">${flagHTML(m.away,"flag")}<div class="tinfo"><div class="tname">${sname(m.away)}</div><div class="tcode">${CODE[m.away]}</div></div></div>
-   <div class="venue"><b>&#128205; ${m.venue}</b> &middot; ${cname(m.city)}${played?`<span class="offtag">${T("official")}</span>`:""}${shareLinks(m)}</div>`;
+   <div class="venue"><b>&#128205; ${m.venue}</b> &middot; ${cname(m.city)}${played?`<span class="offtag">${T("official")}</span>`:""}${shareLinks(m)}</div>${qualHtml}`;
   list.appendChild(card);
  });
  observeReveal();
@@ -887,6 +927,71 @@ function computeGroup(g){
   .sort((x,y)=>y.Pts-x.Pts||y.GD-x.GD||y.GF-x.GF||x.t.localeCompare(y.t));
 }
 const groupDone=g=>M.filter(m=>m.group===g).every(m=>results[m.id]);
+
+// ---------- QUALIFICATION ENGINE ----------
+// Enumerates every outcome of the remaining group games (only when ≤2 remain, i.e. the
+// final matchday) and works out, on points, who is locked into the top two, who needs
+// what from their last game, and who can only go through as a best third — or is out.
+// Point ties at the cut are treated pessimistically for guarantees and optimistically
+// for possibilities, so "qualified" claims are always safe.
+function qualInfo(g){
+ const ms=M.filter(m=>m.group===g);
+ const rem=ms.filter(m=>!results[m.id]);
+ const teams=GROUPS[g];
+ const out={rem,locked:{},no2:{},dead:{},need:{}};
+ if(rem.length===0){
+  const rows=computeGroup(g);
+  out.locked[rows[0].t]=true;out.locked[rows[1].t]=true;
+  out.no2[rows[2].t]=true;out.no2[rows[3].t]=true;out.dead[rows[3].t]=true;
+  return out;
+ }
+ if(rem.length>2)return out; // scenarios only make sense on the final matchday
+ const basePts={};teams.forEach(t=>basePts[t]=0);
+ ms.forEach(m=>{const r=results[m.id];if(!r)return;
+  if(r.h>r.a)basePts[m.home]+=3;else if(r.h<r.a)basePts[m.away]+=3;else{basePts[m.home]++;basePts[m.away]++;}});
+ const opts=[0,1,2]; // 0 home win · 1 draw · 2 away win
+ const combos=[];
+ if(rem.length===1)opts.forEach(o=>combos.push([o]));
+ else opts.forEach(o1=>opts.forEach(o2=>combos.push([o1,o2])));
+ const scen=combos.map(cb=>{
+  const p=Object.assign({},basePts);
+  cb.forEach((o,i)=>{const m=rem[i];
+   if(o===0)p[m.home]+=3;else if(o===1){p[m.home]++;p[m.away]++;}else p[m.away]+=3;});
+  return p;
+ });
+ const wr=(t,p)=>1+teams.filter(o=>o!==t&&p[o]>=p[t]).length; // worst rank (ties go against)
+ const br=(t,p)=>1+teams.filter(o=>o!==t&&p[o]>p[t]).length;  // best rank (ties go for)
+ teams.forEach(t=>{
+  out.locked[t]=scen.every(p=>wr(t,p)<=2);
+  out.no2[t]=scen.every(p=>br(t,p)>=3);
+  out.dead[t]=scen.every(p=>br(t,p)>=4);
+ });
+ teams.forEach(t=>{
+  if(out.locked[t]||out.no2[t])return;
+  const mi=rem.findIndex(m=>m.home===t||m.away===t);
+  if(mi<0)return;
+  const isHome=rem[mi].home===t;
+  const ownCode=r=>isHome?(r==="W"?0:r==="D"?1:2):(r==="W"?2:r==="D"?1:0);
+  const sure=r=>combos.map((cb,i)=>({cb,p:scen[i]})).filter(x=>x.cb[mi]===ownCode(r)).every(x=>wr(t,x.p)<=2);
+  const maybe=r=>combos.map((cb,i)=>({cb,p:scen[i]})).filter(x=>x.cb[mi]===ownCode(r)).some(x=>br(t,x.p)<=2);
+  if(sure("D"))out.need[t]="D";
+  else if(sure("W"))out.need[t]="W";
+  else if(maybe("D"))out.need[t]="DH";
+  else if(maybe("W"))out.need[t]="WH";
+ });
+ return out;
+}
+function qualLine(qi,t){
+ if(qi.locked[t])return {cls:"ok",txt:T("qAlready")};
+ if(qi.dead[t])return {cls:"bad",txt:T("qOut")};
+ if(qi.no2[t])return {cls:"",txt:T("qThird")};
+ const n=qi.need[t];
+ if(n==="D")return {cls:"ok",txt:T("qDraw")};
+ if(n==="W")return {cls:"",txt:T("qWin")};
+ if(n==="DH")return {cls:"",txt:T("qDrawH")};
+ if(n==="WH")return {cls:"",txt:T("qWinH")};
+ return null;
+}
 function thirdsRanked(){
  const arr=Object.keys(GROUPS).map(g=>{const o=computeGroup(g)[2];return Object.assign({},o,{g:g});});
  arr.sort((x,y)=>y.Pts-x.Pts||y.GD-x.GD||y.GF-x.GF||x.t.localeCompare(y.t));
@@ -896,11 +1001,14 @@ function buildGroups(){
  const wrap=document.getElementById("groups");wrap.innerHTML="";
  Object.keys(GROUPS).forEach(g=>{
   const rows=computeGroup(g),col=GCOLOR[g];
+  const qi=qualInfo(g);
+  const qmini=t=>qi.locked[t]?`<span class="qmini in" title="${T("qAlready")}">&#10003;</span>`
+    :qi.dead[t]?`<span class="qmini out" title="${T("qOut")}">&#10007;</span>`:"";
   const played=M.filter(m=>m.group===g).reduce((n,m)=>n+(results[m.id]?1:0),0);
   const card=document.createElement("div");card.className="gcard rv";
   const body=rows.map((o,i)=>`<tr class="${i===0?"q1":i===1?"q2":""}">
     <td class="pos">${i+1}</td>
-    <td class="tm">${flagHTML(o.t,"fl")}<span class="nm">${sname(o.t)}</span></td>
+    <td class="tm">${flagHTML(o.t,"fl")}<span class="nm">${sname(o.t)}</span>${qmini(o.t)}</td>
     <td>${o.Pld}</td><td>${o.W}</td><td>${o.D}</td><td>${o.L}</td>
     <td>${o.GF}</td><td>${o.GA}</td><td>${o.GD>0?"+"+o.GD:o.GD}</td><td class="pts">${o.Pts}</td>
    </tr>`).join("");
