@@ -163,6 +163,9 @@ html[lang="ar"] .daypill .dow{letter-spacing:0}
 .daypill.active .dow,.daypill.active .mon,.daypill.active .cnt{color:#05241a}
 .daypill.active .dnum{color:#05241a}
 .daypill.today::after{content:"";position:absolute;top:8px;inset-inline-end:9px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 3px rgba(31,227,214,.25)}
+.daypill.favday{border-color:rgba(255,206,58,.55)}
+.daypill .favstar{position:absolute;top:5px;inset-inline-start:8px;font-size:13px;line-height:1;color:var(--gold);filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.daypill.active .favstar{color:#05241a}
 
 .dayhead{display:flex;align-items:center;gap:14px;margin:20px 2px 2px}
 .dayhead h3{font-family:'Anton';font-size:clamp(24px,3.5vw,38px);text-transform:uppercase;letter-spacing:.5px}
@@ -429,7 +432,6 @@ tbody tr.qno td{opacity:.62}
       <div class="favtop">
         <span class="ft" data-t="myTeams">★ My teams</span>
         <button class="favpick" id="favpick" data-t="pickTeams">Pick teams</button>
-        <button class="favonly" id="favonly"><span data-t="favOnly">Favorites only</span><span class="sw"></span></button>
       </div>
       <div class="favgrid" id="favgrid"></div>
     </div>
@@ -850,22 +852,20 @@ function buildFavbar(){
  grid.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{
   const n=b.dataset.team;
   FAVS.has(n)?FAVS.delete(n):FAVS.add(n);
-  saveFavs();buildFavbar();buildMatches();
+  saveFavs();buildFavbar();buildRail();buildMatches();
  });
- const tog=document.getElementById("favonly");
- tog.classList.toggle("on",FAVONLY);
 }
 document.getElementById("favpick").onclick=()=>document.getElementById("favgrid").classList.toggle("open");
-document.getElementById("favonly").onclick=()=>{FAVONLY=!FAVONLY;saveFavs();buildFavbar();buildMatches();};
 
 // ---------- DAY RAIL ----------
 function buildRail(){
  const rail=document.getElementById("dayrail");rail.innerHTML="";
  DATES.forEach(d=>{
   const f=fmtDay(d),n=M.filter(m=>m.date===d).length;
+  const hasFav=FAVS.size&&M.some(m=>m.date===d&&(FAVS.has(m.home)||FAVS.has(m.away)));
   const el=document.createElement("div");
-  el.className="daypill"+(d===activeDate?" active":"")+(d===TODAY?" today":"");
-  el.innerHTML=`<div class="dow">${f.dow}</div><div class="dnum">${f.dnum}</div><div class="mon">${f.mon}</div><div class="cnt">${n} ${T("games")}</div>`;
+  el.className="daypill"+(d===activeDate?" active":"")+(d===TODAY?" today":"")+(hasFav?" favday":"");
+  el.innerHTML=`${hasFav?'<span class="favstar" aria-label="Favorite team plays">\u2605</span>':''}<div class="dow">${f.dow}</div><div class="dnum">${f.dnum}</div><div class="mon">${f.mon}</div><div class="cnt">${n} ${T("games")}</div>`;
   el.onclick=()=>{activeDate=d;buildRail();buildMatches();document.getElementById("dayTitle").scrollIntoView({behavior:"smooth",block:"center"});};
   rail.appendChild(el);
  });
@@ -893,7 +893,6 @@ function buildMatches(){
  const list=document.getElementById("matchList");list.innerHTML="";
  let dayMs=M.filter(m=>m.date===activeDate);
  const hadAny=dayMs.length>0;
- if(FAVONLY&&FAVS.size)dayMs=dayMs.filter(m=>FAVS.has(m.home)||FAVS.has(m.away));
  if(!dayMs.length){
   list.innerHTML=`<div class="gcard"><div class="emptybox">${hadAny?T("noFav"):""}</div></div>`;
   observeReveal();return;
