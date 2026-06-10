@@ -46,6 +46,19 @@ img{display:block}
 .logo .mark{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;font-family:'Anton';font-size:11px;color:#05241a;line-height:.85;text-align:center;transform:rotate(-5deg);box-shadow:0 6px 22px rgba(20,196,106,.45)}
 .logo b{font-family:'Anton';font-size:18px;letter-spacing:.5px;text-transform:uppercase;line-height:.9}
 .logo b i{font-style:normal;color:var(--gold)}
+.navwrap{position:relative;min-width:0;max-width:100%}
+.navwrap::before,.navwrap::after{
+ position:absolute;top:1px;bottom:1px;width:36px;pointer-events:none;z-index:2;
+ display:flex;align-items:center;justify-content:center;
+ font-family:'Archivo';font-weight:900;font-size:17px;color:var(--gold);
+ opacity:0;transition:opacity .25s;border-radius:13px;
+}
+.navwrap::after{content:"›";right:1px;background:linear-gradient(to left,rgba(10,13,24,.96) 35%,transparent)}
+.navwrap::before{content:"‹";left:1px;background:linear-gradient(to right,rgba(10,13,24,.96) 35%,transparent)}
+.navwrap.more-r::after{opacity:1;animation:nudger 1.5s ease-in-out infinite}
+.navwrap.more-l::before{opacity:1;animation:nudgel 1.5s ease-in-out infinite}
+@keyframes nudger{50%{transform:translateX(3px)}}
+@keyframes nudgel{50%{transform:translateX(-3px)}}
 .topnav{display:flex;gap:6px;background:rgba(20,24,38,.6);border:1px solid var(--line);border-radius:13px;padding:5px;overflow-x:auto;max-width:100%;scrollbar-width:none}
 .topnav::-webkit-scrollbar{display:none}
 .topnav button{font-family:'Archivo';font-weight:800;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);background:transparent;border:0;cursor:pointer;padding:9px 18px;border-radius:9px;transition:.2s;white-space:nowrap}
@@ -371,13 +384,15 @@ tbody tr.qno td{opacity:.62}
 <div class="fx grain"></div>
 <div class="topbar" id="topbar">
   <div class="logo"><div class="mark">26<br>WC</div><b>ABDUL<i>CITO</i> MATCHCENTER</b></div>
-  <div class="topnav">
+  <div class="navwrap" id="navwrap">
+  <div class="topnav" id="topnav">
     <button class="active" data-view="matches" data-t="navFixtures">Fixtures</button>
     <button data-view="standings" data-t="navStandings">Standings</button>
     <button data-view="bracket" data-t="navBracket">Bracket</button>
     <button data-view="scorers" data-t="navScorers">Scorers</button>
     <button data-view="fantasy" data-t="navFantasy">Fantasy</button>
     <button class="lang" id="langbtn" aria-label="Switch language">ع</button>
+  </div>
   </div>
 </div>
 
@@ -1200,7 +1215,22 @@ document.getElementById("langbtn").onclick=()=>{
  LANG=LANG==="en"?"ar":"en";
  try{localStorage.setItem("wc26lang",LANG);}catch(e){}
  applyLang();renderAll();
+ if(typeof navHint==="function")navHint();
 };
+
+// ---------- NAV SCROLL HINT ----------
+const tn=document.getElementById("topnav"),nw=document.getElementById("navwrap");
+function navHint(){
+ if(!tn||!nw)return;
+ const max=tn.scrollWidth-tn.clientWidth;
+ const x=Math.abs(tn.scrollLeft);
+ const rtl=document.documentElement.dir==="rtl";
+ const start=x>4, end=max>4&&x<max-4;
+ nw.classList.toggle(rtl?"more-l":"more-r",end);
+ nw.classList.toggle(rtl?"more-r":"more-l",start);
+}
+tn.addEventListener("scroll",navHint,{passive:true});
+window.addEventListener("resize",navHint,{passive:true});
 
 // ---------- SCROLL FX ----------
 const topbar=document.getElementById("topbar"),heroBg=document.getElementById("heroBg");
@@ -1214,7 +1244,7 @@ function onScroll(){
 window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
 
 // ---------- INIT ----------
-applyLang();renderAll();onScroll();
+applyLang();renderAll();onScroll();navHint();
 
 // ---------- LEAGUE PANEL ----------
 (function(){
