@@ -1131,12 +1131,14 @@ function buildBracket(){
 // ---------- FANTASY LEAGUE ----------
 function buildFantasy(){
  const wrap=document.getElementById("fantasyList");if(!wrap)return;
- const rows=FANTASY.rows.map((n,i)=>{const ini=n.trim().charAt(0).toUpperCase();
-  return `<tr><td class="pos">${i+1}</td>
-   <td class="tm"><span class="initav">${ini}</span><span class="nm">${n}</span></td>
-   <td>-</td><td class="pts">-</td></tr>`;}).join("");
- wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--grad)">&#9733;</div><h4>${FANTASY.league} League</h4><small>${FANTASY.rows.length} ${T("managers")}</small></div>
-  <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("manager")}</th><th>${T("mdPts")}</th><th>${T("total")}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+ const base=(window.FANTASY_DATA&&window.FANTASY_DATA.length)?window.FANTASY_DATA:FANTASY.rows.map(n=>({name:n,rank:null,total:null,md:null}));
+ const rows=base.map((o,i)=>{const name=(typeof o==="string")?o:(o.name||"");const ini=(name||"?").trim().charAt(0).toUpperCase()||"?";
+  const rank=(o&&o.rank!=null)?o.rank:(i+1);
+  const md=(o&&o.md!=null)?o.md:"-";
+  const total=(o&&o.total!=null)?o.total:"-";
+  return `<tr><td class="pos">${rank}</td><td class="tm"><span class="initav">${ini}</span><span class="nm">${name}</span></td><td>${md}</td><td class="pts">${total}</td></tr>`;}).join("");
+ const upd=(window.FANTASY_UPDATED)?` &middot; ${window.FANTASY_UPDATED}`:"";
+ wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--grad)">&#9733;</div><h4>${FANTASY.league} League</h4><small>${base.length} ${T("managers")}${upd}</small></div><table><thead><tr><th>#</th><th class="tm">${T("manager")}</th><th>${T("mdPts")}</th><th>${T("total")}</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // ---------- TOP SCORERS ----------
@@ -1258,6 +1260,9 @@ applyLang();renderAll();onScroll();navHint();
  };
  document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open');});
 })();
+
+// ---- live fantasy standings (refreshed by scheduled task into fantasy.json) ----
+(function(){fetch("fantasy.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&Array.isArray(d.rows)&&d.rows.length){window.FANTASY_DATA=d.rows;window.FANTASY_UPDATED=d.updatedLabel||"";if(document.getElementById("fantasyList"))buildFantasy();}}).catch(function(){});})();
 </script>
 </body>
 </html>
