@@ -745,16 +745,18 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-10T15:29:15.036Z";
-const SCORERS=[];
+const LAST_UPDATED="2026-06-11T20:22:17.331Z";
+const SCORERS=[{"n":"Julián Quiñones","t":"Mexico","g":1}];
 const OFFICIAL_BYKEY={
 
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
+ "2026-06-11|Mexico|South Africa":{h:1,a:0,st:"IN_PLAY"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
+
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
