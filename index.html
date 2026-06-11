@@ -270,6 +270,50 @@ footer b{color:var(--muted)}
 .ownercard .os{margin-top:9px;font-family:'Archivo';font-weight:800;font-size:13px;color:var(--ink)}
 html[lang="ar"] .ownercard .ot,html[lang="ar"] .ownercard .os{font-family:'Changa';letter-spacing:0}
 @media(max-width:560px){.ownercard{flex-direction:column;text-align:center;padding:20px 18px}.ownercard .om{font-size:13px}}
+/* ---------- FUN ZONE ---------- */
+.fzsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.fzstep{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:13px;color:var(--muted);line-height:1.35}
+.fzstep .fzn{flex:0 0 auto;width:30px;height:30px;border-radius:10px;background:var(--grad);color:#05241a;font-family:'Anton';font-size:16px;display:grid;place-items:center}
+@media(max-width:760px){.fzsteps{grid-template-columns:1fr}}
+.fzpick{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fzpicklbl{font-family:'Archivo';font-weight:800;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--dim);margin-inline-end:2px}
+html[lang="ar"] .fzpicklbl{font-family:'Changa';letter-spacing:0}
+.fzflag{padding:2px;background:transparent;border:2px solid transparent;border-radius:50%;cursor:pointer;line-height:0;transition:.15s;opacity:.55}
+.fzflag:hover{opacity:1}
+.fzflag.on{opacity:1;border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,206,58,.2)}
+.fzflag .fl{width:24px;height:24px;border-radius:50%}
+.fzgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:22px}
+.fzcard{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+.fzcard:hover{transform:translateY(-4px);border-color:var(--line2)}
+.fzmedia{position:relative;background:linear-gradient(135deg,#16223a,#0f1729);overflow:hidden}
+.fzmedia img{width:100%;height:auto;display:block}
+.fzmedia .fzph{width:100%;aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:20px;color:var(--dim);font-size:12px;letter-spacing:.5px;line-height:1.5}
+.fzmedia .fzph span{display:block;font-size:34px;margin-bottom:8px;opacity:.7}
+.fzlabel{position:absolute;top:10px;inset-inline-start:10px;background:rgba(8,9,16,.78);backdrop-filter:blur(6px);color:var(--gold);font-family:'Archivo';font-weight:900;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px}
+html[lang="ar"] .fzlabel{font-family:'Changa';letter-spacing:0}
+.fztoggle{position:absolute;bottom:10px;inset-inline-end:10px;display:inline-flex;background:rgba(8,9,16,.8);backdrop-filter:blur(6px);border:1px solid var(--line2);border-radius:20px;overflow:hidden}
+.fztoggle button{background:transparent;border:0;color:var(--muted);font-family:'Archivo';font-weight:800;font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:6px 11px;cursor:pointer;transition:.15s}
+html[lang="ar"] .fztoggle button{font-family:'Changa';letter-spacing:0}
+.fztoggle button.on{background:var(--grad);color:#05241a}
+.fzbody{padding:16px 17px;display:flex;flex-direction:column;gap:12px;flex:1}
+.fzhead{display:flex;align-items:center;gap:9px}
+.fzhead .fzttl{font-family:'Bricolage Grotesque';font-weight:800;font-size:17px;line-height:1.05}
+html[lang="ar"] .fzhead .fzttl{font-family:'Changa'}
+.fzbadge{margin-inline-start:auto;font-family:'Archivo';font-weight:900;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#05241a;background:var(--grad);padding:4px 9px;border-radius:20px;white-space:nowrap}
+html[lang="ar"] .fzbadge{font-family:'Changa';letter-spacing:0}
+.fzprompt{font-size:13px;color:var(--muted);line-height:1.5;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:11px 13px;max-height:118px;overflow:auto}
+.fzprompt::-webkit-scrollbar{width:5px}.fzprompt::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
+.fzbtns{display:flex;gap:9px;margin-top:auto;flex-wrap:wrap}
+.fzbtn{flex:1;min-width:118px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Archivo';font-weight:900;font-size:12px;letter-spacing:.4px;text-transform:uppercase;border:0;cursor:pointer;padding:12px 13px;border-radius:12px;transition:.18s;text-decoration:none}
+html[lang="ar"] .fzbtn{font-family:'Changa';letter-spacing:0}
+.fzbtn.copy{background:var(--grad);color:#05241a}
+.fzbtn.copy:hover{filter:brightness(1.06)}
+.fzbtn.open{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid var(--line2)}
+.fzbtn.open:hover{border-color:var(--gold);color:var(--gold)}
+.fzupload{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Archivo';font-weight:800;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);background:transparent;border:1px dashed var(--line2);cursor:pointer;padding:10px 13px;border-radius:12px;transition:.18s}
+html[lang="ar"] .fzupload{font-family:'Changa';letter-spacing:0}
+.fzupload:hover{border-color:var(--cyan);color:var(--ink)}
+.fzupload input{display:none}
 .hidden{display:none!important}
 @media(max-width:560px){
   .topnav button{padding:8px 13px;font-size:11px}
@@ -405,6 +449,7 @@ tbody tr.qno td{opacity:.62}
     <button data-view="bracket" data-t="navBracket">Bracket</button>
     <button data-view="scorers" data-t="navScorers">Scorers</button>
     <button data-view="fantasy" data-t="navFantasy">Fantasy</button>
+    <button data-view="funzone" data-t="navFunZone">Fun Zone</button>
     <button class="lang" id="langbtn" aria-label="Switch language">ع</button>
   </div>
   </div>
@@ -491,6 +536,17 @@ tbody tr.qno td{opacity:.62}
   <section id="scorersView" class="hidden">
     <div class="sectionhead"><div class="t" id="scTitle">Golden <em>Boot</em></div><div class="d" data-t="scDesc">Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.</div></div>
     <div class="thirds" id="scorersList" style="margin-top:18px"></div>
+  </section>
+
+  <!-- FUN ZONE -->
+  <section id="funzoneView" class="hidden">
+    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
+    <div class="fzsteps">
+      <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
+      <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
+      <div class="fzstep"><span class="fzn">3</span><span data-t="fzStep3">Paste the prompt, send, and share your result.</span></div>
+    </div>
+    <div class="fzgrid" id="funzoneList"></div>
   </section>
 </div>
 
@@ -679,7 +735,7 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-11T09:10:47.127Z";
+const LAST_UPDATED="2026-06-10T15:29:15.036Z";
 const SCORERS=[];
 const OFFICIAL_BYKEY={
 
@@ -736,10 +792,44 @@ const FANTASY={league:"ABDULCITO",code:"P2XKZ4FQ",me:"Abdulcito",rows:[
  "HappySaid","Hala Khala","AzozN91","Maziiz7","Lionel team","0129098398","Foz1993",
  "SALEH ALHASHASH 86","Abu-munir","Abdullaho27"]};
 
+// ---------- FUN ZONE ----------
+// Each card = one AI photo prompt. To add yours:
+//   title / titleAr : short name shown on the card
+//   badge / badgeAr : small tag (e.g. "Selfie", "Kit", "Sticker")
+//   img             : your own ChatGPT result image in the same folder as index.html, e.g. "player.jpeg".
+//                     Leave "" to show a placeholder until you add your result.
+//   prompt / promptAr : the exact text people copy into ChatGPT (they attach their own photo there).
+const FUNZONE=[
+ {title:"World Cup 2026 Player",titleAr:"لاعب كأس العالم 2026",badge:"Kit",badgeAr:"قميص",img:"player.png",
+  prompt:"Use the attached photo only as a likeness reference. Create a hyper-realistic, professional sports photograph of me as a World Cup 2026 footballer walking out of the tunnel onto the pitch. IDENTITY: keep me clearly recognizable with the same face shape, eyes, nose, lips, eyebrows, skin tone, age and hairstyle, but relight and re-angle my face naturally to fit the scene. SKIN: natural skin with visible pores and realistic texture, no plastic, airbrushed or cut-out look. BLEND: merge my face onto a fit, athletic adult body so the neck, jawline, skin tones and lighting all match seamlessly with no visible edit lines or color mismatch. WARDROBE: a clean, well-fitted [[NATION]] national-team home kit with realistic fabric weave, stitching and a subtle crest. SCENE: a floodlit night stadium, the players' tunnel behind me, a packed crowd softly blurred in the background. CAMERA: full-frame DSLR, 85mm f/1.8 lens, shallow depth of field, sharp focus on the eyes. LIGHTING: dramatic stadium floodlights with a soft rim light on the face. COMPOSITION: portrait orientation, head-to-chest framing, calm confident expression. Cinematic professional color grading, high dynamic range, ultra-detailed, 4K, photorealistic.",
+  promptAr:"استخدم الصورة المرفقة كمرجع للشبه فقط. أنشئ صورة رياضية احترافية واقعية جداً لي كلاعب في كأس العالم 2026 وأنا أخرج من النفق إلى أرض الملعب. الهوية: أبقني واضح الملامح بنفس شكل الوجه والعينين والأنف والشفتين والحاجبين ولون البشرة والعمر وتسريحة الشعر، مع إعادة إضاءة وزاوية وجهي بشكل طبيعي ليناسب المشهد. البشرة: بشرة طبيعية بمسام وملمس واقعي، دون مظهر بلاستيكي أو مملّس أو مقصوص. الدمج: ادمج وجهي مع جسم رياضي متناسق بحيث تتطابق الرقبة والفك ودرجات لون البشرة والإضاءة بسلاسة دون خطوط تعديل أو اختلاف لوني. الملابس: قميص منتخب [[NATION]] أنيق ومناسب المقاس بنسيج وخياطة وشعار واقعي. المشهد: ملعب مضاء بالكشافات ليلاً، نفق اللاعبين خلفي، وجمهور غفير ضبابي في الخلفية. الكاميرا: كاميرا فل فريم، عدسة 85مم f/1.8، عمق ميدان ضحل، تركيز حاد على العينين. الإضاءة: كشافات ملعب درامية مع ضوء حافة ناعم على الوجه. التكوين: اتجاه عمودي، تأطير من الرأس إلى الصدر، تعبير واثق وهادئ. تدرج ألوان سينمائي احترافي، نطاق ديناميكي عالٍ، تفاصيل فائقة، دقة 4K، واقعية تامة."},
+ {title:"Lifting the Trophy",titleAr:"رفع الكأس",badge:"Champion",badgeAr:"بطل",img:"trophy.png",
+  prompt:"Use the attached photo only as a likeness reference. Create a realistic, professional photograph of me lifting the FIFA World Cup trophy above my head in the moment of victory as golden confetti falls. IDENTITY: keep me clearly recognizable with the same face shape, eyes, nose, lips, eyebrows, skin tone, age and hairstyle, but relight and re-angle my face naturally to fit the scene. SKIN: natural skin with visible pores and realistic texture, a light sheen of sweat, no plastic or cut-out look. BLEND: merge my face onto an athletic, celebrating adult body so the neck, skin tones and lighting match seamlessly with no edit lines. EXPRESSION: genuine joy, eyes bright and slightly squinting, mouth open mid-celebration. WARDROBE: [[NATION]] national-team kit with a gold winner's medal around my neck. SCENE: a packed stadium at night, golden confetti in the air, a blurred cheering crowd and stadium lights behind me. CAMERA: full-frame DSLR, 85mm f/2 lens, sharp focus on the face, slight motion in the falling confetti. LIGHTING: warm golden stadium lighting with strong highlights. COMPOSITION: low upward hero angle. Professional color grading, ultra-detailed, 4K, photorealistic.",
+  promptAr:"استخدم الصورة المرفقة كمرجع للشبه فقط. أنشئ صورة احترافية واقعية لي وأنا أرفع كأس العالم فوق رأسي في لحظة الانتصار وسط تساقط القصاصات الذهبية. الهوية: أبقني واضح الملامح بنفس شكل الوجه والعينين والأنف والشفتين والحاجبين ولون البشرة والعمر وتسريحة الشعر، مع إعادة إضاءة وزاوية وجهي بشكل طبيعي ليناسب المشهد. البشرة: بشرة طبيعية بمسام وملمس واقعي ولمعان خفيف من العرق، دون مظهر بلاستيكي أو مقصوص. الدمج: ادمج وجهي مع جسم رياضي محتفل بحيث تتطابق الرقبة ودرجات لون البشرة والإضاءة بسلاسة دون خطوط تعديل. التعبير: فرحة حقيقية، عينان لامعتان، فم مفتوح أثناء الاحتفال. الملابس: قميص منتخب [[NATION]] مع ميدالية ذهبية للبطل حول رقبتي. المشهد: ملعب ممتلئ ليلاً، قصاصات ذهبية في الهواء، وجمهور مهلل وأضواء ملعب ضبابية خلفي. الكاميرا: كاميرا فل فريم، عدسة 85مم f/2، تركيز حاد على الوجه، حركة خفيفة في القصاصات المتساقطة. الإضاءة: إضاءة ملعب ذهبية دافئة بإبرازات قوية. التكوين: زاوية منخفضة من الأسفل لإبراز البطولة. تدرج ألوان احترافي، تفاصيل فائقة، دقة 4K، واقعية تامة."},
+ {title:"Trading Card",titleAr:"بطاقة لاعب",badge:"Sticker",badgeAr:"ملصق",img:"card.png",
+  prompt:"Use the attached photo only as a likeness reference. Design a premium, professional World Cup 2026 trading card featuring me. IDENTITY: keep me clearly recognizable with the same face shape, eyes, nose, lips, eyebrows, skin tone, age and hairstyle. SKIN: natural skin texture with visible pores, no plastic or cut-out look. BLEND: merge my face onto an athletic footballer's body in a [[NATION]] national-team kit so skin tones and lighting match seamlessly with no edit lines. PORTRAIT: studio-quality, crisp even lighting, sharp focus, confident look, arms crossed or a ball under one arm. CARD DESIGN: glossy holographic foil border, my name in bold uppercase at the bottom, a national flag, an overall rating number in the top corner, a position abbreviation, and six clean stat ratings (PAC, SHO, PAS, DRI, DEF, PHY). Modern high-end collectible layout, clean typography, subtle metallic sheen, vertical card format, ultra-detailed, 4K, photorealistic render.",
+  promptAr:"استخدم الصورة المرفقة كمرجع للشبه فقط. صمم بطاقة لاعب احترافية مميزة لكأس العالم 2026 تظهرني. الهوية: أبقني واضح الملامح بنفس شكل الوجه والعينين والأنف والشفتين والحاجبين ولون البشرة والعمر وتسريحة الشعر. البشرة: ملمس بشرة طبيعي بمسام واضحة، دون مظهر بلاستيكي أو مقصوص. الدمج: ادمج وجهي مع جسم لاعب رياضي بقميص منتخب [[NATION]] بحيث تتطابق درجات لون البشرة والإضاءة بسلاسة دون خطوط تعديل. الصورة: بجودة استوديو بإضاءة متساوية واضحة وتركيز حاد، نظرة واثقة، الذراعان متقاطعتان أو كرة تحت ذراع واحدة. تصميم البطاقة: إطار هولوغرافي لامع، اسمي بأحرف كبيرة عريضة في الأسفل، علم منتخب، رقم تقييم عام في الزاوية العلوية، اختصار المركز، وست تقييمات إحصائية نظيفة (PAC, SHO, PAS, DRI, DEF, PHY). تخطيط عصري راقٍ قابل للجمع، خطوط نظيفة، لمعان معدني خفيف، صيغة بطاقة عمودية، تفاصيل فائقة، دقة 4K، واقعية تامة."},
+ {title:"Fan in the Stands",titleAr:"مشجع في المدرجات",badge:"Selfie",badgeAr:"سيلفي",img:"fan.png",
+  prompt:"Use the attached photo only as a likeness reference. Create a realistic, professional photograph of me in the front row of a packed World Cup 2026 stadium as a passionate fan cheering with a team scarf stretched above my head. IDENTITY: keep me clearly recognizable with the same face shape, eyes, nose, lips, eyebrows, skin tone, age and hairstyle, but relight and re-angle my face naturally to fit the scene. SKIN: natural skin with visible pores and realistic texture, no plastic or cut-out look. BLEND: merge my face onto the body so the neck, skin tones and lighting match seamlessly with no edit lines. EXPRESSION: pure excitement, mouth open cheering, eyes bright. WARDROBE: a [[NATION]] national-team jersey with subtle face paint in team colors on the cheeks. SCENE: a vibrant daytime stadium with waving flags, scarves and a colorful sea of fans softly blurred behind me. CAMERA: full-frame DSLR, 50mm f/1.8 lens, sharp focus on the face, lively background bokeh. LIGHTING: bright natural daylight. COMPOSITION: slightly off-center, candid and energetic. Professional color grading, ultra-detailed, 4K, photorealistic.",
+  promptAr:"استخدم الصورة المرفقة كمرجع للشبه فقط. أنشئ صورة احترافية واقعية لي في الصف الأمامي لملعب ممتلئ في كأس العالم 2026 كمشجع متحمس أهتف رافعاً وشاح المنتخب فوق رأسي. الهوية: أبقني واضح الملامح بنفس شكل الوجه والعينين والأنف والشفتين والحاجبين ولون البشرة والعمر وتسريحة الشعر، مع إعادة إضاءة وزاوية وجهي بشكل طبيعي ليناسب المشهد. البشرة: بشرة طبيعية بمسام وملمس واقعي، دون مظهر بلاستيكي أو مقصوص. الدمج: ادمج وجهي مع الجسم بحيث تتطابق الرقبة ودرجات لون البشرة والإضاءة بسلاسة دون خطوط تعديل. التعبير: حماس صافٍ، فم مفتوح بالهتاف، عينان لامعتان. الملابس: قميص منتخب [[NATION]] مع ألوان منتخب خفيفة على الخدين. المشهد: ملعب نهاري نابض بالحياة مع أعلام مرفرفة وأوشحة وبحر ملون من المشجعين ضبابي خلفي. الكاميرا: كاميرا فل فريم، عدسة 50مم f/1.8، تركيز حاد على الوجه، خلفية ضبابية حيوية. الإضاءة: ضوء نهار طبيعي ساطع. التكوين: خارج المركز قليلاً، عفوي ومفعم بالحماس. تدرج ألوان احترافي، تفاصيل فائقة، دقة 4K، واقعية تامة."},
+ {title:"Cinematic Poster",titleAr:"بوستر سينمائي",badge:"Poster",badgeAr:"بوستر",img:"poster.png",
+  prompt:"Use the uploaded image as the ONLY identity reference. Create a cinematic poster design for the 2026 FIFA World Cup featuring the person from the reference image. Preserve the exact facial identity, gender, age, skin tone, hairstyle, facial features and overall appearance. GENDER-AWARE CLOTHING RULES: if the person is male, keep a masculine appearance and styling; if the person is female and wearing a hijab, preserve the hijab exactly as it appears in the reference image; if the person is female, the [[NATION]] national-team jersey must be a modest long-sleeve version with full coverage and respectful styling; never remove, alter or replace religious or cultural clothing. The person wears the official [[NATION]] national football team jersey and modern luxury sunglasses. COMPOSITION, a dynamic cinematic collage: center, a medium portrait of the person looking confidently forward; background, large desaturated black-and-white profile silhouettes of the same person wearing sunglasses; bottom, a rear view of the same person walking toward a massive packed football stadium at night beneath dramatic floodlights and World Cup atmosphere. At the top, the word '[[NATIONUP]]' appears in huge metallic 3D letters incorporating the texture and colors of the [[FLAG]] flag. Epic cinematic lighting, high contrast, premium sports-poster composition, ultra-detailed fabric textures, realistic stadium atmosphere, DSLR photography style, 8K resolution, photorealistic, professional FIFA World Cup promotional poster. Identity preservation 95-100%.",
+  promptAr:"استخدم الصورة المرفوعة كمرجع وحيد للهوية. صمم بوستر سينمائي لكأس العالم 2026 يظهر الشخص من الصورة المرجعية. حافظ على هوية الوجه والجنس والعمر ولون البشرة وتسريحة الشعر والملامح والمظهر العام بدقة. قواعد الملابس حسب الجنس: إذا كان الشخص رجلاً فأبقِ مظهراً وأناقة رجولية؛ إذا كانت امرأة ترتدي الحجاب فاحتفظ بالحجاب تماماً كما يظهر في الصورة؛ إذا كانت امرأة فيجب أن يكون قميص منتخب [[NATION]] نسخة محتشمة بأكمام طويلة وتغطية كاملة وتصميم محترم؛ لا تُزل أو تغيّر أو تستبدل أي ملابس دينية أو ثقافية. يرتدي الشخص القميص الرسمي لمنتخب [[NATION]] لكرة القدم ونظارة شمسية فاخرة عصرية. التكوين كولاج سينمائي ديناميكي: في المنتصف بورتريه متوسط للشخص ينظر للأمام بثقة؛ في الخلفية ظلال جانبية كبيرة بالأبيض والأسود لنفس الشخص بنظارة شمسية؛ في الأسفل منظر خلفي لنفس الشخص يمشي نحو ملعب ضخم ممتلئ ليلاً تحت كشافات درامية وأجواء كأس العالم. في الأعلى تظهر كلمة '[[NATIONUP]]' بأحرف ثلاثية الأبعاد معدنية ضخمة تتضمن ملمس وألوان علم [[FLAG]]. إضاءة سينمائية ملحمية، تباين عالٍ، تكوين بوستر رياضي راقٍ، ملامس أقمشة فائقة التفاصيل، أجواء ملعب واقعية، أسلوب تصوير DSLR، دقة 8K، واقعية تامة، بوستر ترويجي احترافي لكأس العالم. الحفاظ على الهوية 95-100%."},
+ {title:"Magazine Cover",titleAr:"غلاف مجلة",badge:"Cover",badgeAr:"غلاف",img:"magazine.png",
+  prompt:"Use the uploaded image as the ONLY identity reference. Create a premium sports magazine cover for the 2026 FIFA World Cup featuring the person from the reference image. Preserve the exact facial identity, gender, age, skin tone, hairstyle and facial features. GENDER-AWARE CLOTHING RULES: if the person is male, keep a masculine appearance and styling; if the person is female and wearing a hijab, preserve the hijab exactly as it appears in the reference image; if the person is female, the [[NATION]] national-team jersey must be a modest long-sleeve version with full coverage and respectful styling; never remove, alter or replace religious or cultural clothing. The person wears the official [[NATION]] national football team jersey. LAYOUT: a glossy magazine cover, the person in a confident medium close-up portrait facing the camera, dramatic studio lighting on a deep-toned background. Add a bold magazine masthead at the top, cover headlines and coverlines around the person (for example 'WORLD CUP 2026', 'THE NEXT LEGEND', an exclusive interview teaser), an issue date, a price and a small barcode in the bottom corner. Clean modern editorial typography, high contrast, sharp focus on the eyes, ultra-detailed fabric textures, DSLR photography style, 8K resolution, photorealistic, professional magazine cover. Identity preservation 95-100%.",
+  promptAr:"استخدم الصورة المرفوعة كمرجع وحيد للهوية. صمم غلاف مجلة رياضية فاخرة لكأس العالم 2026 يظهر الشخص من الصورة المرجعية. حافظ على هوية الوجه والجنس والعمر ولون البشرة وتسريحة الشعر والملامح بدقة. قواعد الملابس حسب الجنس: إذا كان الشخص رجلاً فأبقِ مظهراً رجولياً؛ إذا كانت امرأة ترتدي الحجاب فاحتفظ بالحجاب كما يظهر في الصورة؛ إذا كانت امرأة فيجب أن يكون قميص منتخب [[NATION]] نسخة محتشمة بأكمام طويلة وتغطية كاملة؛ لا تُزل أو تغيّر أو تستبدل أي ملابس دينية أو ثقافية. يرتدي الشخص القميص الرسمي لمنتخب [[NATION]] لكرة القدم. التخطيط: غلاف مجلة لامع، الشخص في بورتريه متوسط قريب واثق يواجه الكاميرا، إضاءة استوديو درامية وخلفية بلون عميق. أضف عنوان مجلة عريضاً في الأعلى، وعناوين فرعية حول الشخص (مثل 'WORLD CUP 2026'، 'النجم القادم'، تشويق لمقابلة حصرية)، وتاريخ العدد والسعر وباركود صغير في الزاوية السفلية. خطوط تحريرية عصرية نظيفة، تباين عالٍ، تركيز حاد على العينين، ملامس أقمشة فائقة التفاصيل، أسلوب تصوير DSLR، دقة 8K، واقعية تامة، غلاف مجلة احترافي. الحفاظ على الهوية 95-100%."},
+ {title:"Golden Legend",titleAr:"أسطورة ذهبية",badge:"Legend",badgeAr:"أسطورة",img:"legend.png",
+  prompt:"Use the uploaded image as the ONLY identity reference. Create an epic, dramatic 'legend' poster for the 2026 FIFA World Cup featuring the person from the reference image. Preserve the exact facial identity, gender, age, skin tone, hairstyle and facial features. GENDER-AWARE CLOTHING RULES: if the person is male, keep a masculine appearance and styling; if the person is female and wearing a hijab, preserve the hijab exactly as it appears in the reference image; if the person is female, the [[NATION]] national-team jersey must be a modest long-sleeve version with full coverage and respectful styling; never remove, alter or replace religious or cultural clothing. The person wears the official [[NATION]] national football team jersey. SCENE: the person stands heroically in the center bathed in golden light, arms slightly open, a glowing World Cup trophy and golden particles around them, a dark dramatic stadium with smoke and spotlights behind. Rich gold and black color scheme with deep shadows and strong rim lighting. At the bottom, the person's silhouette and the word 'LEGEND' in large metallic gold 3D letters. Cinematic high-contrast lighting, ultra-detailed fabric and skin textures, realistic atmosphere, DSLR photography style, 8K resolution, photorealistic, premium sports poster. Identity preservation 95-100%.",
+  promptAr:"استخدم الصورة المرفوعة كمرجع وحيد للهوية. صمم بوستر 'أسطورة' ملحمي درامي لكأس العالم 2026 يظهر الشخص من الصورة المرجعية. حافظ على هوية الوجه والجنس والعمر ولون البشرة وتسريحة الشعر والملامح بدقة. قواعد الملابس حسب الجنس: إذا كان الشخص رجلاً فأبقِ مظهراً رجولياً؛ إذا كانت امرأة ترتدي الحجاب فاحتفظ بالحجاب كما يظهر في الصورة؛ إذا كانت امرأة فيجب أن يكون قميص منتخب [[NATION]] نسخة محتشمة بأكمام طويلة وتغطية كاملة؛ لا تُزل أو تغيّر أو تستبدل أي ملابس دينية أو ثقافية. يرتدي الشخص القميص الرسمي لمنتخب [[NATION]] لكرة القدم. المشهد: يقف الشخص ببطولة في المنتصف يغمره ضوء ذهبي، ذراعاه منفتحتان قليلاً، كأس العالم متوهج وجسيمات ذهبية حوله، وملعب مظلم درامي بالدخان والأضواء الكاشفة خلفه. نظام ألوان ذهبي وأسود غني بظلال عميقة وإضاءة حافة قوية. في الأسفل ظل الشخص وكلمة 'LEGEND' بأحرف ذهبية معدنية ثلاثية الأبعاد كبيرة. إضاءة سينمائية عالية التباين، ملامس أقمشة وبشرة فائقة التفاصيل، أجواء واقعية، أسلوب تصوير DSLR، دقة 8K، واقعية تامة، بوستر رياضي راقٍ. الحفاظ على الهوية 95-100%."},
+ {title:"City Billboard",titleAr:"لوحة المدينة",badge:"Billboard",badgeAr:"لوحة",img:"billboard.png",
+  prompt:"Use the uploaded image as the ONLY identity reference. Create a realistic photo of a giant World Cup 2026 billboard featuring the person from the reference image, displayed on the side of a modern skyscraper in a vibrant city at golden hour. Preserve the exact facial identity, gender, age, skin tone, hairstyle and facial features. GENDER-AWARE CLOTHING RULES: if the person is male, keep a masculine appearance and styling; if the person is female and wearing a hijab, preserve the hijab exactly as it appears in the reference image; if the person is female, the [[NATION]] national-team jersey must be a modest long-sleeve version with full coverage and respectful styling; never remove, alter or replace religious or cultural clothing. The person wears the official [[NATION]] national football team jersey. SCENE: a huge, crisp billboard showing the person in a confident hero pose, mounted high on a glass building, with the [[FLAG]] flag colors and 'WORLD CUP 2026' branding. Street level below shows fans looking up, city lights, cars and a lively atmosphere. Realistic perspective and scale, warm golden-hour lighting, ultra-detailed textures, DSLR photography style, 8K resolution, photorealistic, professional advertising photography. Identity preservation 95-100%.",
+  promptAr:"استخدم الصورة المرفوعة كمرجع وحيد للهوية. أنشئ صورة واقعية للوحة إعلانية ضخمة لكأس العالم 2026 تظهر الشخص من الصورة المرجعية، معروضة على جانب ناطحة سحاب حديثة في مدينة نابضة وقت الغروب. حافظ على هوية الوجه والجنس والعمر ولون البشرة وتسريحة الشعر والملامح بدقة. قواعد الملابس حسب الجنس: إذا كان الشخص رجلاً فأبقِ مظهراً رجولياً؛ إذا كانت امرأة ترتدي الحجاب فاحتفظ بالحجاب كما يظهر في الصورة؛ إذا كانت امرأة فيجب أن يكون قميص منتخب [[NATION]] نسخة محتشمة بأكمام طويلة وتغطية كاملة؛ لا تُزل أو تغيّر أو تستبدل أي ملابس دينية أو ثقافية. يرتدي الشخص القميص الرسمي لمنتخب [[NATION]] لكرة القدم. المشهد: لوحة إعلانية ضخمة وواضحة تُظهر الشخص بوضعية بطولية واثقة، مثبتة عالياً على مبنى زجاجي، بألوان علم [[FLAG]] وشعار 'WORLD CUP 2026'. في الأسفل عند مستوى الشارع مشجعون ينظرون للأعلى وأضواء المدينة والسيارات وأجواء حيوية. منظور ومقياس واقعيان، إضاءة ذهبية دافئة وقت الغروب، ملامس فائقة التفاصيل، أسلوب تصوير DSLR، دقة 8K، واقعية تامة، تصوير إعلاني احترافي. الحفاظ على الهوية 95-100%."}
+];
+
 // ---------- I18N ----------
 const STR={
 en:{
- navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",
+ navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
  heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
@@ -762,6 +852,10 @@ en:{
  fnOpen:"Open league on FIFA",fnHint:"League code P2XKZ4FQ. Use the Join my league button to invite friends.",
  manager:"Manager",mdPts:"MD pts",total:"Total",managers:"managers",
  scTitle:'Golden <em>Boot</em>',scDesc:"Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.",
+ fzTitle:'Fun <em>Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
+ fzStep1:"Pick a prompt below and copy it.",fzStep2:"Open ChatGPT and upload your photo.",fzStep3:"Paste the prompt, send, and share your result.",
+ fzResult:"Abdulhadi's result",fzAddResult:"Add your result image here",fzYourPhoto:"Preview your photo",fzExample:"Example",fzYours:"Yours",fzOpenGPT:"Open ChatGPT",
+ fzNation:"Your nation",fzNoFav:"Pick teams in Fixtures to add favorites, or choose one below.",
  noGoals:"⚽ No goals yet. The race for the Golden Boot kicks off on June 11.",
  scHead:"Golden Boot Race",scSub:"scorers",player:"Player",team:"Team",goals:"Goals",
  foot1:"ABDULCITO MATCHCENTER · fixtures from the official 2026 schedule · results auto-synced",
@@ -783,7 +877,7 @@ en:{
  qOut:"Eliminated"
 },
 ar:{
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -806,6 +900,10 @@ ar:{
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
  scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
+ fzTitle:'منطقة <em>الترفيه</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
+ fzStep1:"اختر برومبت من الأسفل وانسخه.",fzStep2:"افتح ChatGPT وارفع صورتك.",fzStep3:"الصق البرومبت، أرسل، وشارك نتيجتك.",
+ fzResult:"نتيجة عبدالهادي",fzAddResult:"أضف صورة نتيجتك هنا",fzYourPhoto:"اعرض صورتك",fzExample:"مثال",fzYours:"صورتك",fzOpenGPT:"افتح ChatGPT",
+ fzNation:"منتخبك",fzNoFav:"اختر منتخبات من تبويب المباريات لإضافة المفضلة، أو اختر منتخباً أدناه.",
  noGoals:"⚽ لا أهداف بعد. سباق الحذاء الذهبي ينطلق يوم 11 يونيو.",
  scHead:"سباق الحذاء الذهبي",scSub:"هدافين",player:"اللاعب",team:"المنتخب",goals:"أهداف",
  foot1:"ABDULCITO MATCHCENTER · جدول المباريات من الجدول الرسمي 2026 · النتائج تتحدث تلقائياً",
@@ -1184,6 +1282,67 @@ function buildScorers(){
   <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("player")}</th><th>${T("team")}</th><th>${T("goals")}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 
+// ---------- FUN ZONE ----------
+const GPT_URL="https://chatgpt.com/";
+const fzCardNation={}; // card index -> nation name, undefined = generic
+function fzPrompt(c,nat){
+ let p=LANG==="ar"?(c.promptAr||c.prompt):c.prompt;
+ if(nat&&ISO[nat]){
+  const nm=LANG==="ar"?(TEAM_AR[nat]||nat):nat;
+  p=p.split("[[NATIONUP]]").join(nat.toUpperCase()).split("[[NATION]]").join(nm).split("[[FLAG]]").join(nm);
+ }else{
+  p=p.split("[[NATIONUP]]").join("WORLD CUP 2026").split("[[NATION]]").join("").split("[[FLAG]]").join(LANG==="ar"?"وطني":"national");
+ }
+ return p.replace(/ {2,}/g," ").replace(/ ([,.])/g,"$1");
+}
+function buildFunZone(){
+ const wrap=document.getElementById("funzoneList");if(!wrap)return;
+ const favs=[...FAVS].filter(n=>ISO[n]);
+ wrap.innerHTML=FUNZONE.map((c,i)=>{
+  const title=LANG==="ar"?(c.titleAr||c.title):c.title;
+  const badge=LANG==="ar"?(c.badgeAr||c.badge):c.badge;
+  const nat=fzCardNation[i];
+  const pick=favs.length?`<div class="fzpick"><span class="fzpicklbl">${T("fzNation")}</span>${favs.map(n=>`<button class="fzflag${nat===n?" on":""}" data-nat="${n.replace(/"/g,"&quot;")}" title="${sname(n)}" aria-label="${sname(n)}">${flagHTML(n,"fl")}</button>`).join("")}</div>`:"";
+  const media=c.img
+   ?`<img src="${c.img}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'fzph',innerHTML:'<span>&#9917;</span>'+T('fzAddResult')}));">`
+   :`<div class="fzph"><span>&#9917;</span>${T("fzAddResult")}</div>`;
+  return `<div class="fzcard rv" data-i="${i}">
+   <div class="fzmedia">
+     <span class="fzlabel">${T("fzResult")}</span>
+     <div class="fzmediainner">${media}</div>
+   </div>
+   <div class="fzbody">
+     <div class="fzhead"><span class="fzttl">${title}</span>${badge?`<span class="fzbadge">${badge}</span>`:""}</div>
+     ${pick}
+     <div class="fzprompt">${fzPrompt(c,nat).replace(/</g,"&lt;")}</div>
+     <div class="fzbtns">
+       <button class="fzbtn copy" data-role="copy">&#128203; ${T("copy")}</button>
+       <a class="fzbtn open" href="${GPT_URL}" target="_blank" rel="noopener" data-role="open">&#9654; ${T("fzOpenGPT")}</a>
+     </div>
+   </div>
+  </div>`;
+ }).join("");
+ wrap.querySelectorAll(".fzcard").forEach(card=>{
+  const i=+card.dataset.i, c=FUNZONE[i];
+  card.querySelectorAll(".fzflag").forEach(b=>b.onclick=()=>{
+   const n=b.dataset.nat;
+   fzCardNation[i]=(fzCardNation[i]===n?undefined:n);
+   buildFunZone();
+  });
+  const cp=card.querySelector('[data-role="copy"]');
+  cp.onclick=()=>{const txt=fzPrompt(c,fzCardNation[i]);
+   const done=()=>{const o=cp.innerHTML;cp.innerHTML="&#10003; "+T("copied");setTimeout(()=>{cp.innerHTML=o;},1600);};
+   const fb=()=>{const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}ta.remove();done();};
+   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(fb);}else{fb();}
+  };
+  card.querySelector('[data-role="open"]').addEventListener("click",()=>{
+   const txt=fzPrompt(c,fzCardNation[i]);
+   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).catch(()=>{});}
+  });
+ });
+ observeReveal();
+}
+
 // ---------- LAST UPDATED ----------
 function showUpdated(){
  const el=document.getElementById("lastUpdated");if(!el)return;
@@ -1215,10 +1374,12 @@ function setView(v){
  document.getElementById("bracketView").classList.toggle("hidden",v!=="bracket");
  document.getElementById("fantasyView").classList.toggle("hidden",v!=="fantasy");
  document.getElementById("scorersView").classList.toggle("hidden",v!=="scorers");
+ document.getElementById("funzoneView").classList.toggle("hidden",v!=="funzone");
  if(v==="fantasy")buildFantasy();
  if(v==="scorers")buildScorers();
  if(v==="standings")buildGroups();
  if(v==="bracket")buildBracket();
+ if(v==="funzone")buildFunZone();
  document.querySelector(".shell").scrollIntoView({behavior:"smooth",block:"start"});
 }
 document.querySelectorAll(".topnav button[data-view]").forEach(b=>b.onclick=()=>setView(b.dataset.view));
@@ -1234,12 +1395,12 @@ function applyLang(){
  document.querySelectorAll("[data-t]").forEach(el=>{el.innerHTML=T(el.dataset.t);});
  document.getElementById("heroH1").innerHTML=T("heroH1");
  document.getElementById("heroSub").innerHTML=T("heroSub");
- ["mcTitle","stTitle","thTitle","brTitle","fnTitle","scTitle"].forEach(id=>{
+ ["mcTitle","stTitle","thTitle","brTitle","fnTitle","scTitle","fzTitle"].forEach(id=>{
   const el=document.getElementById(id);if(el)el.innerHTML=T(id);
  });
 }
 function renderAll(){
- buildStats();buildFavbar();buildRail();buildMatches();buildGroups();buildBracket();buildFantasy();buildScorers();buildTicker();showUpdated();observeReveal();
+ buildStats();buildFavbar();buildRail();buildMatches();buildGroups();buildBracket();buildFantasy();buildScorers();buildFunZone();buildTicker();showUpdated();observeReveal();
 }
 document.getElementById("langbtn").onclick=()=>{
  LANG=LANG==="en"?"ar":"en";
