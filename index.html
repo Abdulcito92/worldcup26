@@ -207,6 +207,7 @@ html[lang="ar"] .gpill{font-family:'Changa';letter-spacing:0}
 .livedotsm{width:7px;height:7px;border-radius:50%;background:#ff5a5a;box-shadow:0 0 0 3px rgba(255,90,90,.25);animation:pulse 1.4s infinite;flex:0 0 auto}
 .offtag.livetag{color:#ff5a5a;background:rgba(255,90,90,.12);border-color:rgba(255,90,90,.35);display:inline-flex;align-items:center;gap:6px}
 .match.livem{border-color:rgba(255,90,90,.45)}
+.livehdr{display:inline-flex;align-items:center;gap:5px;color:#ff5a5a;font-weight:900}
 .gscorers{display:flex;flex-direction:column;gap:2px;margin-top:5px}
 .gs{font-size:11px;color:var(--muted);line-height:1.25}
 .gs b{font-family:'Archivo';font-weight:800;color:var(--ink)}
@@ -744,23 +745,27 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-11T20:11:26.970Z";
-const SCORERS=[{"n":"Julián Quiñones","t":"Mexico","g":1}];
+const LAST_UPDATED="2026-06-10T15:29:15.036Z";
+const SCORERS=[];
 const OFFICIAL_BYKEY={
 
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-11|Mexico|South Africa":{h:1,a:0,st:"PAUSED"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
-
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
 const results=OFFICIAL;
 const keyOf=m=>m.date+"|"+m.home+"|"+m.away;
+// Live in-play scores folded into the standings/bracket (provisional, shown while matches are on).
+const LIVE={};
+M.forEach(m=>{const lv=LIVE_BYKEY[keyOf(m)];if(lv&&!OFFICIAL[m.id])LIVE[m.id]={h:lv.h,a:lv.a};});
+const STAND=Object.assign({},OFFICIAL,LIVE);
+const groupHasLive=g=>M.some(m=>m.group===g&&LIVE[m.id]);
+const anyLive=()=>Object.keys(LIVE).length>0;
 const DATES=[...new Set(M.map(m=>m.date))].sort();
 const TODAY=(()=>{const n=new Date(),p=x=>String(x).padStart(2,"0");return `${n.getFullYear()}-${p(n.getMonth()+1)}-${p(n.getDate())}`;})();
 let activeDate=DATES.includes(TODAY)?TODAY:DATES[0];
@@ -857,7 +862,7 @@ en:{
  stTeams:"Teams",stGroups:"Groups",stGames:"Group games",stCities:"Host cities",stTotal:"Total matches",
  myTeams:"★ My teams",pickTeams:"Pick teams",favOnly:"Favorites only",fav:"FAV",
  noFav:"No matches for your favorite teams on this day. Switch off the filter or pick more teams.",
- stTitle:'Group <em>Standings</em>',stDesc:"Tables update automatically from official results. Order: points, goal difference, goals for.",
+ stTitle:'Group <em>Standings</em>',stDesc:"Live in-play scores are folded in while matches are on, marked LIVE, so positions shift in real time. Order: points, goal difference, goals for.",
  leg1:"Top 2 — through",leg2:"3rd — in contention",
  thTitle:'Race for the <em>Round of 32</em>',thDesc:"The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.",
  thirdsHead:"Best Third-Placed Teams",thirdsSub:"top 8 advance",qIn:"Qualify",qOut:"Out",
@@ -905,7 +910,7 @@ ar:{
  stTeams:"منتخباً",stGroups:"مجموعة",stGames:"مباراة مجموعات",stCities:"مدينة مضيفة",stTotal:"إجمالي المباريات",
  myTeams:"★ منتخباتي",pickTeams:"اختر المنتخبات",favOnly:"المفضلة فقط",fav:"مفضلة",
  noFav:"لا مباريات لمنتخباتك المفضلة في هذا اليوم. أوقف الفلتر أو أضف منتخبات.",
- stTitle:'ترتيب <em>المجموعات</em>',stDesc:"الجداول تتحدث تلقائياً من النتائج الرسمية. الترتيب: النقاط ثم فارق الأهداف ثم الأهداف المسجلة.",
+ stTitle:'ترتيب <em>المجموعات</em>',stDesc:"النتائج المباشرة تُحتسب أثناء المباريات وتظهر بعلامة مباشر، فيتغير الترتيب لحظياً. الترتيب: النقاط ثم فارق الأهداف ثم الأهداف المسجلة.",
  leg1:"الأول والثاني — تأهل",leg2:"الثالث — في المنافسة",
  thTitle:'السباق إلى <em>دور الـ32</em>',thDesc:"أفضل 8 منتخبات في المركز الثالث تنضم إلى متصدري المجموعات الـ12 ووصفائها في الإقصائيات.",
  thirdsHead:"أفضل أصحاب المركز الثالث",thirdsSub:"أفضل 8 يتأهلون",qIn:"متأهل",qOut:"خارج",
@@ -1088,7 +1093,7 @@ function buildMatches(){
 function computeGroup(g){
  const tbl={};GROUPS[g].forEach(t=>tbl[t]={t,Pld:0,W:0,D:0,L:0,GF:0,GA:0,GD:0,Pts:0});
  M.filter(m=>m.group===g).forEach(m=>{
-  const r=results[m.id];if(!r||r.h==null||r.a==null)return;
+  const r=STAND[m.id];if(!r||r.h==null||r.a==null)return;
   const H=tbl[m.home],A=tbl[m.away];H.Pld++;A.Pld++;H.GF+=r.h;H.GA+=r.a;A.GF+=r.a;A.GA+=r.h;
   if(r.h>r.a){H.W++;A.L++;H.Pts+=3;}else if(r.h<r.a){A.W++;H.L++;A.Pts+=3;}else{H.D++;A.D++;H.Pts++;A.Pts++;}
  });
@@ -1182,7 +1187,7 @@ function buildGroups(){
     <td>${o.GF}</td><td>${o.GA}</td><td>${o.GD>0?"+"+o.GD:o.GD}</td><td class="pts">${o.Pts}</td>
    </tr>`).join("");
   card.innerHTML=`
-   <div class="gh"><div class="gbadge" style="background:${col}">${g}</div><h4>${T("grp")} ${g}</h4><small>${played}/6 ${T("played")}</small></div>
+   <div class="gh"><div class="gbadge" style="background:${col}">${g}</div><h4>${T("grp")} ${g}</h4><small>${played}/6 ${T("played")}${groupHasLive(g)?` &middot; <span class="livehdr"><span class="livedotsm"></span>${T("live")}</span>`:""}</small></div>
    <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("thTeam")}</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody>${body}</tbody></table></div>`;
   wrap.appendChild(card);
  });
