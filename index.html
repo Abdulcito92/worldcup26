@@ -1305,16 +1305,32 @@ function buildFantasy(){
 }
 
 // ---------- TOP SCORERS ----------
+function aggregateScorers(){
+ const tally={};
+ const keys=new Set([...Object.keys(GOALS_BYKEY||{}),...Object.keys(GOALS_MANUAL||{})]);
+ keys.forEach(k=>{
+  const live=(GOALS_BYKEY&&GOALS_BYKEY[k]&&GOALS_BYKEY[k].length)?GOALS_BYKEY[k]:(GOALS_MANUAL[k]||[]);
+  live.forEach(g=>{
+   if(!g||!g.p||!g.t)return;
+   const id=g.t+"|"+g.p;
+   if(!tally[id])tally[id]={n:g.p,t:g.t,g:0};
+   tally[id].g++;
+  });
+ });
+ (SCORERS||[]).forEach(p=>{if(!p||!p.n||!p.t)return;const id=p.t+"|"+p.n;if(!tally[id])tally[id]={n:p.n,t:p.t,g:0};tally[id].g+=(p.g||0);});
+ return Object.values(tally).sort((a,b)=>b.g-a.g||a.n.localeCompare(b.n));
+}
 function buildScorers(){
  const wrap=document.getElementById("scorersList");if(!wrap)return;
- if(!SCORERS.length){wrap.innerHTML=`<div class="gcard"><div class="emptybox">${T("noGoals")}</div></div>`;return;}
- const rows=SCORERS.map((p,i)=>`<tr>
+ const list=aggregateScorers();
+ if(!list.length){wrap.innerHTML=`<div class="gcard"><div class="emptybox">${T("noGoals")}</div></div>`;return;}
+ const rows=list.map((p,i)=>`<tr>
    <td class="pos">${i+1}</td>
    <td class="tm">${ISO[p.t]?flagHTML(p.t,"fl"):""}<span class="nm">${p.n}</span></td>
    <td>${CODE[p.t]||sname(p.t||"")}</td>
    <td class="pts">${p.g}</td>
   </tr>`).join("");
- wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--gold)">&#9917;</div><h4>${T("scHead")}</h4><small>${SCORERS.length} ${T("scSub")}</small></div>
+ wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--gold)">&#9917;</div><h4>${T("scHead")}</h4><small>${list.length} ${T("scSub")}</small></div>
   <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("player")}</th><th>${T("team")}</th><th>${T("goals")}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 
