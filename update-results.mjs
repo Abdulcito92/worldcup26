@@ -88,8 +88,9 @@ if (TOKEN) {
         live[key] = { h: H, a: A, st };
       }
 
-      // goal events (Deep Data tier) for today's live/finished matches
-      if ((st === 'IN_PLAY' || st === 'PAUSED' || st === 'FINISHED') && String(mt.utcDate || '').slice(0, 10) === today) {
+      // goal events (Deep Data tier) for recent live/finished matches (kickoff within the last 40h)
+      const ageMs = mt.utcDate ? (Date.now() - new Date(mt.utcDate).getTime()) : -1;
+      if ((st === 'IN_PLAY' || st === 'PAUSED' || st === 'FINISHED') && ageMs >= 0 && ageMs < 40 * 3600 * 1000) {
         try {
           const d = await get(`${BASE}/matches/${mt.id}`);
           if (d.ok) {
