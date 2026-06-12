@@ -750,10 +750,10 @@ const SCORERS=[];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
  "2026-06-11|South Korea|Czechia":{h:2,a:1},
+ "2026-06-12|Canada|Bosnia & Herzegovina":{h:1,a:1},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-12|Canada|Bosnia & Herzegovina":{h:0,a:1,st:"IN_PLAY"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
@@ -762,7 +762,7 @@ const GOALS_BYKEY={
 const GOALS_MANUAL={
  "2026-06-11|Mexico|South Africa":[{t:"Mexico",p:"J. Quiñones",m:"9"},{t:"Mexico",p:"R. Jiménez",m:"66"}],
  "2026-06-11|South Korea|Czechia":[{t:"Czechia",p:"L. Krejčí",m:"59"},{t:"South Korea",p:"Hwang In-beom",m:"67"},{t:"South Korea",p:"Oh Hyeon-gyu",m:"80"}],
- "2026-06-12|Canada|Bosnia & Herzegovina":[{t:"Bosnia & Herzegovina",p:"J. Lukic",m:"21"}]
+ "2026-06-12|Canada|Bosnia & Herzegovina":[{t:"Bosnia & Herzegovina",p:"J. Lukic",m:"21"},{t:"Canada",p:"C. Larin",m:"78"}]
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
