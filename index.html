@@ -767,9 +767,9 @@ M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL
 const results=OFFICIAL;
 const keyOf=m=>m.date+"|"+m.home+"|"+m.away;
 // Live in-play scores folded into the standings/bracket (provisional, shown while matches are on).
-const LIVE={};
+let LIVE={};
 M.forEach(m=>{const lv=LIVE_BYKEY[keyOf(m)];if(lv&&!OFFICIAL[m.id])LIVE[m.id]={h:lv.h,a:lv.a};});
-const STAND=Object.assign({},OFFICIAL,LIVE);
+let STAND=Object.assign({},OFFICIAL,LIVE);
 const groupHasLive=g=>M.some(m=>m.group===g&&LIVE[m.id]);
 const anyLive=()=>Object.keys(LIVE).length>0;
 const DATES=[...new Set(M.map(m=>m.date))].sort();
@@ -1473,11 +1473,39 @@ window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScrol
 // ---------- INIT ----------
 applyLang();renderAll();onScroll();navHint();
 
-// ---------- LIVE AUTO-REFRESH ----------
-// While at least one match is in play, reload with a cache-buster so visitors see fresh scores.
-(function(){
- try{ if(Object.keys(LIVE_BYKEY).length){ setTimeout(function(){ location.replace(location.pathname+"?t="+Date.now()+location.hash); }, 120000); } }catch(e){}
-})();
+// ---------- LIVE REAL-TIME ----------
+// Set LIVE_WORKER_URL to your Cloudflare Worker URL for ~30s real-time scores updated in place (no reload).
+// Leave it empty to keep the GitHub-timed behaviour (reload every 2 min while a match is live).
+const LIVE_WORKER_URL="";
+function rebuildDerived(){
+ for(const k in OFFICIAL)delete OFFICIAL[k];
+ M.forEach(m=>{const r=OFFICIAL_BYKEY[keyOf(m)];if(r)OFFICIAL[m.id]=r;});
+ LIVE={};M.forEach(m=>{const lv=LIVE_BYKEY[keyOf(m)];if(lv&&!OFFICIAL[m.id])LIVE[m.id]={h:lv.h,a:lv.a};});
+ STAND=Object.assign({},OFFICIAL,LIVE);
+}
+async function pollLive(){
+ try{
+  const data=await fetch(LIVE_WORKER_URL,{cache:"no-store"}).then(r=>r.ok?r.json():null);
+  if(!data||!data.matches)return;
+  let changed=false;
+  data.matches.forEach(mt=>{
+   const fx=M.find(m=>m.home===mt.home&&m.away===mt.away);if(!fx)return;
+   const k=keyOf(fx);
+   if(mt.status==="FINISHED"&&mt.h!=null&&mt.a!=null){OFFICIAL_BYKEY[k]={h:mt.h,a:mt.a};if(LIVE_BYKEY[k])delete LIVE_BYKEY[k];changed=true;}
+   else if(mt.status==="IN_PLAY"||mt.status==="PAUSED"){LIVE_BYKEY[k]={h:mt.h||0,a:mt.a||0,st:mt.status};changed=true;}
+   if(mt.goals&&mt.goals.length){GOALS_BYKEY[k]=mt.goals;changed=true;}
+  });
+  if(changed){
+   rebuildDerived();
+   buildMatches();
+   if(!document.getElementById("standingsView").classList.contains("hidden"))buildGroups();
+   if(!document.getElementById("bracketView").classList.contains("hidden"))buildBracket();
+   const lu=document.getElementById("lastUpdated");if(lu)lu.textContent="live";
+  }
+ }catch(e){}
+}
+if(LIVE_WORKER_URL){ pollLive(); setInterval(pollLive,30000); }
+else { try{ if(Object.keys(LIVE_BYKEY).length){ setTimeout(function(){ location.replace(location.pathname+"?t="+Date.now()+location.hash); }, 120000); } }catch(e){} }
 
 // ---------- LEAGUE PANEL ----------
 (function(){
