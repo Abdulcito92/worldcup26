@@ -1294,14 +1294,39 @@ function buildBracket(){
 }
 
 // ---------- FANTASY LEAGUE ----------
+let FANTASY_LIVE=null;
+function fantasyRowHTML(name,rank,md,total,isMe){
+ const ini=(name||"?").trim().charAt(0).toUpperCase();
+ const pos=rank!=null?rank:"-";
+ const m=md!=null?md:"-";
+ const t=total!=null?total:"-";
+ return `<tr${isMe?' class="me"':''}><td class="pos">${pos}</td><td class="tm"><span class="initav">${ini}</span><span class="nm">${name}</span></td><td>${m}</td><td class="pts">${t}</td></tr>`;
+}
+function renderFantasy(rowsData,updatedLabel){
+ const wrap=document.getElementById("fantasyList");if(!wrap)return;
+ const me=(FANTASY.me||"").toLowerCase();
+ const rows=rowsData.map(r=>fantasyRowHTML(r.name,r.rank,r.md,r.total,(r.name||"").toLowerCase()===me)).join("");
+ const lbl=updatedLabel?`<div class="hint" style="margin-top:8px;text-align:center;color:var(--dim);font-size:12px">${updatedLabel}</div>`:"";
+ wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--grad)">&#9733;</div><h4>${FANTASY.league} League</h4><small>${rowsData.length} ${T("managers")}</small></div>
+  <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("manager")}</th><th>${T("mdPts")}</th><th>${T("total")}</th></tr></thead><tbody>${rows}</tbody></table></div>${lbl}</div>`;
+}
 function buildFantasy(){
  const wrap=document.getElementById("fantasyList");if(!wrap)return;
- const rows=FANTASY.rows.map((n,i)=>{const ini=n.trim().charAt(0).toUpperCase();
-  return `<tr><td class="pos">${i+1}</td>
-   <td class="tm"><span class="initav">${ini}</span><span class="nm">${n}</span></td>
-   <td>-</td><td class="pts">-</td></tr>`;}).join("");
- wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--grad)">&#9733;</div><h4>${FANTASY.league} League</h4><small>${FANTASY.rows.length} ${T("managers")}</small></div>
-  <div class="tscroll"><table><thead><tr><th>#</th><th class="tm">${T("manager")}</th><th>${T("mdPts")}</th><th>${T("total")}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+ if(FANTASY_LIVE&&FANTASY_LIVE.rows){renderFantasy(FANTASY_LIVE.rows,FANTASY_LIVE.updatedLabel);return;}
+ // fallback render from static names while fetching
+ const fallback=FANTASY.rows.map(n=>({name:n,rank:null,md:null,total:null}));
+ renderFantasy(fallback,"");
+ fetch("fantasy.json?cb="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{
+  if(!j||!Array.isArray(j.rows))return;
+  const sorted=j.rows.slice().sort((a,b)=>{
+   if(a.rank!=null&&b.rank!=null)return a.rank-b.rank;
+   if(a.rank!=null)return -1;
+   if(b.rank!=null)return 1;
+   return (a.name||"").localeCompare(b.name||"");
+  });
+  FANTASY_LIVE={rows:sorted,updatedLabel:j.updatedLabel||""};
+  renderFantasy(sorted,FANTASY_LIVE.updatedLabel);
+ }).catch(()=>{});
 }
 
 // ---------- TOP SCORERS ----------
