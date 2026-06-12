@@ -745,18 +745,20 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-11T22:02:47.245Z";
-const SCORERS=[{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1}];
+const LAST_UPDATED="2026-06-10T15:29:15.036Z";
+const SCORERS=[];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
-
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
-
+};
+// Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
+const GOALS_MANUAL={
+ "2026-06-11|Mexico|South Africa":[{t:"Mexico",p:"J. Quiñones",m:"9"},{t:"Mexico",p:"R. Jiménez",m:"66"}]
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
@@ -1067,7 +1069,7 @@ function buildMatches(){
    :isLive
    ?`<div class="ft live"><span class="livedotsm"></span>${T("live")}</div><div class="score"><span class="v">${lv.h}</span><span style="color:var(--dim)">&ndash;</span><span class="v">${lv.a}</span></div>`
    :`<div class="score tbd">VS</div><div class="ktime">${ksaDisp(ksa)} <span style="color:var(--cyan)">KSA</span></div>`;
-  const gl=GOALS_BYKEY[key]||[];
+  const gl=(GOALS_BYKEY[key]&&GOALS_BYKEY[key].length)?GOALS_BYKEY[key]:(GOALS_MANUAL[key]||[]);
   const goalsFor=t=>{const a=gl.filter(g=>g.t===t);return a.length?`<div class="gscorers">${a.map(g=>`<span class="gs">&#9917; ${g.p}${g.m?` <b>${g.m}'</b>`:""}</span>`).join("")}</div>`:"";};
   let qualHtml="";
   if(!played&&!isLive){
