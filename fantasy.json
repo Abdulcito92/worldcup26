@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-12T20:21:22.655Z",
-  "updatedLabel": "updated 12 Jun, 11:21 pm KSA",
+  "updated": "2026-06-12T20:25:00.000Z",
+  "updatedLabel": "updated 12 Jun, 11:25 pm KSA",
   "rows": [
     { "name": "Haleem369369", "rank": 1, "total": 34, "md": 34 },
     { "name": "THE ENGINEER 37", "rank": 2, "total": 29, "md": 29 },
@@ -43,30 +43,4 @@
     { "name": "Peace maker13", "rank": 39, "total": 0, "md": 0 },
     { "name": "TahaHk", "rank": 40, "total": 0, "md": 0 }
   ]
-    }{
-  "updated": "2026-06-12T10:09:35.431Z",
-  "updatedLabel": "updated 12 Jun, 01:09 pm KSA",
-  "rows": [
-    { "name": "Haleem369369", "rank": 1, "total": 34, "md": 34 },
-    { "name": "THE ENGINEER 37", "rank": 2, "total": 29, "md": 29 },
-    { "name": "NooR 18", "rank": 3, "total": 18, "md": 18 },
-    { "name": "Almrkaz2026", "rank": 4, "total": 18, "md": 18 },
-    { "name": "0129098398", "rank": 5, "total": 18, "md": 18 },
-    { "name": "Moh-15", "rank": 6, "total": 16, "md": 16 },
-    { "name": "Coch seiiire", "rank": 7, "total": 14, "md": 14 },
-    { "name": "gallity", "rank": 8, "total": 11, "md": 11 },
-    { "name": "Krrr", "rank": 9, "total": 10, "md": 10 },
-    { "name": "Zzz14", "rank": 10, "total": 10, "md": 10 },
-    { "name": "Trextani", "rank": 11, "total": 9, "md": 9 },
-    { "name": "Naif12", "rank": 12, "total": 9, "md": 9 },
-    { "name": "ABOazooz-21", "rank": 13, "total": 9, "md": 9 },
-    { "name": "awrmrshybh", "rank": 14, "total": 9, "md": 9 },
-    { "name": "Abdulcito", "rank": 15, "total": 9, "md": 9 },
-    { "name": "ROMAN 7", "rank": 16, "total": 9, "md": 9 },
-    { "name": "Sulaiman-10", "rank": 17, "total": 8, "md": 8 },
-    { "name": "CYKA BLYAT NAHUI", "rank": 18, "total": 4, "md": 4 },
-    { "name": "Amiiiiiin20", "rank": 19, "total": 4, "md": 4 },
-    { "name": "bosniak", "rank": 20, "total": 0, "md": 0 },
-    { "name": "Mohamedabdelfattah", "rank": 21, "total": 0, "md": 0 }
-  ]
-    }
+}
