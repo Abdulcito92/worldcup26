@@ -746,22 +746,25 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-14T02:05:21.553Z";
-const SCORERS=[{"n":"Folarin Balogun","t":"USA","g":2},{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1},{"n":"Ladislav Krejčí","t":"Czechia","g":1},{"n":"In-beom Hwang","t":"South Korea","g":1},{"n":"Hyun-Gyu Oh","t":"South Korea","g":1},{"n":"Jovo Lukić","t":"Bosnia-Herzegovina","g":1},{"n":"Cyle Larin","t":"Canada","g":1},{"n":"Mauricio","t":"Paraguay","g":1},{"n":"Gio Reyna","t":"USA","g":1},{"n":"Breel Embolo","t":"Switzerland","g":1},{"n":"Boualem Khoukhi","t":"Qatar","g":1},{"n":"Ismael Saibari","t":"Morocco","g":1},{"n":"Vinicius Junior","t":"Brazil","g":1},{"n":"John McGinn","t":"Scotland","g":1}];
+const LAST_UPDATED="2026-06-14T06:55:12.606Z";
+const SCORERS=[{"n":"Folarin Balogun","t":"USA","g":2},{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1},{"n":"Ladislav Krejčí","t":"Czechia","g":1},{"n":"In-beom Hwang","t":"South Korea","g":1},{"n":"Hyun-Gyu Oh","t":"South Korea","g":1},{"n":"Jovo Lukić","t":"Bosnia-Herzegovina","g":1},{"n":"Cyle Larin","t":"Canada","g":1},{"n":"Mauricio","t":"Paraguay","g":1},{"n":"Gio Reyna","t":"USA","g":1},{"n":"Breel Embolo","t":"Switzerland","g":1},{"n":"Boualem Khoukhi","t":"Qatar","g":1},{"n":"Ismael Saibari","t":"Morocco","g":1},{"n":"Vinicius Junior","t":"Brazil","g":1},{"n":"John McGinn","t":"Scotland","g":1},{"n":"Nestor Irankunda","t":"Australia","g":1},{"n":"Connor Metcalfe","t":"Australia","g":1}];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
  "2026-06-11|South Korea|Czechia":{h:2,a:1},
  "2026-06-12|Canada|Bosnia & Herzegovina":{h:1,a:1},
  "2026-06-12|USA|Paraguay":{h:4,a:1},
  "2026-06-13|Brazil|Morocco":{h:1,a:1},
- "2026-06-13|Qatar|Switzerland":{h:1,a:1},
  "2026-06-13|Haiti|Scotland":{h:0,a:1},
+ "2026-06-13|Qatar|Switzerland":{h:1,a:1},
+ "2026-06-14|Australia|Türkiye":{h:2,a:0},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
+
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
+
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
