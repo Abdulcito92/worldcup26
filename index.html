@@ -755,10 +755,10 @@ const OFFICIAL_BYKEY={
  "2026-06-12|USA|Paraguay":{h:4,a:1},
  "2026-06-13|Brazil|Morocco":{h:1,a:1},
  "2026-06-13|Qatar|Switzerland":{h:1,a:1},
+ "2026-06-13|Haiti|Scotland":{h:0,a:1},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-13|Haiti|Scotland":{h:0,a:1,st:"PAUSED"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
@@ -767,7 +767,11 @@ const GOALS_BYKEY={
 const GOALS_MANUAL={
  "2026-06-11|Mexico|South Africa":[{t:"Mexico",p:"J. Quiñones",m:"9"},{t:"Mexico",p:"R. Jiménez",m:"66"}],
  "2026-06-11|South Korea|Czechia":[{t:"Czechia",p:"L. Krejčí",m:"59"},{t:"South Korea",p:"Hwang In-beom",m:"67"},{t:"South Korea",p:"Oh Hyeon-gyu",m:"80"}],
- "2026-06-12|Canada|Bosnia & Herzegovina":[{t:"Bosnia & Herzegovina",p:"J. Lukic",m:"21"},{t:"Canada",p:"C. Larin",m:"78"}]
+ "2026-06-12|Canada|Bosnia & Herzegovina":[{t:"Bosnia & Herzegovina",p:"J. Lukic",m:"21"},{t:"Canada",p:"C. Larin",m:"78"}],
+ "2026-06-12|USA|Paraguay":[{t:"USA",p:"D. Bobadilla (OG)",m:"7"},{t:"USA",p:"F. Balogun",m:"31"},{t:"USA",p:"F. Balogun",m:"45+5"},{t:"Paraguay",p:"Mauricio",m:"73"},{t:"USA",p:"G. Reyna",m:"90+8"}],
+ "2026-06-13|Brazil|Morocco":[{t:"Morocco",p:"I. Saibari",m:"21"},{t:"Brazil",p:"Vinícius Jr.",m:"32"}],
+ "2026-06-13|Qatar|Switzerland":[{t:"Switzerland",p:"B. Embolo (pen)",m:"17"},{t:"Qatar",p:"B. Khoukhi",m:"90+4"}],
+ "2026-06-13|Haiti|Scotland":[{t:"Scotland",p:"J. McGinn",m:"28"}]
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
