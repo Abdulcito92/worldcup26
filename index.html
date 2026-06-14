@@ -194,6 +194,7 @@ html[lang="ar"] .tname{font-family:'Changa';line-height:1.2}
 .tcode{font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:3px}
 .center{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:128px}
 .score{font-family:'Anton';font-size:34px;line-height:1;letter-spacing:1px;display:flex;align-items:center;gap:12px;direction:ltr}
+html[dir="rtl"] .score{direction:rtl}
 .score .v{min-width:30px;text-align:center}
 .score.tbd{color:var(--dim);font-size:18px;letter-spacing:4px}
 html[lang="ar"] .score.tbd{font-family:'Changa';font-weight:800;letter-spacing:0}
@@ -761,7 +762,6 @@ const LIVE_BYKEY={
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
-
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
@@ -1339,6 +1339,14 @@ function buildFantasy(){
 // ---------- TOP SCORERS ----------
 function aggregateScorers(){
  const tally={};
+ // Use ONE source only. The official Golden Boot feed (SCORERS) is the authoritative
+ // tournament total, so prefer it when present. Counting goal events on top of it would
+ // double every player, and any name spelled differently between the two feeds would
+ // create a duplicate row. Fall back to per-match goal events only when SCORERS is empty.
+ if(SCORERS&&SCORERS.length){
+  SCORERS.forEach(p=>{if(!p||!p.n||!p.t)return;const id=p.t+"|"+p.n;if(!tally[id])tally[id]={n:p.n,t:p.t,g:0};tally[id].g+=(p.g||0);});
+  return Object.values(tally).sort((a,b)=>b.g-a.g||a.n.localeCompare(b.n));
+ }
  const keys=new Set([...Object.keys(GOALS_BYKEY||{}),...Object.keys(GOALS_MANUAL||{})]);
  keys.forEach(k=>{
   const live=(GOALS_BYKEY&&GOALS_BYKEY[k]&&GOALS_BYKEY[k].length)?GOALS_BYKEY[k]:(GOALS_MANUAL[k]||[]);
@@ -1349,7 +1357,6 @@ function aggregateScorers(){
    tally[id].g++;
   });
  });
- (SCORERS||[]).forEach(p=>{if(!p||!p.n||!p.t)return;const id=p.t+"|"+p.n;if(!tally[id])tally[id]={n:p.n,t:p.t,g:0};tally[id].g+=(p.g||0);});
  return Object.values(tally).sort((a,b)=>b.g-a.g||a.n.localeCompare(b.n));
 }
 function buildScorers(){
