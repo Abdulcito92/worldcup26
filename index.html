@@ -118,14 +118,17 @@ html[lang="ar"] .sectionhead .t{font-family:'Changa';letter-spacing:0}
 .sectionhead .d{color:var(--dim);font-size:14px;max-width:340px;text-align:end}
 
 /* stats band */
-.statband{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:28px}
+.statband{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:28px}
 .stat{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:22px 18px;position:relative;overflow:hidden}
 .stat::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.6s}
 .stat.in::before{transform:scaleX(1)}
+.stat.goalstat{border-color:var(--gold);background:linear-gradient(180deg,rgba(212,175,55,.18),var(--card))}
+.stat.goalstat::before{transform:scaleX(1)}
+.stat.goalstat .n{font-size:clamp(38px,5vw,58px)}
 .stat .n{font-family:'Anton';font-size:clamp(34px,4.5vw,52px);line-height:1;color:var(--gold)}
 .stat .l{margin-top:6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
 html[lang="ar"] .stat .l{letter-spacing:.5px}
-@media(max-width:760px){.statband{grid-template-columns:repeat(2,1fr)}.statband .stat:last-child{grid-column:1/-1}}
+@media(max-width:760px){.statband{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- FAVORITES BAR ---------- */
 .favbar{margin-top:26px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;padding:15px 18px}
@@ -903,7 +906,7 @@ en:{
  ctaFix:"▸ Today's fixtures",ctaBracket:"The bracket",scroll:"Scroll",
  synced:"Auto-refreshes every 15 min",lastUpd:"Last updated",
  mcTitle:'The <em>Matchcenter</em>',mcDesc:"72 group games across 16 cities. Pick a day, follow every kickoff in KSA time.",
- stTeams:"Teams",stGroups:"Groups",stGames:"Group games",stCities:"Host cities",stTotal:"Total matches",
+ stTeams:"Teams",stGroups:"Groups",stGames:"Group games",stCities:"Host cities",stTotal:"Total matches",stGoals:"Goals scored",
  myTeams:"★ My teams",pickTeams:"Pick teams",favOnly:"Favorites only",fav:"FAV",
  noFav:"No matches for your favorite teams on this day. Switch off the filter or pick more teams.",
  stTitle:'Group <em>Standings</em>',stDesc:"Live in-play scores are folded in while matches are on, marked LIVE, so positions shift in real time. Order: points, goal difference, goals for.",
@@ -951,7 +954,7 @@ ar:{
  ctaFix:"▸ مباريات اليوم",ctaBracket:"شجرة البطولة",scroll:"مرر",
  synced:"تحديث تلقائي كل 15 دقيقة",lastUpd:"آخر تحديث",
  mcTitle:'مركز <em>المباريات</em>',mcDesc:"72 مباراة مجموعات في 16 مدينة. اختر اليوم وتابع كل المباريات بتوقيت السعودية.",
- stTeams:"منتخباً",stGroups:"مجموعة",stGames:"مباراة مجموعات",stCities:"مدينة مضيفة",stTotal:"إجمالي المباريات",
+ stTeams:"منتخباً",stGroups:"مجموعة",stGames:"مباراة مجموعات",stCities:"مدينة مضيفة",stTotal:"إجمالي المباريات",stGoals:"الأهداف المسجلة",
  myTeams:"★ منتخباتي",pickTeams:"اختر المنتخبات",favOnly:"المفضلة فقط",fav:"مفضلة",
  noFav:"لا مباريات لمنتخباتك المفضلة في هذا اليوم. أوقف الفلتر أو أضف منتخبات.",
  stTitle:'ترتيب <em>المجموعات</em>',stDesc:"النتائج المباشرة تُحتسب أثناء المباريات وتظهر بعلامة مباشر، فيتغير الترتيب لحظياً. الترتيب: النقاط ثم فارق الأهداف ثم الأهداف المسجلة.",
@@ -1034,10 +1037,14 @@ function fmtDay(d){
  full:t.toLocaleDateString(loc,{weekday:"long",month:"long",day:"numeric"})};}
 
 // ---------- STAT BAND ----------
+function totalGoals(){
+ try{const src=(typeof STAND!=="undefined"&&STAND)?STAND:(typeof OFFICIAL!=="undefined"?OFFICIAL:{});
+  return Object.values(src).reduce((s,r)=>s+(r&&r.h!=null?+r.h:0)+(r&&r.a!=null?+r.a:0),0);}catch(e){return 0;}
+}
 function buildStats(){
  const band=document.getElementById("statband");
- const stats=[["48",T("stTeams")],["12",T("stGroups")],["72",T("stGames")],["16",T("stCities")],["104",T("stTotal")]];
- band.innerHTML=stats.map(s=>`<div class="stat rv"><div class="n" data-to="${s[0]}">0</div><div class="l">${s[1]}</div></div>`).join("");
+ const stats=[["48",T("stTeams")],["12",T("stGroups")],["72",T("stGames")],["16",T("stCities")],["104",T("stTotal")],[String(totalGoals()),T("stGoals"),"goalstat"]];
+ band.innerHTML=stats.map(s=>`<div class="stat rv${s[2]?' '+s[2]:''}"><div class="n" data-to="${s[0]}">0</div><div class="l">${s[1]}</div></div>`).join("");
 }
 
 // ---------- FAVORITES UI ----------
