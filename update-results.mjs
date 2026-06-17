@@ -142,7 +142,30 @@ const gKeys = Object.keys(goals).sort();
 const goalsBody = gKeys.map(k => ` ${JSON.stringify(k)}:${JSON.stringify(goals[k])},`).join('\n');
 const newGoals = `const GOALS_BYKEY={\n${goalsBody}\n};`;
 
-const newScorers = `const SCORERS=${JSON.stringify(scorers)};`;
+// Merge the API top-scorers feed with the SCORERS already in the file instead of
+// replacing it. The free feed is incomplete, so a wholesale replace kept dropping
+// real scorers (and any added manually). Merging keeps existing entries, updates a
+// player's goal count to the higher value, and appends scorers the feed newly returns.
+const snorm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const mergedScorers = [];
+const sIdx = new Map();
+{
+  const sm = src.match(/const SCORERS=(\[[\s\S]*?\]);/);
+  let existing = [];
+  if (sm) { try { existing = JSON.parse(sm[1]); } catch {} }
+  for (const e of existing) {
+    if (!e || !e.n) continue;
+    const o = { n: e.n, t: e.t || '', g: +e.g || 0 };
+    mergedScorers.push(o); sIdx.set(snorm(e.n), o);
+  }
+  for (const s of scorers) {
+    if (!s || !s.n) continue;
+    const cur = sIdx.get(snorm(s.n));
+    if (cur) { if (s.g > cur.g) cur.g = s.g; if (s.t) cur.t = s.t; }
+    else { const o = { n: s.n, t: s.t || '', g: s.g }; mergedScorers.push(o); sIdx.set(snorm(s.n), o); }
+  }
+}
+const newScorers = `const SCORERS=${JSON.stringify(mergedScorers)};`;
 
 let out = src
   .replace(officialRe, newOfficial)
