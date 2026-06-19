@@ -757,43 +757,45 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-19T08:00:00.000Z";
-const SCORERS=[{"n":"Lionel Messi","t":"Argentina","g":3},{"n":"Folarin Balogun","t":"USA","g":2},{"n":"Kai Havertz","t":"Germany","g":2},{"n":"Yasin Ayari","t":"Sweden","g":2},{"n":"Elijah Just","t":"New Zealand","g":2},{"n":"Kylian Mbappé","t":"France","g":2},{"n":"Erling Haaland","t":"Norway","g":2},{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1},{"n":"Ladislav Krejčí","t":"Czechia","g":1},{"n":"In-beom Hwang","t":"South Korea","g":1},{"n":"Hyun-Gyu Oh","t":"South Korea","g":1},{"n":"Jovo Lukić","t":"Bosnia-Herzegovina","g":1},{"n":"Cyle Larin","t":"Canada","g":2},{"n":"Mauricio","t":"Paraguay","g":1},{"n":"Gio Reyna","t":"USA","g":1},{"n":"Breel Embolo","t":"Switzerland","g":1},{"n":"Boualem Khoukhi","t":"Qatar","g":1},{"n":"Ismael Saibari","t":"Morocco","g":1},{"n":"Vinicius Junior","t":"Brazil","g":1},{"n":"John McGinn","t":"Scotland","g":1},{"n":"Nestory Irankunda","t":"Australia","g":1},{"n":"Connor Metcalfe","t":"Australia","g":1},{"n":"Felix Kalu Nmecha","t":"Germany","g":1},{"n":"Nico Schlotterbeck","t":"Germany","g":1},{"n":"Jamal Musiala","t":"Germany","g":1},{"n":"Nathaniel Brown","t":"Germany","g":1},{"n":"Deniz Undav","t":"Germany","g":1},{"n":"Livano Comenencia","t":"Curaçao","g":1},{"n":"Virgil van Dijk","t":"Netherlands","g":1},{"n":"Crysencio Summerville","t":"Netherlands","g":1},{"n":"Nakamura","t":"Japan","g":1},{"n":"Daichi Kamada","t":"Japan","g":1},{"n":"Amad Diallo","t":"Ivory Coast","g":1},{"n":"Alexander Isak","t":"Sweden","g":1},{"n":"Viktor Gyökeres","t":"Sweden","g":1},{"n":"Mattias Svanberg","t":"Sweden","g":1},{"n":"Rekik","t":"Tunisia","g":1},{"n":"Ashour","t":"Egypt","g":1},{"n":"Abdulelah Al-Amri","t":"Saudi Arabia","g":1},{"n":"Maximiliano Araújo","t":"Uruguay","g":1},{"n":"Ramin Rezaeian","t":"Iran","g":1},{"n":"Mohammad Mohebbi","t":"Iran","g":1},{"n":"Bradley Barcola","t":"France","g":1},{"n":"Ibrahim Mbaye","t":"Senegal","g":1},{"n":"Leo Østigård","t":"Norway","g":1},{"n":"Kristoffer Thorstvedt","t":"Norway","g":1},{"n":"Aymen Hussein","t":"Iraq","g":1},{"n":"Romano Schmid","t":"Austria","g":1},{"n":"Marko Arnautović","t":"Austria","g":1},{"n":"Ali Olwan","t":"Jordan","g":1},{"n":"João Neves","t":"Portugal","g":1},{"n":"Yoane Wissa","t":"DR Congo","g":1},{"n":"Harry Kane","t":"England","g":2},{"n":"Jude Bellingham","t":"England","g":1},{"n":"Marcus Rashford","t":"England","g":1},{"n":"Martin Baturina","t":"Croatia","g":1},{"n":"Petar Musa","t":"Croatia","g":1},{"n":"Johan Manzambi","t":"Switzerland","g":2},{"n":"Jonathan David","t":"Canada","g":3},{"n":"Remo Vargas","t":"Switzerland","g":1},{"n":"Granit Xhaka","t":"Switzerland","g":1},{"n":"Edin Mahmić","t":"Bosnia & Herzegovina","g":1},{"n":"Michal Sadílek","t":"Czechia","g":1},{"n":"Teboho Mokoena","t":"South Africa","g":1},{"n":"Nathan Saliba","t":"Canada","g":1},{"n":"Luis Romo","t":"Mexico","g":1}];
+const LAST_UPDATED="2026-06-19T19:02:57.394Z";
+const SCORERS=[{"n":"Lionel Messi","t":"Argentina","g":3},{"n":"Folarin Balogun","t":"USA","g":2},{"n":"Kai Havertz","t":"Germany","g":2},{"n":"Yasin Ayari","t":"Sweden","g":2},{"n":"Elijah Just","t":"New Zealand","g":2},{"n":"Kylian Mbappé","t":"France","g":2},{"n":"Erling Haaland","t":"Norway","g":2},{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1},{"n":"Ladislav Krejčí","t":"Czechia","g":1},{"n":"In-beom Hwang","t":"South Korea","g":1},{"n":"Hyun-Gyu Oh","t":"South Korea","g":1},{"n":"Jovo Lukić","t":"Bosnia-Herzegovina","g":1},{"n":"Cyle Larin","t":"Canada","g":2},{"n":"Mauricio","t":"Paraguay","g":1},{"n":"Gio Reyna","t":"USA","g":1},{"n":"Breel Embolo","t":"Switzerland","g":1},{"n":"Boualem Khoukhi","t":"Qatar","g":1},{"n":"Ismael Saibari","t":"Morocco","g":1},{"n":"Vinicius Junior","t":"Brazil","g":1},{"n":"John McGinn","t":"Scotland","g":1},{"n":"Nestory Irankunda","t":"Australia","g":1},{"n":"Connor Metcalfe","t":"Australia","g":1},{"n":"Felix Kalu Nmecha","t":"Germany","g":1},{"n":"Nico Schlotterbeck","t":"Germany","g":1},{"n":"Jamal Musiala","t":"Germany","g":1},{"n":"Nathaniel Brown","t":"Germany","g":1},{"n":"Deniz Undav","t":"Germany","g":1},{"n":"Livano Comenencia","t":"Curaçao","g":1},{"n":"Virgil van Dijk","t":"Netherlands","g":1},{"n":"Crysencio Summerville","t":"Netherlands","g":1},{"n":"Nakamura","t":"Japan","g":1},{"n":"Daichi Kamada","t":"Japan","g":1},{"n":"Amad Diallo","t":"Ivory Coast","g":1},{"n":"Alexander Isak","t":"Sweden","g":1},{"n":"Viktor Gyökeres","t":"Sweden","g":1},{"n":"Mattias Svanberg","t":"Sweden","g":1},{"n":"Rekik","t":"Tunisia","g":1},{"n":"Ashour","t":"Egypt","g":1},{"n":"Abdulelah Al-Amri","t":"Saudi Arabia","g":1},{"n":"Maximiliano Araújo","t":"Uruguay","g":1},{"n":"Ramin Rezaeian","t":"Iran","g":1},{"n":"Mohammad Mohebbi","t":"Iran","g":1},{"n":"Bradley Barcola","t":"France","g":1},{"n":"Ibrahim Mbaye","t":"Senegal","g":1},{"n":"Leo Østigård","t":"Norway","g":1},{"n":"Kristoffer Thorstvedt","t":"Norway","g":1},{"n":"Aymen Hussein","t":"Iraq","g":1},{"n":"Romano Schmid","t":"Austria","g":1},{"n":"Marko Arnautović","t":"Austria","g":1},{"n":"Ali Olwan","t":"Jordan","g":1},{"n":"João Neves","t":"Portugal","g":1},{"n":"Yoane Wissa","t":"DR Congo","g":1},{"n":"Harry Kane","t":"England","g":2},{"n":"Jude Bellingham","t":"England","g":1},{"n":"Marcus Rashford","t":"England","g":1},{"n":"Martin Baturina","t":"Croatia","g":1},{"n":"Petar Musa","t":"Croatia","g":1},{"n":"Nestor Irankunda","t":"Australia","g":1},{"n":"Johan Manzambi","t":"Switzerland","g":2},{"n":"Jonathan David","t":"Canada","g":3}];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
  "2026-06-11|South Korea|Czechia":{h:2,a:1},
  "2026-06-12|Canada|Bosnia & Herzegovina":{h:1,a:1},
  "2026-06-12|USA|Paraguay":{h:4,a:1},
  "2026-06-13|Brazil|Morocco":{h:1,a:1},
- "2026-06-13|Qatar|Switzerland":{h:1,a:1},
  "2026-06-13|Haiti|Scotland":{h:0,a:1},
+ "2026-06-13|Qatar|Switzerland":{h:1,a:1},
  "2026-06-14|Australia|Türkiye":{h:2,a:0},
  "2026-06-14|Germany|Curaçao":{h:7,a:1},
- "2026-06-14|Netherlands|Japan":{h:2,a:2},
  "2026-06-14|Ivory Coast|Ecuador":{h:1,a:0},
+ "2026-06-14|Netherlands|Japan":{h:2,a:2},
  "2026-06-14|Sweden|Tunisia":{h:5,a:1},
  "2026-06-15|Belgium|Egypt":{h:1,a:1},
+ "2026-06-15|Iran|New Zealand":{h:2,a:2},
  "2026-06-15|Saudi Arabia|Uruguay":{h:1,a:1},
  "2026-06-15|Spain|Cape Verde":{h:0,a:0},
- "2026-06-15|Iran|New Zealand":{h:2,a:2},
+ "2026-06-16|Argentina|Algeria":{h:3,a:0},
  "2026-06-16|France|Senegal":{h:3,a:1},
  "2026-06-16|Iraq|Norway":{h:1,a:4},
- "2026-06-16|Argentina|Algeria":{h:3,a:0},
  "2026-06-17|Austria|Jordan":{h:3,a:1},
- "2026-06-17|Portugal|DR Congo":{h:1,a:1},
  "2026-06-17|England|Croatia":{h:4,a:2},
  "2026-06-17|Ghana|Panama":{h:1,a:0},
+ "2026-06-17|Portugal|DR Congo":{h:1,a:1},
  "2026-06-17|Uzbekistan|Colombia":{h:1,a:3},
- "2026-06-18|Czechia|South Africa":{h:1,a:1},
- "2026-06-18|Switzerland|Bosnia & Herzegovina":{h:4,a:1},
  "2026-06-18|Canada|Qatar":{h:6,a:0},
+ "2026-06-18|Czechia|South Africa":{h:1,a:1},
  "2026-06-18|Mexico|South Korea":{h:1,a:0},
+"2026-06-18|Switzerland|Bosnia & Herzegovina":{h:4,a:1},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
+ "2026-06-19|USA|Australia":{h:0,a:0,st:"IN_PLAY"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
+
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
@@ -821,10 +823,7 @@ const GOALS_MANUAL={
  "2026-06-15|Spain|Cape Verde":[],
  "2026-06-17|Ghana|Panama":[{t:"Ghana",p:"C. Yirenkyi",m:"90+5"}],
  "2026-06-17|Uzbekistan|Colombia":[{t:"Colombia",p:"D. Muñoz",m:"40"},{t:"Uzbekistan",p:"A. Fayzullaev",m:"60"},{t:"Colombia",p:"L. Díaz",m:"65"},{t:"Colombia",p:"J. Campaz",m:"90+9"}],
- "2026-06-18|Czechia|South Africa":[{t:"Czechia",p:"M. Sadílek",m:"5"},{t:"South Africa",p:"T. Mokoena (pen)",m:"83"}],
- "2026-06-18|Switzerland|Bosnia & Herzegovina":[{t:"Switzerland",p:"J. Manzambi",m:"74"},{t:"Switzerland",p:"R. Vargas",m:"84"},{t:"Switzerland",p:"J. Manzambi",m:"90"},{t:"Bosnia & Herzegovina",p:"E. Mahmić",m:"90+3"},{t:"Switzerland",p:"G. Xhaka (pen)",m:"90+7"}],
- "2026-06-18|Canada|Qatar":[{t:"Canada",p:"C. Larin",m:"16"},{t:"Canada",p:"J. David",m:"29"},{t:"Canada",p:"J. David",m:"45+3"},{t:"Canada",p:"N. Saliba",m:"64"},{t:"Canada",p:"M. Manai (OG)",m:"75"},{t:"Canada",p:"J. David",m:"90+2"}],
- "2026-06-18|Mexico|South Korea":[{t:"Mexico",p:"L. Romo",m:"50"}]
+"2026-06-18|Switzerland|Bosnia & Herzegovina":[{t:"Switzerland",p:"J. Manzambi",m:"74"},{t:"Switzerland",p:"R. Vargas",m:"84"},{t:"Switzerland",p:"J. Manzambi",m:"90"},{t:"Switzerland",p:"G. Xhaka (pen)",m:"90+7"},{t:"Bosnia & Herzegovina",p:"E. Mahmic",m:"90+3"}]
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
