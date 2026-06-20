@@ -362,6 +362,13 @@ img.flag,img.fl{object-fit:cover}
 .brlegend{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap;color:var(--muted);font-size:12px}
 .brlegend span{display:flex;align-items:center;gap:8px}
 .bdot{width:9px;height:9px;border-radius:50%}
+.brhead-l{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.brspon{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.brspon-l{color:var(--dim);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Archivo';font-weight:800}
+.brspon-chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px;display:inline-flex;transition:.25s}
+.brspon:hover .brspon-chip{border-color:var(--gold);transform:translateY(-1px)}
+.brspon-chip img{height:30px;width:auto;display:block}
+html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
 .bracketwrap{overflow-x:auto;padding:24px 2px 10px;direction:ltr}
 .bracketwrap::-webkit-scrollbar{height:8px}.bracketwrap::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
 .btree{display:flex;gap:26px;min-width:1240px;align-items:stretch}
@@ -547,7 +554,7 @@ tbody tr.qno td{opacity:.62}
   <!-- BRACKET -->
   <section id="bracketView" class="hidden">
     <div class="sectionhead">
-      <div class="t" id="brTitle">The <em>Bracket</em></div>
+      <div class="brhead-l"><div class="t" id="brTitle">Kareem <em>Brackets</em></div><a class="brspon" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="kareem-protein.png" alt="Kareem Protein"></span></a></div>
       <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
     </div>
     <div class="brlegend">
@@ -981,7 +988,7 @@ const FUNZONE=[
 // ---------- I18N ----------
 const STR={
 en:{
- navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
+ navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
  heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
@@ -995,7 +1002,7 @@ en:{
  leg1:"Top 2 — through",leg2:"3rd — in contention",
  thTitle:'Race for the <em>Round of 32</em>',thDesc:"The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.",
  thirdsHead:"Best Third-Placed Teams",thirdsSub:"top 8 advance",qIn:"Qualify",qOut:"Out",
- brTitle:'The <em>Bracket</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
+ brTitle:'Kareem <em>Brackets</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
  brProj:"Projected from current standings",brLock:"Group decided — locked in",
  brHint:"Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.",
  r32:"Round of 32",r16:"Round of 16",qf:"Quarter-finals",sf:"Semi-finals",fin:"Final",third:"Third place",
@@ -1011,6 +1018,7 @@ en:{
  fzNamePh:"Your name",fzNumPh:"No.",
  noGoals:"⚽ No goals yet. The race for the Golden Boot kicks off on June 11.",
  scHead:"Golden Boot Race",scSub:"scorers",player:"Player",team:"Team",goals:"Goals",
+ presentedBy:"presented by",
  sponsorsTitle:"Our Sponsors",
  foot1:"ABDULCITO MATCHCENTER · fixtures from the official 2026 schedule · results auto-synced",
  foot2:"Kickoffs in",foot3:"KSA time (UTC+3)",
@@ -1031,7 +1039,7 @@ en:{
  qOut:"Eliminated"
 },
 ar:{
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -1045,7 +1053,7 @@ ar:{
  leg1:"الأول والثاني — تأهل",leg2:"الثالث — في المنافسة",
  thTitle:'السباق إلى <em>دور الـ32</em>',thDesc:"أفضل 8 منتخبات في المركز الثالث تنضم إلى متصدري المجموعات الـ12 ووصفائها في الإقصائيات.",
  thirdsHead:"أفضل أصحاب المركز الثالث",thirdsSub:"أفضل 8 يتأهلون",qIn:"متأهل",qOut:"خارج",
- brTitle:'شجرة <em>البطولة</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
+ brTitle:'إقصائيات <em>كريم</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
  brProj:"إسقاط من الترتيب الحالي",brLock:"حُسمت المجموعة — مؤكد",
  brHint:"هيكل FIFA الرسمي (المباريات 73–104). مواجهات أصحاب المركز الثالث تتبع المجموعات المسموحة لكل خانة، وتؤكدها FIFA بعد نهاية دور المجموعات.",
  r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",fin:"النهائي",third:"المركز الثالث",
@@ -1061,6 +1069,7 @@ ar:{
  fzNamePh:"اسمك",fzNumPh:"الرقم",
  noGoals:"⚽ لا أهداف بعد. سباق الحذاء الذهبي ينطلق يوم 11 يونيو.",
  scHead:"سباق الحذاء الذهبي",scSub:"هدافين",player:"اللاعب",team:"المنتخب",goals:"أهداف",
+ presentedBy:"برعاية",
  sponsorsTitle:"رعاتنا",
  foot1:"ABDULCITO MATCHCENTER · جدول المباريات من الجدول الرسمي 2026 · النتائج تتحدث تلقائياً",
  foot2:"الانطلاق بـ",foot3:"توقيت السعودية (UTC+3)",
