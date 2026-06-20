@@ -324,6 +324,9 @@ html[lang="ar"] .fzin{font-family:'Changa'}
 .fzmedia .fzph span{display:block;font-size:34px;margin-bottom:8px;opacity:.7}
 .fzlabel{position:absolute;top:10px;inset-inline-start:10px;background:rgba(8,9,16,.78);backdrop-filter:blur(6px);color:var(--gold);font-family:'Archivo';font-weight:900;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px}
 html[lang="ar"] .fzlabel{font-family:'Changa';letter-spacing:0}
+.fzcarsa{position:absolute;top:10px;inset-inline-end:10px;display:flex;align-items:center;background:rgba(8,9,16,.78);backdrop-filter:blur(6px);padding:5px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.14);z-index:2;transition:transform .2s,border-color .2s}
+.fzcarsa:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.4)}
+.fzcarsa img{height:13px;width:auto;display:block}
 .fztoggle{position:absolute;bottom:10px;inset-inline-end:10px;display:inline-flex;background:rgba(8,9,16,.8);backdrop-filter:blur(6px);border:1px solid var(--line2);border-radius:20px;overflow:hidden}
 .fztoggle button{background:transparent;border:0;color:var(--muted);font-family:'Archivo';font-weight:800;font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:6px 11px;cursor:pointer;transition:.15s}
 html[lang="ar"] .fztoggle button{font-family:'Changa';letter-spacing:0}
@@ -1562,6 +1565,7 @@ function buildFunZone(){
   return `<div class="fzcard rv" data-i="${i}">
    <div class="fzmedia">
      <span class="fzlabel">${T("fzResult")}</span>
+     <a class="fzcarsa" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><img src="carsa.png" alt="CARSA"></a>
      <div class="fzmediainner">${media}</div>
    </div>
    <div class="fzbody">
