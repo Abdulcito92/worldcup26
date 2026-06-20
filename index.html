@@ -580,7 +580,7 @@ tbody tr.qno td{opacity:.62}
 
   <!-- FUN ZONE -->
   <section id="funzoneView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
+    <div class="sectionhead"><div class="brhead-l"><div class="t" id="fzTitle">CARSA <em>Fun Zone</em></div><a class="brspon" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="carsa.png" alt="CARSA"></span></a></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
     <div class="fzsteps">
       <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
       <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
@@ -607,11 +607,9 @@ tbody tr.qno td{opacity:.62}
       <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
       <img src="kareem-protein.png" alt="Kareem Protein">
     </a>
-    <!-- CARSA sponsor (standby: uncomment to enable, requires carsa.png in repo)
     <a class="spcell" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA">
       <img src="carsa.png" alt="CARSA">
     </a>
-    -->
   </div>
 </section>
 <footer>
@@ -989,7 +987,7 @@ const FUNZONE=[
 // ---------- I18N ----------
 const STR={
 en:{
- navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
+ navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"CARSA Fun Zone",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
  heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
@@ -1012,7 +1010,7 @@ en:{
  fnOpen:"Open league on FIFA",fnHint:"League code P2XKZ4FQ. Use the Join my league button to invite friends.",
  manager:"Manager",mdPts:"MD pts",total:"Total",managers:"managers",
  scTitle:'Golden <em>Boot</em>',scDesc:"Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.",
- fzTitle:'Fun <em>Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
+ fzTitle:'CARSA <em>Fun Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
  fzStep1:"Pick a prompt below and copy it.",fzStep2:"Open ChatGPT and upload your photo.",fzStep3:"Paste the prompt, send, and share your result.",
  fzResult:"Abdulhadi's result",fzAddResult:"Add your result image here",fzYourPhoto:"Preview your photo",fzExample:"Example",fzYours:"Yours",fzOpenGPT:"Open ChatGPT",
  fzNation:"Your nation",fzNoFav:"Pick teams in Fixtures to add favorites, or choose one below.",
@@ -1040,7 +1038,7 @@ en:{
  qOut:"Eliminated"
 },
 ar:{
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"ترفيه كارسا",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -1063,7 +1061,7 @@ ar:{
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
  scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
- fzTitle:'منطقة <em>الترفيه</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
+ fzTitle:'ترفيه <em>كارسا</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
  fzStep1:"اختر برومبت من الأسفل وانسخه.",fzStep2:"افتح ChatGPT وارفع صورتك.",fzStep3:"الصق البرومبت، أرسل، وشارك نتيجتك.",
  fzResult:"نتيجة عبدالهادي",fzAddResult:"أضف صورة نتيجتك هنا",fzYourPhoto:"اعرض صورتك",fzExample:"مثال",fzYours:"صورتك",fzOpenGPT:"افتح ChatGPT",
  fzNation:"منتخبك",fzNoFav:"اختر منتخبات من تبويب المباريات لإضافة المفضلة، أو اختر منتخباً أدناه.",
