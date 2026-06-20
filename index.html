@@ -274,6 +274,17 @@ tbody tr.q2 td:first-child::before{background:var(--cyan)}
 .toolbar{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
 .hint{color:var(--dim);font-size:12px;max-width:520px}
 
+.sponsors{position:relative;z-index:3;max-width:1200px;margin:54px auto 0;padding:0 26px}
+.sponsors .sphead{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sponsors .spkick{font-family:'Anton';letter-spacing:2px;text-transform:uppercase;font-size:16px;color:var(--gold);white-space:nowrap}
+.sponsors .sprule{height:1px;flex:1;background:linear-gradient(90deg,var(--line2),transparent)}
+.spgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.spcell{flex:0 1 220px;display:flex;align-items:center;justify-content:center;height:104px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;transition:.25s;position:relative;overflow:hidden;padding:18px}
+.spcell:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.42)}
+.spcell img,.spcell video{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.spig{position:absolute;top:8px;right:9px;width:15px;height:15px;color:#9fb1cf;transition:.25s}
+.spcell:hover .spig{color:#13bf68}
+@media(max-width:560px){.spcell{flex-basis:140px;height:92px;padding:14px}}
 footer{position:relative;z-index:3;background:var(--bg);border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:30px 26px;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer b{color:var(--muted)}
 .ownernote{position:relative;z-index:3;background:var(--bg);max-width:1200px;margin:0 auto;padding:0 26px}
@@ -580,6 +591,20 @@ tbody tr.qno td{opacity:.62}
       <p class="om" data-t="ownMsg">I built this matchcenter as a fan, for fans. Every fixture, every table, and the full road to the final, all in one place. Pick your teams, follow every kickoff in KSA time, and enjoy the first 48-team World Cup with me.</p>
       <div class="os" data-t="ownSign">— Abdulhadi · ABDULCITO</div>
     </div>
+  </div>
+</section>
+<section class="sponsors">
+  <div class="sphead"><span class="spkick" data-t="sponsorsTitle">Our Sponsors</span><span class="sprule"></span></div>
+  <div class="spgrid" id="spgrid">
+    <a class="spcell" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram">
+      <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+      <img src="kareem-protein.png" alt="Kareem Protein">
+    </a>
+    <!-- CARSA sponsor (standby: uncomment to enable, requires carsa.png in repo)
+    <a class="spcell" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA">
+      <img src="carsa.png" alt="CARSA">
+    </a>
+    -->
   </div>
 </section>
 <footer>
@@ -985,6 +1010,7 @@ en:{
  fzNamePh:"Your name",fzNumPh:"No.",
  noGoals:"⚽ No goals yet. The race for the Golden Boot kicks off on June 11.",
  scHead:"Golden Boot Race",scSub:"scorers",player:"Player",team:"Team",goals:"Goals",
+ sponsorsTitle:"Our Sponsors",
  foot1:"ABDULCITO MATCHCENTER · fixtures from the official 2026 schedule · results auto-synced",
  foot2:"Kickoffs in",foot3:"KSA time (UTC+3)",
  ownTitle:"From the owner",
@@ -1034,6 +1060,7 @@ ar:{
  fzNamePh:"اسمك",fzNumPh:"الرقم",
  noGoals:"⚽ لا أهداف بعد. سباق الحذاء الذهبي ينطلق يوم 11 يونيو.",
  scHead:"سباق الحذاء الذهبي",scSub:"هدافين",player:"اللاعب",team:"المنتخب",goals:"أهداف",
+ sponsorsTitle:"رعاتنا",
  foot1:"ABDULCITO MATCHCENTER · جدول المباريات من الجدول الرسمي 2026 · النتائج تتحدث تلقائياً",
  foot2:"الانطلاق بـ",foot3:"توقيت السعودية (UTC+3)",
  ownTitle:"كلمة صاحب الموقع",
