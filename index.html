@@ -828,7 +828,7 @@ const OFFICIAL_BYKEY={
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-20|Germany|Ivory Coast":{h:0,a:0,st:"IN_PLAY"},
+ "2026-06-20|Germany|Ivory Coast":{h:0,a:1,st:"IN_PLAY"},
 
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
@@ -837,6 +837,7 @@ const GOALS_BYKEY={
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
+ "2026-06-20|Germany|Ivory Coast":[{t:"Ivory Coast",p:"F. Kessié",m:"30"}],
  "2026-06-19|USA|Australia":[{t:"USA",p:"C. Burgess (OG)",m:"11"},{t:"USA",p:"A. Freeman",m:"43"}],
  "2026-06-20|Netherlands|Sweden":[{t:"Netherlands",p:"B. Brobbey",m:"5"},{t:"Netherlands",p:"B. Brobbey",m:"17"},{t:"Netherlands",p:"C. Gakpo",m:"47"},{t:"Netherlands",p:"C. Gakpo",m:"54"},{t:"Netherlands",p:"C. Summerville",m:"89"},{t:"Sweden",p:"A. Elanga",m:"59"}],
  "2026-06-19|Scotland|Morocco":[{t:"Morocco",p:"I. Saibari",m:"2"}],
