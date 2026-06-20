@@ -1691,4 +1691,13 @@ else { try{ if(Object.keys(LIVE_BYKEY).length){ setTimeout(function(){ location.
  document.getElementById('lpClose').onclick=()=>panel.classList.remove('open');
  const cc=document.getElementById('copyCode');
  cc.onclick=()=>{const t='P2XKZ4FQ';
-  cons
+  const done=()=>{cc.textContent=T('copied');setTimeout(()=>{cc.textContent=T('copy');},1600);};
+  const fb=()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();done();};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(fb);}else{fb();}
+ };
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open');});
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
