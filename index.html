@@ -362,6 +362,13 @@ img.flag,img.fl{object-fit:cover}
 .brlegend{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap;color:var(--muted);font-size:12px}
 .brlegend span{display:flex;align-items:center;gap:8px}
 .bdot{width:9px;height:9px;border-radius:50%}
+.brhead-l{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.brspon{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.brspon-l{color:var(--dim);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Archivo';font-weight:800}
+.brspon-chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px;display:inline-flex;transition:.25s}
+.brspon:hover .brspon-chip{border-color:var(--gold);transform:translateY(-1px)}
+.brspon-chip img{height:30px;width:auto;display:block}
+html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
 .bracketwrap{overflow-x:auto;padding:24px 2px 10px;direction:ltr}
 .bracketwrap::-webkit-scrollbar{height:8px}.bracketwrap::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
 .btree{display:flex;gap:26px;min-width:1240px;align-items:stretch}
@@ -547,7 +554,7 @@ tbody tr.qno td{opacity:.62}
   <!-- BRACKET -->
   <section id="bracketView" class="hidden">
     <div class="sectionhead">
-      <div class="t" id="brTitle">The <em>Bracket</em></div>
+      <div class="brhead-l"><div class="t" id="brTitle">Kareem <em>Brackets</em></div><a class="brspon" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="kareem-protein.png" alt="Kareem Protein"></span></a></div>
       <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
     </div>
     <div class="brlegend">
@@ -573,7 +580,7 @@ tbody tr.qno td{opacity:.62}
 
   <!-- FUN ZONE -->
   <section id="funzoneView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
+    <div class="sectionhead"><div class="brhead-l"><div class="t" id="fzTitle">CARSA <em>Fun Zone</em></div><a class="brspon" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="carsa.png" alt="CARSA"></span></a></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
     <div class="fzsteps">
       <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
       <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
@@ -600,213 +607,8 @@ tbody tr.qno td{opacity:.62}
       <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
       <img src="kareem-protein.png" alt="Kareem Protein">
     </a>
-    <!-- CARSA sponsor (standby: uncomment to enable, requires carsa.png in repo)
     <a class="spcell" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA">
       <img src="carsa.png" alt="CARSA">
-    </a>
-    -->
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="tickerwrap"><div class="ticker" id="ticker"></div></div>
-
-<!-- SHELL -->
-<div class="shell">
-  <div class="synced"><span class="livedot"></span> <span data-t="synced">Auto-refreshes every 15 min</span> &middot; <b><span data-t="lastUpd">Last updated</span> <span id="lastUpdated">just now</span></b></div>
-
-  <!-- MATCHES -->
-  <section id="matchesView">
-    <div class="sectionhead">
-      <div class="t" id="mcTitle">The <em>Matchcenter</em></div>
-      <div class="d" data-t="mcDesc">72 group games across 16 cities. Pick a day, follow every kickoff in KSA time.</div>
-    </div>
-    <div class="statband" id="statband"></div>
-    <div class="favbar">
-      <div class="favtop">
-        <span class="ft" data-t="myTeams">★ My teams</span>
-        <button class="favpick" id="favpick" data-t="pickTeams">Pick teams</button>
-      </div>
-      <div class="favgrid" id="favgrid"></div>
-    </div>
-    <div class="dayrail" id="dayrail"></div>
-    <div class="dayhead"><h3 id="dayTitle"></h3><span class="md" id="dayMd"></span></div>
-    <div class="matches" id="matchList"></div>
-  </section>
-
-  <!-- STANDINGS -->
-  <section id="standingsView" class="hidden">
-    <div class="sectionhead">
-      <div class="t" id="stTitle">Group <em>Standings</em></div>
-      <div class="d" data-t="stDesc">Tables update automatically from official results. Order: points, goal difference, goals for.</div>
-    </div>
-    <div class="legend">
-      <span><i class="dot" style="background:var(--grass)"></i> <span data-t="leg1">Top 2 — through</span></span>
-      <span><i class="dot" style="background:var(--cyan)"></i> <span data-t="leg2">3rd — in contention</span></span>
-    </div>
-    <div class="groups" id="groups"></div>
-    <div class="sectionhead" style="margin-top:56px"><div class="t" id="thTitle">Race for the <em>Round of 32</em></div><div class="d" data-t="thDesc">The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.</div></div>
-    <div class="thirds" id="thirds"></div>
-  </section>
-
-  <!-- BRACKET -->
-  <section id="bracketView" class="hidden">
-    <div class="sectionhead">
-      <div class="t" id="brTitle">The <em>Bracket</em></div>
-      <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
-    </div>
-    <div class="brlegend">
-      <span><i class="bdot" style="background:var(--gold)"></i> <span data-t="brProj">Projected from current standings</span></span>
-      <span><i class="bdot" style="background:var(--grass)"></i> <span data-t="brLock">Group decided — locked in</span></span>
-    </div>
-    <div class="bracketwrap"><div class="btree" id="btree"></div></div>
-    <p class="hint" style="margin-top:10px" data-t="brHint">Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.</p>
-  </section>
-
-  <!-- FANTASY -->
-  <section id="fantasyView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fnTitle">Fantasy <em>League</em></div><div class="d" data-t="fnDesc">Your ABDULCITO league on FIFA Fantasy. Points fill in once matchdays begin. Snapshot taken 9 June 2026.</div></div>
-    <div class="toolbar"><a class="btn p" href="https://play.fifa.com/fantasy/leagues/94211/table" target="_blank" rel="noopener" style="padding:12px 18px" data-t="fnOpen">Open league on FIFA</a><span class="hint" data-t="fnHint">League code P2XKZ4FQ. Use the Join my league button to invite friends.</span></div>
-    <div class="thirds" id="fantasyList" style="margin-top:18px"></div>
-  </section>
-
-  <!-- SCORERS -->
-  <section id="scorersView" class="hidden">
-    <div class="sectionhead"><div class="t" id="scTitle">Golden <em>Boot</em></div><div class="d" data-t="scDesc">Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.</div></div>
-    <div class="thirds" id="scorersList" style="margin-top:18px"></div>
-  </section>
-
-  <!-- FUN ZONE -->
-  <section id="funzoneView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
-    <div class="fzsteps">
-      <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
-      <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
-      <div class="fzstep"><span class="fzn">3</span><span data-t="fzStep3">Paste the prompt, send, and share your result.</span></div>
-    </div>
-    <div class="fzgrid" id="funzoneList"></div>
-  </section>
-</div>
-
-<section class="ownernote">
-  <div class="ownercard">
-    <img class="opic" src="logo.jpeg" alt="Abdulhadi" onerror="this.style.display='none'">
-    <div>
-      <div class="ot" data-t="ownTitle">From the owner</div>
-      <p class="om" data-t="ownMsg">I built this matchcenter as a fan, for fans. Every fixture, every table, and the full road to the final, all in one place. Pick your teams, follow every kickoff in KSA time, and enjoy the first 48-team World Cup with me.</p>
-      <div class="os" data-t="ownSign">— Abdulhadi · ABDULCITO</div>
-    </div>
-  </div>
-</section>
-<section class="sponsors">
-  <div class="sphead"><span class="spkick" data-t="sponsorsTitle">Our Sponsors</span><span class="sprule"></span></div>
-  <div class="spgrid" id="spgrid">
-    <a class="spcell" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram">
-      <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
-      <img src="kareem-protein.png" alt="Kareem Protein" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;spname&quot;&gt;Kareem&lt;br&gt;Protein&lt;/span&gt;')">
-    </a>
-    <a class="spcell" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA">
-      <img src="carsa.png" alt="CARSA" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;spname&quot;&gt;CARSA&lt;/span&gt;')">
-    </a>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="tickerwrap"><div class="ticker" id="ticker"></div></div>
-
-<!-- SHELL -->
-<div class="shell">
-  <div class="synced"><span class="livedot"></span> <span data-t="synced">Auto-refreshes every 15 min</span> &middot; <b><span data-t="lastUpd">Last updated</span> <span id="lastUpdated">just now</span></b></div>
-
-  <!-- MATCHES -->
-  <section id="matchesView">
-    <div class="sectionhead">
-      <div class="t" id="mcTitle">The <em>Matchcenter</em></div>
-      <div class="d" data-t="mcDesc">72 group games across 16 cities. Pick a day, follow every kickoff in KSA time.</div>
-    </div>
-    <div class="statband" id="statband"></div>
-    <div class="favbar">
-      <div class="favtop">
-        <span class="ft" data-t="myTeams">★ My teams</span>
-        <button class="favpick" id="favpick" data-t="pickTeams">Pick teams</button>
-      </div>
-      <div class="favgrid" id="favgrid"></div>
-    </div>
-    <div class="dayrail" id="dayrail"></div>
-    <div class="dayhead"><h3 id="dayTitle"></h3><span class="md" id="dayMd"></span></div>
-    <div class="matches" id="matchList"></div>
-  </section>
-
-  <!-- STANDINGS -->
-  <section id="standingsView" class="hidden">
-    <div class="sectionhead">
-      <div class="t" id="stTitle">Group <em>Standings</em></div>
-      <div class="d" data-t="stDesc">Tables update automatically from official results. Order: points, goal difference, goals for.</div>
-    </div>
-    <div class="legend">
-      <span><i class="dot" style="background:var(--grass)"></i> <span data-t="leg1">Top 2 — through</span></span>
-      <span><i class="dot" style="background:var(--cyan)"></i> <span data-t="leg2">3rd — in contention</span></span>
-    </div>
-    <div class="groups" id="groups"></div>
-    <div class="sectionhead" style="margin-top:56px"><div class="t" id="thTitle">Race for the <em>Round of 32</em></div><div class="d" data-t="thDesc">The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.</div></div>
-    <div class="thirds" id="thirds"></div>
-  </section>
-
-  <!-- BRACKET -->
-  <section id="bracketView" class="hidden">
-    <div class="sectionhead">
-      <div class="t" id="brTitle">The <em>Bracket</em></div>
-      <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
-    </div>
-    <div class="brlegend">
-      <span><i class="bdot" style="background:var(--gold)"></i> <span data-t="brProj">Projected from current standings</span></span>
-      <span><i class="bdot" style="background:var(--grass)"></i> <span data-t="brLock">Group decided — locked in</span></span>
-    </div>
-    <div class="bracketwrap"><div class="btree" id="btree"></div></div>
-    <p class="hint" style="margin-top:10px" data-t="brHint">Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.</p>
-  </section>
-
-  <!-- FANTASY -->
-  <section id="fantasyView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fnTitle">Fantasy <em>League</em></div><div class="d" data-t="fnDesc">Your ABDULCITO league on FIFA Fantasy. Points fill in once matchdays begin. Snapshot taken 9 June 2026.</div></div>
-    <div class="toolbar"><a class="btn p" href="https://play.fifa.com/fantasy/leagues/94211/table" target="_blank" rel="noopener" style="padding:12px 18px" data-t="fnOpen">Open league on FIFA</a><span class="hint" data-t="fnHint">League code P2XKZ4FQ. Use the Join my league button to invite friends.</span></div>
-    <div class="thirds" id="fantasyList" style="margin-top:18px"></div>
-  </section>
-
-  <!-- SCORERS -->
-  <section id="scorersView" class="hidden">
-    <div class="sectionhead"><div class="t" id="scTitle">Golden <em>Boot</em></div><div class="d" data-t="scDesc">Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.</div></div>
-    <div class="thirds" id="scorersList" style="margin-top:18px"></div>
-  </section>
-
-  <!-- FUN ZONE -->
-  <section id="funzoneView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
-    <div class="fzsteps">
-      <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
-      <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
-      <div class="fzstep"><span class="fzn">3</span><span data-t="fzStep3">Paste the prompt, send, and share your result.</span></div>
-    </div>
-    <div class="fzgrid" id="funzoneList"></div>
-  </section>
-</div>
-
-<section class="ownernote">
-  <div class="ownercard">
-    <img class="opic" src="logo.jpeg" alt="Abdulhadi" onerror="this.style.display='none'">
-    <div>
-      <div class="ot" data-t="ownTitle">From the owner</div>
-      <p class="om" data-t="ownMsg">I built this matchcenter as a fan, for fans. Every fixture, every table, and the full road to the final, all in one place. Pick your teams, follow every kickoff in KSA time, and enjoy the first 48-team World Cup with me.</p>
-      <div class="os" data-t="ownSign">— Abdulhadi · ABDULCITO</div>
-    </div>
-  </div>
-</section>
-<section class="sponsors">
-  <div class="sphead"><span class="spkick" data-t="sponsorsTitle">Our Sponsors</span><span class="sprule"></span></div>
-  <div class="spgrid" id="spgrid">
-    <a class="spcell" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram">
-      <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
-      <span class="spname">Kareem<br>Protein</span>
     </a>
   </div>
 </section>
@@ -985,7 +787,7 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-06-20T18:45:00.000Z";
+const LAST_UPDATED="2026-06-20T20:59:51.552Z";
 const SCORERS=[{"n":"Lionel Messi","t":"Argentina","g":3},{"n":"Folarin Balogun","t":"USA","g":2},{"n":"Kai Havertz","t":"Germany","g":2},{"n":"Yasin Ayari","t":"Sweden","g":2},{"n":"Elijah Just","t":"New Zealand","g":2},{"n":"Kylian Mbappé","t":"France","g":2},{"n":"Erling Haaland","t":"Norway","g":2},{"n":"Julián Quiñones","t":"Mexico","g":1},{"n":"Raúl Jiménez","t":"Mexico","g":1},{"n":"Ladislav Krejčí","t":"Czechia","g":1},{"n":"In-beom Hwang","t":"South Korea","g":1},{"n":"Hyun-Gyu Oh","t":"South Korea","g":1},{"n":"Jovo Lukić","t":"Bosnia-Herzegovina","g":1},{"n":"Cyle Larin","t":"Canada","g":2},{"n":"Mauricio","t":"Paraguay","g":1},{"n":"Gio Reyna","t":"USA","g":1},{"n":"Breel Embolo","t":"Switzerland","g":1},{"n":"Boualem Khoukhi","t":"Qatar","g":1},{"n":"Ismael Saibari","t":"Morocco","g":2},{"n":"Vinicius Junior","t":"Brazil","g":2},{"n":"John McGinn","t":"Scotland","g":1},{"n":"Nestory Irankunda","t":"Australia","g":1},{"n":"Connor Metcalfe","t":"Australia","g":1},{"n":"Felix Kalu Nmecha","t":"Germany","g":1},{"n":"Nico Schlotterbeck","t":"Germany","g":1},{"n":"Jamal Musiala","t":"Germany","g":1},{"n":"Nathaniel Brown","t":"Germany","g":1},{"n":"Deniz Undav","t":"Germany","g":1},{"n":"Livano Comenencia","t":"Curaçao","g":1},{"n":"Virgil van Dijk","t":"Netherlands","g":1},{"n":"Crysencio Summerville","t":"Netherlands","g":1},{"n":"Nakamura","t":"Japan","g":1},{"n":"Daichi Kamada","t":"Japan","g":1},{"n":"Amad Diallo","t":"Ivory Coast","g":1},{"n":"Alexander Isak","t":"Sweden","g":1},{"n":"Viktor Gyökeres","t":"Sweden","g":1},{"n":"Mattias Svanberg","t":"Sweden","g":1},{"n":"Rekik","t":"Tunisia","g":1},{"n":"Ashour","t":"Egypt","g":1},{"n":"Abdulelah Al-Amri","t":"Saudi Arabia","g":1},{"n":"Maximiliano Araújo","t":"Uruguay","g":1},{"n":"Ramin Rezaeian","t":"Iran","g":1},{"n":"Mohammad Mohebbi","t":"Iran","g":1},{"n":"Bradley Barcola","t":"France","g":1},{"n":"Ibrahim Mbaye","t":"Senegal","g":1},{"n":"Leo Østigård","t":"Norway","g":1},{"n":"Kristoffer Thorstvedt","t":"Norway","g":1},{"n":"Aymen Hussein","t":"Iraq","g":1},{"n":"Romano Schmid","t":"Austria","g":1},{"n":"Marko Arnautović","t":"Austria","g":1},{"n":"Ali Olwan","t":"Jordan","g":1},{"n":"João Neves","t":"Portugal","g":1},{"n":"Yoane Wissa","t":"DR Congo","g":1},{"n":"Harry Kane","t":"England","g":2},{"n":"Jude Bellingham","t":"England","g":1},{"n":"Marcus Rashford","t":"England","g":1},{"n":"Martin Baturina","t":"Croatia","g":1},{"n":"Petar Musa","t":"Croatia","g":1},{"n":"Nestor Irankunda","t":"Australia","g":1},{"n":"Johan Manzambi","t":"Switzerland","g":2},{"n":"Jonathan David","t":"Canada","g":3},{"n":"Remo Vargas","t":"Switzerland","g":1},{"n":"Granit Xhaka","t":"Switzerland","g":1},{"n":"Edin Mahmić","t":"Bosnia & Herzegovina","g":1},{"n":"Michal Sadílek","t":"Czechia","g":1},{"n":"Teboho Mokoena","t":"South Africa","g":1},{"n":"Nathan Saliba","t":"Canada","g":1},{"n":"Luis Romo","t":"Mexico","g":1},{"n":"Matheus Cunha","t":"Brazil","g":2},{"n":"Brian Brobbey","t":"Netherlands","g":2},{"n":"Cody Gakpo","t":"Netherlands","g":2},{"n":"Anthony Elanga","t":"Sweden","g":1},{"n":"Matías Galarza","t":"Paraguay","g":1},{"n":"Alex Freeman","t":"USA","g":1}];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
@@ -1015,15 +817,16 @@ const OFFICIAL_BYKEY={
  "2026-06-18|Canada|Qatar":{h:6,a:0},
  "2026-06-18|Czechia|South Africa":{h:1,a:1},
  "2026-06-18|Mexico|South Korea":{h:1,a:0},
-"2026-06-18|Switzerland|Bosnia & Herzegovina":{h:4,a:1},
- "2026-06-19|USA|Australia":{h:2,a:0},
- "2026-06-19|Scotland|Morocco":{h:0,a:1},
+ "2026-06-18|Switzerland|Bosnia & Herzegovina":{h:4,a:1},
  "2026-06-19|Brazil|Haiti":{h:3,a:0},
+ "2026-06-19|Scotland|Morocco":{h:0,a:1},
  "2026-06-19|Türkiye|Paraguay":{h:0,a:1},
+ "2026-06-19|USA|Australia":{h:2,a:0},
+ "2026-06-20|Netherlands|Sweden":{h:5,a:1},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-20|Netherlands|Sweden":{h:4,a:1,st:"IN_PLAY"}
+ "2026-06-20|Germany|Ivory Coast":{h:0,a:1,st:"PAUSED"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
@@ -1031,8 +834,9 @@ const GOALS_BYKEY={
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
+ "2026-06-20|Germany|Ivory Coast":[{t:"Ivory Coast",p:"F. Kessié",m:"30"}],
  "2026-06-19|USA|Australia":[{t:"USA",p:"C. Burgess (OG)",m:"11"},{t:"USA",p:"A. Freeman",m:"43"}],
- "2026-06-20|Netherlands|Sweden":[{t:"Netherlands",p:"B. Brobbey",m:"5"},{t:"Netherlands",p:"B. Brobbey",m:"17"},{t:"Netherlands",p:"C. Gakpo",m:"47"},{t:"Netherlands",p:"C. Gakpo",m:"54"},{t:"Sweden",p:"A. Elanga",m:"59"}],
+ "2026-06-20|Netherlands|Sweden":[{t:"Netherlands",p:"B. Brobbey",m:"5"},{t:"Netherlands",p:"B. Brobbey",m:"17"},{t:"Netherlands",p:"C. Gakpo",m:"47"},{t:"Netherlands",p:"C. Gakpo",m:"54"},{t:"Netherlands",p:"C. Summerville",m:"89"},{t:"Sweden",p:"A. Elanga",m:"59"}],
  "2026-06-19|Scotland|Morocco":[{t:"Morocco",p:"I. Saibari",m:"2"}],
  "2026-06-19|Brazil|Haiti":[{t:"Brazil",p:"M. Cunha",m:"23"},{t:"Brazil",p:"M. Cunha",m:"36"},{t:"Brazil",p:"Vinicius Jr",m:"45+3"}],
  "2026-06-19|Türkiye|Paraguay":[{t:"Paraguay",p:"M. Galarza",m:"2"}],
@@ -1194,7 +998,7 @@ const FUNZONE=[
 // ---------- I18N ----------
 const STR={
 en:{
- navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
+ navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"CARSA Fun Zone",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
  heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
@@ -1208,7 +1012,7 @@ en:{
  leg1:"Top 2 — through",leg2:"3rd — in contention",
  thTitle:'Race for the <em>Round of 32</em>',thDesc:"The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.",
  thirdsHead:"Best Third-Placed Teams",thirdsSub:"top 8 advance",qIn:"Qualify",qOut:"Out",
- brTitle:'The <em>Bracket</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
+ brTitle:'Kareem <em>Brackets</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
  brProj:"Projected from current standings",brLock:"Group decided — locked in",
  brHint:"Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.",
  r32:"Round of 32",r16:"Round of 16",qf:"Quarter-finals",sf:"Semi-finals",fin:"Final",third:"Third place",
@@ -1217,13 +1021,14 @@ en:{
  fnOpen:"Open league on FIFA",fnHint:"League code P2XKZ4FQ. Use the Join my league button to invite friends.",
  manager:"Manager",mdPts:"MD pts",total:"Total",managers:"managers",
  scTitle:'Golden <em>Boot</em>',scDesc:"Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.",
- fzTitle:'Fun <em>Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
+ fzTitle:'CARSA <em>Fun Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
  fzStep1:"Pick a prompt below and copy it.",fzStep2:"Open ChatGPT and upload your photo.",fzStep3:"Paste the prompt, send, and share your result.",
  fzResult:"Abdulhadi's result",fzAddResult:"Add your result image here",fzYourPhoto:"Preview your photo",fzExample:"Example",fzYours:"Yours",fzOpenGPT:"Open ChatGPT",
  fzNation:"Your nation",fzNoFav:"Pick teams in Fixtures to add favorites, or choose one below.",
  fzNamePh:"Your name",fzNumPh:"No.",
  noGoals:"⚽ No goals yet. The race for the Golden Boot kicks off on June 11.",
  scHead:"Golden Boot Race",scSub:"scorers",player:"Player",team:"Team",goals:"Goals",
+ presentedBy:"presented by",
  sponsorsTitle:"Our Sponsors",
  foot1:"ABDULCITO MATCHCENTER · fixtures from the official 2026 schedule · results auto-synced",
  foot2:"Kickoffs in",foot3:"KSA time (UTC+3)",
@@ -1244,7 +1049,7 @@ en:{
  qOut:"Eliminated"
 },
 ar:{
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"ترفيه كارسا",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -1258,7 +1063,7 @@ ar:{
  leg1:"الأول والثاني — تأهل",leg2:"الثالث — في المنافسة",
  thTitle:'السباق إلى <em>دور الـ32</em>',thDesc:"أفضل 8 منتخبات في المركز الثالث تنضم إلى متصدري المجموعات الـ12 ووصفائها في الإقصائيات.",
  thirdsHead:"أفضل أصحاب المركز الثالث",thirdsSub:"أفضل 8 يتأهلون",qIn:"متأهل",qOut:"خارج",
- brTitle:'شجرة <em>البطولة</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
+ brTitle:'إقصائيات <em>كريم</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
  brProj:"إسقاط من الترتيب الحالي",brLock:"حُسمت المجموعة — مؤكد",
  brHint:"هيكل FIFA الرسمي (المباريات 73–104). مواجهات أصحاب المركز الثالث تتبع المجموعات المسموحة لكل خانة، وتؤكدها FIFA بعد نهاية دور المجموعات.",
  r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",fin:"النهائي",third:"المركز الثالث",
@@ -1267,13 +1072,14 @@ ar:{
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
  scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
- fzTitle:'منطقة <em>الترفيه</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
+ fzTitle:'ترفيه <em>كارسا</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
  fzStep1:"اختر برومبت من الأسفل وانسخه.",fzStep2:"افتح ChatGPT وارفع صورتك.",fzStep3:"الصق البرومبت، أرسل، وشارك نتيجتك.",
  fzResult:"نتيجة عبدالهادي",fzAddResult:"أضف صورة نتيجتك هنا",fzYourPhoto:"اعرض صورتك",fzExample:"مثال",fzYours:"صورتك",fzOpenGPT:"افتح ChatGPT",
  fzNation:"منتخبك",fzNoFav:"اختر منتخبات من تبويب المباريات لإضافة المفضلة، أو اختر منتخباً أدناه.",
  fzNamePh:"اسمك",fzNumPh:"الرقم",
  noGoals:"⚽ لا أهداف بعد. سباق الحذاء الذهبي ينطلق يوم 11 يونيو.",
  scHead:"سباق الحذاء الذهبي",scSub:"هدافين",player:"اللاعب",team:"المنتخب",goals:"أهداف",
+ presentedBy:"برعاية",
  sponsorsTitle:"رعاتنا",
  foot1:"ABDULCITO MATCHCENTER · جدول المباريات من الجدول الرسمي 2026 · النتائج تتحدث تلقائياً",
  foot2:"الانطلاق بـ",foot3:"توقيت السعودية (UTC+3)",
