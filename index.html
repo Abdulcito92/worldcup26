@@ -327,6 +327,7 @@ html[lang="ar"] .fzlabel{font-family:'Changa';letter-spacing:0}
 .fzcarsa{position:absolute;top:10px;inset-inline-end:10px;display:flex;align-items:center;background:rgba(8,9,16,.78);backdrop-filter:blur(6px);padding:5px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.14);z-index:2;transition:transform .2s,border-color .2s}
 .fzcarsa:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.4)}
 .fzcarsa img{height:13px;width:auto;display:block}
+.fzcarsahot{position:absolute;bottom:0;right:0;width:36%;height:14%;z-index:2}
 .fztoggle{position:absolute;bottom:10px;inset-inline-end:10px;display:inline-flex;background:rgba(8,9,16,.8);backdrop-filter:blur(6px);border:1px solid var(--line2);border-radius:20px;overflow:hidden}
 .fztoggle button{background:transparent;border:0;color:var(--muted);font-family:'Archivo';font-weight:800;font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:6px 11px;cursor:pointer;transition:.15s}
 html[lang="ar"] .fztoggle button{font-family:'Changa';letter-spacing:0}
@@ -1552,6 +1553,7 @@ function fzPrompt(c,nat,name,num){
 function buildFunZone(){
  const wrap=document.getElementById("funzoneList");if(!wrap)return;
  const favs=[...FAVS].filter(n=>ISO[n]);
+ const fzBaked=new Set(["presser.png","lockerroom.png","frontback.png","busarrival.png"]);
  wrap.innerHTML=FUNZONE.map((c,i)=>{
   const title=LANG==="ar"?(c.titleAr||c.title):c.title;
   const badge=LANG==="ar"?(c.badgeAr||c.badge):c.badge;
@@ -1566,8 +1568,8 @@ function buildFunZone(){
   return `<div class="fzcard rv" data-i="${i}">
    <div class="fzmedia">
      <span class="fzlabel">${T("fzResult")}</span>
-     <a class="fzcarsa" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><img src="carsa.png" alt="CARSA"></a>
-     <div class="fzmediainner">${media}</div>
+     ${fzBaked.has(c.img)?'':'<a class="fzcarsa" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><img src="carsa.png" alt="CARSA"></a>'}
+     <div class="fzmediainner">${media}</div>${fzBaked.has(c.img)?'<a class="fzcarsahot" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA" title="CARSA"></a>':''}
    </div>
    <div class="fzbody">
      <div class="fzhead"><span class="fzttl">${title}</span>${badge?`<span class="fzbadge">${badge}</span>`:""}</div>
