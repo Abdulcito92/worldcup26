@@ -457,6 +457,29 @@ tbody tr.qno td{opacity:.62}
   .topnav button{padding:8px 9px;font-size:10px;letter-spacing:0}
 }
 @media(max-width:520px){.logo b{display:none}}
+
+/* ---------- SHAREABLE MATCH CARD (idea #6) ---------- */
+.cardbtn{margin-inline-start:auto;font-family:'Archivo';font-weight:800;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);background:rgba(255,206,58,.1);border:1px solid rgba(255,206,58,.4);padding:6px 12px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.18s}
+.cardbtn:hover{background:rgba(255,206,58,.2);transform:translateY(-1px)}
+.cardbtn svg{width:13px;height:13px}
+.cardbtn+.sharebtns{margin-inline-start:8px!important}
+.sc-ov{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(4,7,14,.88);backdrop-filter:blur(8px);padding:20px}
+.sc-ov.open{display:flex}
+.sc-box{width:min(420px,92vw);max-height:94vh;display:flex;flex-direction:column;align-items:center;gap:16px}
+.sc-stage{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:180px}
+.sc-img{width:auto;max-width:100%;max-height:68vh;object-fit:contain;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.65)}
+.sc-load{display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--muted);font-family:'Archivo';font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.sc-spin{width:42px;height:42px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:var(--gold);animation:scspin 1s linear infinite}
+@keyframes scspin{to{transform:rotate(360deg)}}
+.sc-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
+.sc-btn{font-family:'Archivo';font-weight:900;font-size:13px;letter-spacing:.5px;text-transform:uppercase;border:0;cursor:pointer;padding:14px 20px;border-radius:13px;display:inline-flex;align-items:center;gap:8px;transition:.18s}
+.sc-btn:hover{transform:translateY(-2px)}
+.sc-btn.p{background:var(--grad);color:#05241a}
+.sc-btn.wa{background:#25d366;color:#06351c}
+.sc-btn.g{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+.sc-btn svg{width:16px;height:16px}
+.sc-hint{font-family:'Hanken Grotesk';font-size:12px;color:var(--dim);text-align:center;max-width:340px}
+.sc-x{position:absolute;top:-8px;right:-6px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid var(--line2);color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;line-height:1}
 </style>
 </head>
 <body>
@@ -968,6 +991,7 @@ const FUNZONE=[
 // ---------- I18N ----------
 const STR={
 en:{
+ scBtn:"Card",scShare:"Share",scSave:"Save image",scWa:"WhatsApp",scClose:"Close",scMaking:"Building card…",scHint:"Tap Share to send it straight to WhatsApp, or Save the image and post it anywhere.",
  navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
@@ -1017,6 +1041,7 @@ en:{
  qOut:"Eliminated"
 },
 ar:{
+ scBtn:"بطاقة",scShare:"مشاركة",scSave:"حفظ الصورة",scWa:"واتساب",scClose:"إغلاق",scMaking:"جارٍ إنشاء البطاقة…",scHint:"اضغط مشاركة لإرسالها مباشرة عبر واتساب، أو احفظ الصورة وانشرها في أي مكان.",
  navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
@@ -1216,7 +1241,7 @@ function buildMatches(){
    <div class="side home">${flagHTML(m.home,"flag")}<div class="tinfo"><div class="tname">${sname(m.home)}</div><div class="tcode">${CODE[m.home]}</div>${goalsFor(m.home)}</div></div>
    <div class="center"><span class="gpill" style="background:${col}">${T("grp")} ${m.group}</span>${scoreHtml}</div>
    <div class="side away">${flagHTML(m.away,"flag")}<div class="tinfo"><div class="tname">${sname(m.away)}</div><div class="tcode">${CODE[m.away]}</div>${goalsFor(m.away)}</div></div>
-   <div class="venue"><b>&#128205; ${m.venue}</b> &middot; ${cname(m.city)}${played?`<span class="offtag">${T("official")}</span>`:isLive?`<span class="offtag livetag"><span class="livedotsm"></span> ${T("live")}</span>`:""}${shareLinks(m)}</div>${qualHtml}`;
+   <div class="venue"><b>&#128205; ${m.venue}</b> &middot; ${cname(m.city)}${played?`<span class="offtag">${T("official")}</span>`:isLive?`<span class="offtag livetag"><span class="livedotsm"></span> ${T("live")}</span>`:""}${(played||isLive)?`<button class="cardbtn" onclick="SC.open(${m.id})" title="${T("scBtn")}" aria-label="${T("scBtn")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>${T("scBtn")}</button>`:""}${shareLinks(m)}</div>${qualHtml}`;
   list.appendChild(card);
  });
  observeReveal();
@@ -1711,6 +1736,175 @@ else { try{ if(Object.keys(LIVE_BYKEY).length){ setTimeout(function(){ location.
  };
  document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open');});
 })();
+
+/* ---------- SHAREABLE MATCH CARD (idea #6) ---------- */
+const SC=(()=>{
+ const W=1080,H=1920;
+ const scFlagUrl=t=>(typeof ISO!=="undefined"&&ISO[t])?`https://flagcdn.com/w320/${ISO[t]}.png`:null;
+ const slug=t=>(t||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+ const pageUrl=()=>location.protocol.indexOf("http")===0?location.href.split("#")[0]:"https://abdulcito92.github.io/worldcup26/";
+ let ov,imgEl,loadEl,actEl,shareBtn,saveBtn,waBtn,hintEl,curBlob=null,curName="",curText="";
+
+ const AVATAR_SRC="abdulcito-icon.png";
+ const SPONSORS=[{src:"kareem-protein.png",name:"Kareem Protein"},{src:"carsa.png",name:"CARSA"}];
+ function loadFlag(t){return new Promise(res=>{const u=scFlagUrl(t);if(!u){res(null);return;}const im=new Image();im.crossOrigin="anonymous";im.onload=()=>res(im);im.onerror=()=>res(null);im.src=u;});}
+ function loadLocal(src){return new Promise(res=>{if(!src){res(null);return;}const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src;});}
+ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+ function fit(c,txt,fam,maxW,start,min){let s=start;for(;s>min;s-=2){c.font=`${s}px ${fam}`;if(c.measureText(txt).width<=maxW)break;}return s;}
+ function pill(c,cx,cy,label,fill,txtCol,fam){c.font=`800 30px ${fam}`;const tw=c.measureText(label).width;const pad=26,h=58,w=tw+pad*2;rr(c,cx-w/2,cy-h/2,w,h,h/2);c.fillStyle=fill;c.fill();c.fillStyle=txtCol;c.textAlign="center";c.textBaseline="middle";c.fillText(label,cx,cy+1);return w;}
+ function circ(c,img,cx,cy,r,team){c.save();c.beginPath();c.arc(cx,cy,r,0,7);c.closePath();c.clip();if(img){const ar=img.width/img.height;let dw,dh;if(ar>1){dh=2*r;dw=dh*ar;}else{dw=2*r;dh=dw/ar;}c.drawImage(img,cx-dw/2,cy-dh/2,dw,dh);}else{c.fillStyle="#1b2740";c.fillRect(cx-r,cy-r,2*r,2*r);c.fillStyle="#fff";c.font=`900 ${Math.round(r*0.62)}px Archivo`;c.textAlign="center";c.textBaseline="middle";c.fillText(((typeof CODE!=="undefined"&&CODE[team])||(team||"").slice(0,3)).toUpperCase(),cx,cy+2);}c.restore();c.beginPath();c.arc(cx,cy,r,0,7);c.lineWidth=9;c.strokeStyle="rgba(255,255,255,.16)";c.stroke();}
+
+ async function render(m){
+  const r=results[m.id],played=r&&r.h!=null&&r.a!=null;
+  const key=keyOf(m),lv=LIVE_BYKEY[key];
+  const isLive=!played&&lv&&(lv.st==="IN_PLAY"||lv.st==="PAUSED");
+  const sh=played?r.h:(isLive?lv.h:0),sa=played?r.a:(isLive?lv.a:0);
+  const gl=(GOALS_BYKEY[key]&&GOALS_BYKEY[key].length)?GOALS_BYKEY[key]:(GOALS_MANUAL[key]||[]);
+  const ksa=toKSA(m.date,m.time),f=fmtDay(m.date);
+  try{await Promise.all([document.fonts.load("400 120px Anton"),document.fonts.load("900 40px Archivo"),document.fonts.load("800 30px Archivo"),document.fonts.load("600 30px 'Hanken Grotesk'")]);}catch(e){}
+  const [fh,fa,av,...sps]=await Promise.all([loadFlag(m.home),loadFlag(m.away),loadLocal(AVATAR_SRC),...SPONSORS.map(s=>loadLocal(s.src))]);
+  const cv=document.createElement("canvas");cv.width=W;cv.height=H;const c=cv.getContext("2d");
+  // background
+  let bg=c.createLinearGradient(0,0,0,H);bg.addColorStop(0,"#0c1424");bg.addColorStop(.55,"#0a0f1a");bg.addColorStop(1,"#070b14");c.fillStyle=bg;c.fillRect(0,0,W,H);
+  let g1=c.createRadialGradient(W*0.88,H*0.02,0,W*0.88,H*0.02,W*0.9);g1.addColorStop(0,"rgba(20,196,106,.22)");g1.addColorStop(1,"rgba(20,196,106,0)");c.fillStyle=g1;c.fillRect(0,0,W,H);
+  let g2=c.createRadialGradient(W*0.08,H*0.98,0,W*0.08,H*0.98,W*0.9);g2.addColorStop(0,"rgba(39,220,196,.16)");g2.addColorStop(1,"rgba(39,220,196,0)");c.fillStyle=g2;c.fillRect(0,0,W,H);
+  // top accent bar
+  let acc=c.createLinearGradient(0,0,W,0);acc.addColorStop(0,"#12b863");acc.addColorStop(.5,"#34d98a");acc.addColorStop(1,"#ffce3a");c.fillStyle=acc;c.fillRect(0,0,W,12);
+  // wordmark
+  c.textAlign="center";c.textBaseline="alphabetic";
+  c.font="120px Anton";c.fillStyle="#f4f7ff";c.font=`${fit(c,"ABDULCITO MATCHCENTER","Anton",760,60,30)}px Anton`;
+  let wm="ABDULCITO MATCHCENTER";let wmw=c.measureText(wm).width;
+  // two-tone wordmark
+  c.textAlign="left";const wmx=(W-wmw)/2,wmy=150;
+  c.fillStyle="#f4f7ff";c.fillText("ABDULCITO ",wmx,wmy);const aw=c.measureText("ABDULCITO ").width;
+  c.fillStyle="#ffce3a";c.fillText("MATCHCENTER",wmx+aw,wmy);
+  c.textAlign="center";c.fillStyle="#9fb1cf";c.font="800 26px Archivo";c.fillText("F I F A   W O R L D   C U P   2 6",W/2,200);
+  // pills (group + status)
+  const col=(typeof GCOLOR!=="undefined"&&GCOLOR[m.group])||"#34d98a";
+  const gLabel=(LANG==="ar"?"المجموعة ":"GROUP ")+m.group;
+  const sLabel=played?(LANG==="ar"?"انتهت":"FULL TIME"):(LANG==="ar"?"مباشر":"LIVE");
+  const sFill=played?"rgba(20,196,106,.16)":"rgba(255,90,90,.18)";const sTxt=played?"#34d98a":"#ff6b6b";
+  c.font="800 30px Archivo";const w1=c.measureText(gLabel).width+52,w2=c.measureText(sLabel).width+52,gap=20;const tot=w1+w2+gap;
+  pill(c,W/2-tot/2+w1/2,300,gLabel,col,"#0a0a0a","Archivo");
+  pill(c,W/2-tot/2+w1+gap+w2/2,300,sLabel,sFill,sTxt,"Archivo");
+  // faint center circle motif
+  c.beginPath();c.arc(W/2,560,250,0,7);c.lineWidth=2;c.strokeStyle="rgba(255,255,255,.05)";c.stroke();
+  c.beginPath();c.moveTo(W/2,330);c.lineTo(W/2,800);c.stroke();
+  // flags
+  circ(c,fh,250,560,132,m.home);circ(c,fa,830,560,132,m.away);
+  // score
+  c.fillStyle="#f4f7ff";c.textAlign="center";c.textBaseline="middle";
+  const scoreStr=`${sh} - ${sa}`;c.font=`${fit(c,scoreStr,"Anton",300,150,70)}px Anton`;c.fillText(scoreStr,W/2,560);
+  // names
+  c.fillStyle="#f4f7ff";c.textBaseline="alphabetic";
+  const nH=sname(m.home),nA=sname(m.away);
+  c.font=`${fit(c,nH,"Anton",430,64,30)}px Anton`;c.fillText(nH.toUpperCase(),250,770);
+  c.font=`${fit(c,nA,"Anton",430,64,30)}px Anton`;c.fillText(nA.toUpperCase(),830,770);
+  c.fillStyle="#ffce3a";c.font="900 30px Archivo";
+  const cH=(typeof CODE!=="undefined"&&CODE[m.home])||"",cA=(typeof CODE!=="undefined"&&CODE[m.away])||"";
+  c.fillText(cH,250,818);c.fillText(cA,830,818);
+  // winner underline
+  if(played&&sh!==sa){c.strokeStyle="#34d98a";c.lineWidth=6;const wx=sh>sa?250:830;c.beginPath();c.moveTo(wx-70,838);c.lineTo(wx+70,838);c.stroke();}
+  // standing mascot (bottom-right, fills empty space; drawn before text so labels stay on top)
+  if(av){const mw=340,mh=mw/(av.width/av.height),mx=W-mw-22,my=H-mh-6;c.save();c.globalAlpha=0.6;c.drawImage(av,mx,my,mw,mh);c.restore();}
+  // goals header
+  const ghead=(LANG==="ar"?"الأهداف":"GOALS");
+  c.fillStyle="#9fb1cf";c.font="800 30px Archivo";c.textAlign="center";const ghw=c.measureText("⚽  "+ghead).width;
+  c.fillText("⚽  "+ghead,W/2,952);
+  c.strokeStyle="rgba(255,255,255,.12)";c.lineWidth=2;
+  c.beginPath();c.moveTo(120,944);c.lineTo(W/2-ghw/2-24,944);c.stroke();
+  c.beginPath();c.moveTo(W/2+ghw/2+24,944);c.lineTo(960,944);c.stroke();
+  // scorer columns
+  const hg=gl.filter(x=>x.t===m.home),ag=gl.filter(x=>x.t===m.away);
+  const top=1020,lh=58,maxY=1430,maxLines=Math.floor((maxY-top)/lh);
+  c.beginPath();c.moveTo(W/2,1000);c.lineTo(W/2,Math.min(maxY,top+lh*Math.max(hg.length,ag.length)));c.strokeStyle="rgba(255,255,255,.07)";c.lineWidth=2;c.stroke();
+  function drawCol(arr,side){
+   const leftX=120,rightX=960;
+   c.textBaseline="alphabetic";
+   const lines=arr.slice(0,maxLines);
+   lines.forEach((x,i)=>{
+    const y=top+i*lh+34;const mm=x.m?` ${x.m}'`:"";
+    let label=side==="L"?`⚽ ${x.p}${mm}`:`${x.p}${mm} ⚽`;
+    c.textAlign=side==="L"?"left":"right";
+    c.fillStyle="#e7edf7";c.font="600 31px 'Hanken Grotesk'";
+    const fx=side==="L"?leftX:rightX;
+    if(c.measureText(label).width>430){c.font=`${fit(c,label,"'Hanken Grotesk'",430,31,20)}px 'Hanken Grotesk'`;}
+    c.fillText(label,fx,y);
+   });
+   if(arr.length>maxLines){const y=top+maxLines*lh+34;c.textAlign=side==="L"?"left":"right";c.fillStyle="#647691";c.font="700 26px Archivo";c.fillText(`+${arr.length-maxLines}`,side==="L"?120:960,y);}
+  }
+  if(hg.length||ag.length){drawCol(hg,"L");drawCol(ag,"R");}
+  else{c.textAlign="center";c.fillStyle="#647691";c.font="600 30px 'Hanken Grotesk'";c.fillText(played?(LANG==="ar"?"بدون أهداف":"No goals"):(LANG==="ar"?"بانتظار الأهداف":"Awaiting goals"),W/2,1090);}
+  // sponsors strip
+  (function(){const logos=sps.filter(Boolean);if(!logos.length)return;const LCX=av?430:540;
+   c.textAlign="center";c.fillStyle="#647691";c.font="800 24px Archivo";c.fillText(LANG==="ar"?"رعاة الموقع":"SPONSORED BY",LCX,1484);
+   const tileH=98,padX=30,gap=28,maxLogoH=58;
+   const dims=logos.map(im=>{let h=maxLogoH,w=im.width*(h/im.height);if(w>300){w=300;h=im.height*(w/im.width);}return {im,w,h};});
+   const totalW=dims.reduce((s,d)=>s+d.w+padX*2,0)+gap*(dims.length-1);
+   let x=LCX-totalW/2;const ty=1506;
+   dims.forEach(d=>{const tw=d.w+padX*2;rr(c,x,ty,tw,tileH,18);c.fillStyle="#ffffff";c.fill();c.drawImage(d.im,x+padX,ty+(tileH-d.h)/2,d.w,d.h);x+=tw+gap;});
+  })();
+  // footer divider
+  const FCX=av?430:540,FDX=av?740:960;
+  c.strokeStyle="rgba(255,255,255,.1)";c.lineWidth=2;c.beginPath();c.moveTo(120,1620);c.lineTo(FDX,1620);c.stroke();
+  c.textAlign="center";
+  c.fillStyle="#c7d3e6";c.font="600 30px 'Hanken Grotesk'";c.fillText(`📍 ${m.venue} · ${cname(m.city)}`,FCX,1690);
+  c.fillStyle="#8597b3";c.font="500 27px 'Hanken Grotesk'";c.fillText(`${f.full} · ${ksaDisp(ksa)} KSA`,FCX,1738);
+  // watermark
+  c.fillStyle="#ffce3a";c.font="900 29px Archivo";c.fillText("abdulcito92.github.io/worldcup26",FCX,1848);
+  return {cv,sh,sa};
+ }
+
+ function ensureModal(){
+  if(ov)return;
+  ov=document.createElement("div");ov.className="sc-ov";
+  ov.innerHTML=`<div class="sc-box">
+    <div class="sc-stage"><button class="sc-x" aria-label="Close">&times;</button>
+      <div class="sc-load"><div class="sc-spin"></div><span>${T("scMaking")}</span></div>
+      <img class="sc-img" alt="Match card" style="display:none">
+    </div>
+    <div class="sc-actions">
+      <button class="sc-btn p" data-a="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>${T("scShare")}</button>
+      <button class="sc-btn wa" data-a="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.1-1.7 1.2-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.4 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .8-.3 1.4z"/></svg>${T("scWa")}</button>
+      <button class="sc-btn g" data-a="save">${T("scSave")}</button>
+    </div>
+    <div class="sc-hint">${T("scHint")}</div></div>`;
+  document.body.appendChild(ov);
+  imgEl=ov.querySelector(".sc-img");loadEl=ov.querySelector(".sc-load");actEl=ov.querySelector(".sc-actions");hintEl=ov.querySelector(".sc-hint");
+  shareBtn=ov.querySelector('[data-a="share"]');saveBtn=ov.querySelector('[data-a="save"]');waBtn=ov.querySelector('[data-a="wa"]');
+  ov.querySelector(".sc-x").onclick=close;
+  ov.addEventListener("click",e=>{if(e.target===ov)close();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ov.classList.contains("open"))close();});
+  shareBtn.onclick=async()=>{
+   if(!curBlob)return;
+   const file=new File([curBlob],curName,{type:"image/png"});
+   if(navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],text:curText});}catch(e){}}
+   else{download();window.open("https://wa.me/?text="+encodeURIComponent(curText+" "+pageUrl()),"_blank");}
+  };
+  saveBtn.onclick=download;
+  waBtn.onclick=()=>{const file=curBlob?new File([curBlob],curName,{type:"image/png"}):null;
+   if(file&&navigator.canShare&&navigator.canShare({files:[file]})){shareBtn.onclick();}
+   else{download();window.open("https://wa.me/?text="+encodeURIComponent(curText+" "+pageUrl()),"_blank");}};
+ }
+ function download(){if(!curBlob)return;const u=URL.createObjectURL(curBlob);const a=document.createElement("a");a.href=u;a.download=curName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);}
+ function close(){if(ov){ov.classList.remove("open");document.body.style.overflow="";}}
+
+ async function open(id){
+  const m=M[id];if(!m)return;
+  ensureModal();
+  curBlob=null;imgEl.style.display="none";imgEl.removeAttribute("src");loadEl.style.display="flex";
+  ov.classList.add("open");document.body.style.overflow="hidden";
+  let out=null;try{out=await render(m);}catch(e){console.error("card render failed",e);}
+  if(!out){loadEl.querySelector("span").textContent="Could not build the card.";loadEl.querySelector(".sc-spin").style.display="none";return;}
+  loadEl.style.display="none";imgEl.style.display="block";
+  try{imgEl.src=out.cv.toDataURL("image/png");}catch(e){console.error(e);}
+  out.cv.toBlob(b=>{curBlob=b;},"image/png");
+  curName=`worldcup-${slug(m.home)}-vs-${slug(m.away)}.png`;
+  curText=`${sname(m.home)} ${out.sh}-${out.sa} ${sname(m.away)} · ABDULCITO MATCHCENTER`;
+ }
+ return {open,close};
+})();
+window.SC=SC;
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
