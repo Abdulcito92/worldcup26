@@ -480,6 +480,25 @@ tbody tr.qno td{opacity:.62}
 .sc-btn svg{width:16px;height:16px}
 .sc-hint{font-family:'Hanken Grotesk';font-size:12px;color:var(--dim);text-align:center;max-width:340px}
 .sc-x{position:absolute;top:-8px;right:-6px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid var(--line2);color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;line-height:1}
+/* sponsor band + lockups */
+.sponsors{position:relative;z-index:3;max-width:1200px;margin:54px auto 0;padding:0 26px}
+.sponsors .sphead{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sponsors .spkick{font-family:'Anton';letter-spacing:2px;text-transform:uppercase;font-size:16px;color:var(--gold);white-space:nowrap}
+.sponsors .sprule{height:1px;flex:1;background:linear-gradient(90deg,var(--line2),transparent)}
+.spgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.spcell{flex:0 1 220px;display:flex;align-items:center;justify-content:center;height:104px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;transition:.25s;position:relative;overflow:hidden;padding:18px}
+.spcell:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.42)}
+.spcell img,.spcell video{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.spig{position:absolute;top:8px;right:9px;width:15px;height:15px;color:#9fb1cf;transition:.25s}
+.spcell:hover .spig{color:#13bf68}
+@media(max-width:560px){.spcell{flex-basis:140px;height:92px;padding:14px}}
+.brhead-l{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.brspon{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.brspon-l{color:var(--dim);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Archivo';font-weight:800}
+.brspon-chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px;display:inline-flex;transition:.25s}
+.brspon:hover .brspon-chip{border-color:var(--gold);transform:translateY(-1px)}
+.brspon-chip img{height:30px;width:auto;display:block}
+html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
 </style>
 </head>
 <body>
@@ -559,7 +578,7 @@ tbody tr.qno td{opacity:.62}
   <!-- BRACKET -->
   <section id="bracketView" class="hidden">
     <div class="sectionhead">
-      <div class="t" id="brTitle">The <em>Bracket</em></div>
+      <div class="brhead-l"><div class="t" id="brTitle">Kareem <em>Brackets</em></div><a class="brspon" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="kareem-protein.png" alt="Kareem Protein"></span></a></div>
       <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
     </div>
     <div class="brlegend">
@@ -585,7 +604,7 @@ tbody tr.qno td{opacity:.62}
 
   <!-- FUN ZONE -->
   <section id="funzoneView" class="hidden">
-    <div class="sectionhead"><div class="t" id="fzTitle">Fun <em>Zone</em></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
+    <div class="sectionhead"><div class="brhead-l"><div class="t" id="fzTitle">CARSA <em>Fun Zone</em></div><a class="brspon" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="carsa.png" alt="CARSA"></span></a></div><div class="d" data-t="fzDesc">Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.</div></div>
     <div class="fzsteps">
       <div class="fzstep"><span class="fzn">1</span><span data-t="fzStep1">Pick a prompt below and copy it.</span></div>
       <div class="fzstep"><span class="fzn">2</span><span data-t="fzStep2">Open ChatGPT and upload your photo.</span></div>
@@ -603,6 +622,18 @@ tbody tr.qno td{opacity:.62}
       <p class="om" data-t="ownMsg">I built this matchcenter as a fan, for fans. Every fixture, every table, and the full road to the final, all in one place. Pick your teams, follow every kickoff in KSA time, and enjoy the first 48-team World Cup with me.</p>
       <div class="os" data-t="ownSign">— Abdulhadi · ABDULCITO</div>
     </div>
+  </div>
+</section>
+<section class="sponsors">
+  <div class="sphead"><span class="spkick" data-t="sponsorsTitle">Our Sponsors</span><span class="sprule"></span></div>
+  <div class="spgrid" id="spgrid">
+    <a class="spcell" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram">
+      <svg class="spig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+      <img src="kareem-protein.png" alt="Kareem Protein">
+    </a>
+    <a class="spcell" href="https://carsa.vip/" target="_blank" rel="noopener" aria-label="CARSA">
+      <img src="carsa.png" alt="CARSA">
+    </a>
   </div>
 </section>
 <footer>
@@ -992,7 +1023,7 @@ const FUNZONE=[
 const STR={
 en:{
  scBtn:"Card",scShare:"Share",scSave:"Save image",scWa:"WhatsApp",scClose:"Close",scMaking:"Building card…",scHint:"Tap Share to send it straight to WhatsApp, or Save the image and post it anywhere.",
- navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Bracket",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"Fun Zone",
+ navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"CARSA Fun Zone",sponsorsTitle:"Our Sponsors",presentedBy:"presented by",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
  heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
@@ -1006,7 +1037,7 @@ en:{
  leg1:"Top 2 — through",leg2:"3rd — in contention",
  thTitle:'Race for the <em>Round of 32</em>',thDesc:"The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.",
  thirdsHead:"Best Third-Placed Teams",thirdsSub:"top 8 advance",qIn:"Qualify",qOut:"Out",
- brTitle:'The <em>Bracket</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
+ brTitle:'Kareem <em>Brackets</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
  brProj:"Projected from current standings",brLock:"Group decided — locked in",
  brHint:"Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.",
  r32:"Round of 32",r16:"Round of 16",qf:"Quarter-finals",sf:"Semi-finals",fin:"Final",third:"Third place",
@@ -1015,7 +1046,7 @@ en:{
  fnOpen:"Open league on FIFA",fnHint:"League code P2XKZ4FQ. Use the Join my league button to invite friends.",
  manager:"Manager",mdPts:"MD pts",total:"Total",managers:"managers",
  scTitle:'Golden <em>Boot</em>',scDesc:"Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.",
- fzTitle:'Fun <em>Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
+ fzTitle:'CARSA <em>Fun Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
  fzStep1:"Pick a prompt below and copy it.",fzStep2:"Open ChatGPT and upload your photo.",fzStep3:"Paste the prompt, send, and share your result.",
  fzResult:"Abdulhadi's result",fzAddResult:"Add your result image here",fzYourPhoto:"Preview your photo",fzExample:"Example",fzYours:"Yours",fzOpenGPT:"Open ChatGPT",
  fzNation:"Your nation",fzNoFav:"Pick teams in Fixtures to add favorites, or choose one below.",
@@ -1042,7 +1073,7 @@ en:{
 },
 ar:{
  scBtn:"بطاقة",scShare:"مشاركة",scSave:"حفظ الصورة",scWa:"واتساب",scClose:"إغلاق",scMaking:"جارٍ إنشاء البطاقة…",scHint:"اضغط مشاركة لإرسالها مباشرة عبر واتساب، أو احفظ الصورة وانشرها في أي مكان.",
- navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"الإقصائيات",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"الترفيه",
+ navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"ترفيه كارسا",sponsorsTitle:"رعاتنا",presentedBy:"برعاية",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
  heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
@@ -1056,7 +1087,7 @@ ar:{
  leg1:"الأول والثاني — تأهل",leg2:"الثالث — في المنافسة",
  thTitle:'السباق إلى <em>دور الـ32</em>',thDesc:"أفضل 8 منتخبات في المركز الثالث تنضم إلى متصدري المجموعات الـ12 ووصفائها في الإقصائيات.",
  thirdsHead:"أفضل أصحاب المركز الثالث",thirdsSub:"أفضل 8 يتأهلون",qIn:"متأهل",qOut:"خارج",
- brTitle:'شجرة <em>البطولة</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
+ brTitle:'إقصائيات <em>كريم</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
  brProj:"إسقاط من الترتيب الحالي",brLock:"حُسمت المجموعة — مؤكد",
  brHint:"هيكل FIFA الرسمي (المباريات 73–104). مواجهات أصحاب المركز الثالث تتبع المجموعات المسموحة لكل خانة، وتؤكدها FIFA بعد نهاية دور المجموعات.",
  r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",fin:"النهائي",third:"المركز الثالث",
@@ -1065,7 +1096,7 @@ ar:{
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
  scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
- fzTitle:'منطقة <em>الترفيه</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
+ fzTitle:'ترفيه <em>كارسا</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
  fzStep1:"اختر برومبت من الأسفل وانسخه.",fzStep2:"افتح ChatGPT وارفع صورتك.",fzStep3:"الصق البرومبت، أرسل، وشارك نتيجتك.",
  fzResult:"نتيجة عبدالهادي",fzAddResult:"أضف صورة نتيجتك هنا",fzYourPhoto:"اعرض صورتك",fzExample:"مثال",fzYours:"صورتك",fzOpenGPT:"افتح ChatGPT",
  fzNation:"منتخبك",fzNoFav:"اختر منتخبات من تبويب المباريات لإضافة المفضلة، أو اختر منتخباً أدناه.",
