@@ -221,7 +221,8 @@ html[lang="ar"] .gpill{font-family:'Changa';letter-spacing:0}
 .qualrow{grid-column:1/-1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;padding-top:11px;border-top:1px dashed var(--line2)}
 .qhead{font-family:'Archivo';font-weight:900;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
 html[lang="ar"] .qhead{font-family:'Changa';letter-spacing:0}
-.ql{font-size:12px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px 11px}
+.ql{font-size:12px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px 11px;display:inline-flex;align-items:center;gap:6px}
+.ql .qfl{width:18px;height:18px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 1.5px rgba(255,255,255,.08);background:#222;object-fit:cover}
 .ql b{font-family:'Archivo';font-weight:900;font-size:10px;letter-spacing:1px;color:var(--gold);margin-inline-end:6px}
 .ql.ok{color:#5be8a0;border-color:rgba(20,196,106,.4)}
 .ql.bad{color:#ff8a8a;border-color:rgba(255,107,107,.35)}
@@ -1263,8 +1264,8 @@ function buildMatches(){
    if(qi.rem.length&&qi.rem.length<=2&&qi.rem.some(x=>x.id===m.id)){
     const lh=qualLine(qi,m.home),la=qualLine(qi,m.away);
     if(lh||la)qualHtml=`<div class="qualrow"><span class="qhead">${T("qHead")}</span>
-     ${lh?`<span class="ql ${lh.cls}"><b>${CODE[m.home]}</b>${lh.txt}</span>`:""}
-     ${la?`<span class="ql ${la.cls}"><b>${CODE[m.away]}</b>${la.txt}</span>`:""}</div>`;
+     ${lh?`<span class="ql ${lh.cls}">${flagHTML(m.home,"qfl")}${lh.txt}</span>`:""}
+     ${la?`<span class="ql ${la.cls}">${flagHTML(m.away,"qfl")}${la.txt}</span>`:""}</div>`;
    }
   }
   card.innerHTML=`
@@ -1328,7 +1329,7 @@ function qualInfo(g){
  teams.forEach(t=>{
   out.locked[t]=scen.every(p=>wr(t,p)<=2);
   out.no2[t]=scen.every(p=>br(t,p)>=3);
-  out.dead[t]=scen.every(p=>br(t,p)>=4);
+  out.dead[t]=scen.every(p=>wr(t,p)>=4);
  });
  teams.forEach(t=>{
   if(out.locked[t]||out.no2[t])return;
