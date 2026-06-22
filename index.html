@@ -499,6 +499,10 @@ tbody tr.qno td{opacity:.62}
 .brspon:hover .brspon-chip{border-color:var(--gold);transform:translateY(-1px)}
 .brspon-chip img{height:30px;width:auto;display:block}
 html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
+/* floating CARSA logo on each Fun Zone card */
+.fzmedia{position:relative}
+.fzcarsa{position:absolute;left:12px;bottom:12px;width:84px;height:32px;background:#fff url("carsa.png") no-repeat center;background-size:60px auto;border-radius:9px;box-shadow:0 6px 16px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.55);z-index:5;pointer-events:none;animation:fzCarsaFloat 3.2s ease-in-out infinite}
+@keyframes fzCarsaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
@@ -1937,6 +1941,9 @@ const SC=(()=>{
  return {open,close};
 })();
 window.SC=SC;
+/* inject floating CARSA logo into each Fun Zone card */
+(function(){function add(){document.querySelectorAll("#funzoneList .fzmedia").forEach(function(m){if(m.querySelector(".fzcarsa"))return;var s=document.createElement("span");s.className="fzcarsa";s.setAttribute("aria-hidden","true");m.appendChild(s);});}var fl=document.getElementById("funzoneList");if(fl){try{new MutationObserver(add).observe(fl,{childList:true});}catch(e){}add();}document.addEventListener("DOMContentLoaded",add);setTimeout(add,1500);setTimeout(add,4000);})();
+
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
