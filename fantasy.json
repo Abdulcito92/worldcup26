@@ -1,30 +1,30 @@
 {
-  "updated": "2026-06-22T19:17:01.415Z",
-  "updatedLabel": "updated 22 Jun, 10:17 pm KSA",
+  "updated": "2026-06-22T19:47:53.442Z",
+  "updatedLabel": "updated 22 Jun, 10:47 pm KSA",
   "rows": [
     {
-      "name": "Naif12",
+      "name": "NooR 18",
       "rank": 1,
+      "total": 202,
+      "md": 87
+    },
+    {
+      "name": "Naif12",
+      "rank": 2,
       "total": 200,
       "md": 87
     },
     {
-      "name": "NooR 18",
-      "rank": 2,
-      "total": 200,
-      "md": 85
-    },
-    {
       "name": "gallity",
       "rank": 3,
-      "total": 187,
-      "md": 91
+      "total": 188,
+      "md": 92
     },
     {
       "name": "0129098398",
       "rank": 4,
-      "total": 182,
-      "md": 50
+      "total": 184,
+      "md": 52
     },
     {
       "name": "Haleem369369",
@@ -35,26 +35,26 @@
     {
       "name": "bosniak",
       "rank": 6,
-      "total": 172,
-      "md": 91
+      "total": 173,
+      "md": 92
     },
     {
       "name": "ABOazooz-21",
       "rank": 7,
-      "total": 171,
-      "md": 79
+      "total": 173,
+      "md": 81
     },
     {
       "name": "NF-7",
       "rank": 8,
-      "total": 171,
-      "md": 50
+      "total": 172,
+      "md": 51
     },
     {
       "name": "Sulaiman-10",
       "rank": 9,
-      "total": 164,
-      "md": 74
+      "total": 165,
+      "md": 75
     },
     {
       "name": "halaraibi",
@@ -65,8 +65,8 @@
     {
       "name": "Mustafa alawl",
       "rank": 11,
-      "total": 160,
-      "md": 71
+      "total": 162,
+      "md": 73
     },
     {
       "name": "Foz1993",
@@ -77,38 +77,38 @@
     {
       "name": "Almrkaz2026",
       "rank": 13,
+      "total": 150,
+      "md": 65
+    },
+    {
+      "name": "SALEH ALHASHASH 86",
+      "rank": 14,
       "total": 148,
-      "md": 63
+      "md": 39
+    },
+    {
+      "name": "Abdulcito",
+      "rank": 15,
+      "total": 147,
+      "md": 54
     },
     {
       "name": "THE ENGINEER 37",
-      "rank": 14,
+      "rank": 16,
       "total": 147,
       "md": 47
     },
     {
-      "name": "SALEH ALHASHASH 86",
-      "rank": 15,
-      "total": 147,
-      "md": 38
-    },
-    {
       "name": "Minoootoufik",
-      "rank": 16,
+      "rank": 17,
       "total": 146,
       "md": 48
     },
     {
-      "name": "Abdulcito",
-      "rank": 17,
-      "total": 145,
-      "md": 52
-    },
-    {
       "name": "Lionel team",
       "rank": 18,
-      "total": 139,
-      "md": 43
+      "total": 141,
+      "md": 45
     },
     {
       "name": "awrmrshybh",
@@ -147,22 +147,22 @@
       "md": 34
     },
     {
-      "name": "2511376929",
-      "rank": 25,
-      "total": 123,
-      "md": 44
-    },
-    {
       "name": "TahaHk",
-      "rank": 26,
-      "total": 117,
-      "md": 28
+      "rank": 25,
+      "total": 118,
+      "md": 29
     },
     {
       "name": "Trextani",
-      "rank": 27,
+      "rank": 26,
       "total": 110,
       "md": 34
+    },
+    {
+      "name": "2511376929",
+      "rank": 27,
+      "total": 110,
+      "md": 31
     },
     {
       "name": "Coch seiiire",
@@ -197,8 +197,8 @@
     {
       "name": "HappySaid",
       "rank": 33,
-      "total": 99,
-      "md": 54
+      "total": 100,
+      "md": 55
     },
     {
       "name": "Tuhami",
@@ -227,20 +227,20 @@
     {
       "name": "hoshabu",
       "rank": 38,
-      "total": 64,
-      "md": 64
-    },
-    {
-      "name": "Abu-munir",
-      "rank": 39,
-      "total": 62,
-      "md": 17
+      "total": 66,
+      "md": 66
     },
     {
       "name": "AnasTheMagician",
+      "rank": 39,
+      "total": 63,
+      "md": 63
+    },
+    {
+      "name": "Abu-munir",
       "rank": 40,
-      "total": 61,
-      "md": 61
+      "total": 62,
+      "md": 17
     },
     {
       "name": "Maziiz7",
@@ -269,8 +269,8 @@
     {
       "name": "Trix King",
       "rank": 45,
-      "total": 26,
-      "md": 26
+      "total": 27,
+      "md": 27
     },
     {
       "name": "RobiNator5",
@@ -279,4 +279,4 @@
       "md": 12
     }
   ]
-}
+    }
