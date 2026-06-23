@@ -865,7 +865,7 @@ const OFFICIAL_BYKEY={
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
-"2026-06-23|Portugal|Uzbekistan":{h:0,a:0,st:"IN_PLAY"}
+"2026-06-23|Portugal|Uzbekistan":{h:2,a:0,st:"IN_PLAY"}
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
@@ -873,6 +873,7 @@ const GOALS_BYKEY={
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
 const GOALS_MANUAL={
+ "2026-06-23|Portugal|Uzbekistan":[{t:"Portugal",p:"C. Ronaldo",m:"6"},{t:"Portugal",p:"N. Mendes",m:"17"}],
  "2026-06-22|France|Iraq":[{t:"France",p:"K. Mbappé",m:"14"},{t:"France",p:"K. Mbappé",m:"54"},{t:"France",p:"O. Dembélé",m:"66"}],
  "2026-06-22|Norway|Senegal":[{t:"Norway",p:"M. Pedersen",m:"43"},{t:"Norway",p:"E. Haaland",m:"48"},{t:"Senegal",p:"I. Sarr",m:"53"},{t:"Norway",p:"E. Haaland",m:"58"},{t:"Senegal",p:"I. Sarr",m:"90+3"}],
  "2026-06-22|Argentina|Austria":[{t:"Argentina",p:"L. Messi",m:"38"},{t:"Argentina",p:"L. Messi",m:"90+5"}],
