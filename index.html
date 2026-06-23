@@ -916,6 +916,7 @@ const GOALS_MANUAL={
  "2026-06-21|Belgium|Iran":[],
  "2026-06-21|Uruguay|Cape Verde":[{t:"Cape Verde",p:"K. Pina",m:"21"},{t:"Uruguay",p:"M. Araújo",m:"44"},{t:"Uruguay",p:"A. Canobbio",m:"45+6"},{t:"Cape Verde",p:"H. Varela",m:"61"}],
  "2026-06-21|New Zealand|Egypt":[{t:"New Zealand",p:"F. Surman",m:"15"},{t:"Egypt",p:"Zizo",m:"58"},{t:"Egypt",p:"M. Salah",m:"67"},{t:"Egypt",p:"Trezeguet",m:"82"}],
+ "2026-06-22|Jordan|Algeria":[{t:"Jordan",p:"N. Al Rashdan",m:"36"},{t:"Algeria",p:"N. Benbouali",m:"69"},{t:"Algeria",p:"A. Gouiri",m:"82"}],
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
@@ -1527,14 +1528,10 @@ function buildFantasy(){
 // ---------- TOP SCORERS ----------
 function aggregateScorers(){
  const tally={};
- // Use ONE source only. The official Golden Boot feed (SCORERS) is the authoritative
- // tournament total, so prefer it when present. Counting goal events on top of it would
- // double every player, and any name spelled differently between the two feeds would
- // create a duplicate row. Fall back to per-match goal events only when SCORERS is empty.
- if(SCORERS&&SCORERS.length){
-  SCORERS.forEach(p=>{if(!p||!p.n||!p.t)return;const id=p.t+"|"+p.n;if(!tally[id])tally[id]={n:p.n,t:p.t,g:0};tally[id].g+=(p.g||0);});
-  return Object.values(tally).sort((a,b)=>b.g-a.g||a.n.localeCompare(b.n));
- }
+ // Prefer event-level data (GOALS_BYKEY/GOALS_MANUAL): each goal counted once, names match
+ // the user-curated entries. The SCORERS feed has been seen to over-count (e.g. Messi 6 vs
+ // real 5) and uses different name spellings that create duplicate rows. SCORERS is only a
+ // fallback when no event data exists at all.
  const keys=new Set([...Object.keys(GOALS_BYKEY||{}),...Object.keys(GOALS_MANUAL||{})]);
  keys.forEach(k=>{
   const live=(GOALS_BYKEY&&GOALS_BYKEY[k]&&GOALS_BYKEY[k].length)?GOALS_BYKEY[k]:(GOALS_MANUAL[k]||[]);
@@ -1545,6 +1542,9 @@ function aggregateScorers(){
    tally[id].g++;
   });
  });
+ if(!Object.keys(tally).length && SCORERS && SCORERS.length){
+  SCORERS.forEach(p=>{if(!p||!p.n||!p.t)return;const id=p.t+"|"+p.n;if(!tally[id])tally[id]={n:p.n,t:p.t,g:0};tally[id].g+=(p.g||0);});
+ }
  return Object.values(tally).sort((a,b)=>b.g-a.g||a.n.localeCompare(b.n));
 }
 function buildScorers(){
