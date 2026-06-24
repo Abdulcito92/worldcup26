@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-24T00:47:42.831Z",
-  "updatedLabel": "updated 24 Jun, 03:47 am KSA",
+  "updated": "2026-06-24T01:16:41.347Z",
+  "updatedLabel": "updated 24 Jun, 04:16 am KSA",
   "rows": [
     {
       "name": "NooR 18",
@@ -71,8 +71,8 @@
     {
       "name": "Sulaiman-10",
       "rank": 12,
-      "total": 194,
-      "md": 104
+      "total": 191,
+      "md": 101
     },
     {
       "name": "Foz1993",
@@ -279,4 +279,4 @@
       "md": 70
     }
   ]
-}
+    }
