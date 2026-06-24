@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-24T00:24:34.000Z",
-  "updatedLabel": "updated 24 Jun, 3:24 am KSA",
+  "updated": "2026-06-24T00:47:42.831Z",
+  "updatedLabel": "updated 24 Jun, 03:47 am KSA",
   "rows": [
     {
       "name": "NooR 18",
@@ -11,8 +11,8 @@
     {
       "name": "Naif12",
       "rank": 2,
-      "total": 225,
-      "md": 112
+      "total": 227,
+      "md": 114
     },
     {
       "name": "NF-7",
@@ -165,28 +165,28 @@
       "md": 67
     },
     {
-      "name": "Zzz14",
+      "name": "2511376929",
       "rank": 28,
+      "total": 162,
+      "md": 83
+    },
+    {
+      "name": "Zzz14",
+      "rank": 29,
       "total": 161,
       "md": 85
     },
     {
       "name": "Trix King",
-      "rank": 29,
+      "rank": 30,
       "total": 161,
       "md": 84
     },
     {
       "name": "Abdulcito",
-      "rank": 30,
+      "rank": 31,
       "total": 161,
       "md": 68
-    },
-    {
-      "name": "2511376929",
-      "rank": 31,
-      "total": 160,
-      "md": 81
     },
     {
       "name": "TahaHk",
