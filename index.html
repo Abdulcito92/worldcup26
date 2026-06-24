@@ -945,6 +945,7 @@ const GOALS_MANUAL={"2026-06-24|Scotland|Brazil":[{t:"Brazil",p:"V. Júnior",m:"
  "2026-06-24|Switzerland|Canada":[{t:"Switzerland",p:"R. Vargas",m:"46"},{t:"Switzerland",p:"J. Manzambi",m:"56"},{t:"Canada",p:"P. David",m:"76"}],
  "2026-06-24|Bosnia & Herzegovina|Qatar":[{t:"Bosnia & Herzegovina",p:"K. Alajbegovic",m:"29"},{t:"Bosnia & Herzegovina",p:"S. Al-Brake (OG)",m:"34"},{t:"Qatar",p:"H. Al-Haydos",m:"42"},{t:"Bosnia & Herzegovina",p:"E. Mahmic",m:"81"}],
 };
+const GOALS_BYKEY = {}; // auto/API goals; populated by updater, falls back to GOALS_MANUAL
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
 const results=OFFICIAL;
