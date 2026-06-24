@@ -867,7 +867,7 @@ const OFFICIAL_BYKEY={
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
- "2026-06-23|Panama|Croatia":{h:0,a:0,st:"IN_PLAY"},
+ "2026-06-23|Panama|Croatia":{h:0,a:1,st:"IN_PLAY"},
 };
 // Goal events per match (scorer + minute; needs the Deep Data API tier). key: date|home|away -> [{t:team,p:player,m:minute}]
 const GOALS_BYKEY={
@@ -920,6 +920,7 @@ const GOALS_MANUAL={
  "2026-06-21|Uruguay|Cape Verde":[{t:"Cape Verde",p:"K. Pina",m:"21"},{t:"Uruguay",p:"M. Araújo",m:"44"},{t:"Uruguay",p:"A. Canobbio",m:"45+6"},{t:"Cape Verde",p:"H. Varela",m:"61"}],
  "2026-06-21|New Zealand|Egypt":[{t:"New Zealand",p:"F. Surman",m:"15"},{t:"Egypt",p:"Zizo",m:"58"},{t:"Egypt",p:"M. Salah",m:"67"},{t:"Egypt",p:"Trezeguet",m:"82"}],
  "2026-06-22|Jordan|Algeria":[{t:"Jordan",p:"N. Al Rashdan",m:"36"},{t:"Algeria",p:"N. Benbouali",m:"69"},{t:"Algeria",p:"A. Gouiri",m:"82"}],
+"2026-06-23|Panama|Croatia":[{t:"Croatia",p:"A. Budimir",m:"54"}],
 };
 const OFFICIAL={};
 M.forEach(m=>{const k=m.date+"|"+m.home+"|"+m.away;if(OFFICIAL_BYKEY[k])OFFICIAL[m.id]=OFFICIAL_BYKEY[k];});
