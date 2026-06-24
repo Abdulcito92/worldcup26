@@ -1172,7 +1172,7 @@ const HERO_FALLBACK="https://d8j0ntlcm91z4.cloudfront.net/user_3CaoOWobuIWdFQYjZ
 // ---------- TICKER ----------
 function buildTicker(){
  const t=document.getElementById("ticker");
- const items=M.slice(0,24).map(m=>`<span class="it">${CODE[m.home]} <span style="color:rgba(0,0,0,.45)">vs</span> ${CODE[m.away]} &middot; GRP ${m.group}</span>`).join("");
+ const items=M.slice(0,24).map(m=>`<span class="it">${flagHTML(m.home,"fl")} <span style="color:rgba(0,0,0,.45)">vs</span> ${flagHTML(m.away,"fl")} &middot; GRP ${m.group}</span>`).join("");
  t.innerHTML=items+items;
 }
 
@@ -1210,7 +1210,7 @@ function refreshGoals(){
 function buildFavbar(){
  const grid=document.getElementById("favgrid");
  const names=Object.keys(ISO).sort((a,b)=>(CODE[a]||"").localeCompare(CODE[b]||""));
- grid.innerHTML=names.map(n=>`<button class="fchip${FAVS.has(n)?" sel":""}" data-team="${n.replace(/"/g,"&quot;")}">${flagHTML(n,"fl")}<span>${CODE[n]}</span></button>`).join("");
+ grid.innerHTML=names.map(n=>`<button class="fchip${FAVS.has(n)?" sel":""}" data-team="${n.replace(/"/g,"&quot;")}">${flagHTML(n,"fl")}</button>`).join("");
  grid.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{
   const n=b.dataset.team;
   FAVS.has(n)?FAVS.delete(n):FAVS.add(n);
@@ -1283,16 +1283,16 @@ function buildMatches(){
    if(qi.rem.length&&qi.rem.length<=2&&qi.rem.some(x=>x.id===m.id)){
     const lh=qualLine(qi,m.home),la=qualLine(qi,m.away);
     if(lh||la)qualHtml=`<div class="qualrow"><span class="qhead">${T("qHead")}</span>
-     ${lh?`<span class="ql ${lh.cls}"><b>${CODE[m.home]}</b>${lh.txt}</span>`:""}
-     ${la?`<span class="ql ${la.cls}"><b>${CODE[m.away]}</b>${la.txt}</span>`:""}</div>`;
+     ${lh?`<span class="ql ${lh.cls}"><b>${flagHTML(m.home,"fl")}</b>${lh.txt}</span>`:""}
+     ${la?`<span class="ql ${la.cls}"><b>${flagHTML(m.away,"fl")}</b>${la.txt}</span>`:""}</div>`;
    }
   }
   card.innerHTML=`
    ${isFav?`<span class="favtag">★ ${T("fav")}</span>`:""}
    <div class="gtag" style="background:${col}"></div>
-   <div class="side home">${flagHTML(m.home,"flag")}<div class="tinfo"><div class="tname">${sname(m.home)}</div><div class="tcode">${CODE[m.home]}</div>${goalsFor(m.home)}</div></div>
+   <div class="side home">${flagHTML(m.home,"flag")}<div class="tinfo"><div class="tname">${sname(m.home)}</div><div class="tcode">${flagHTML(m.home,"fl")}</div>${goalsFor(m.home)}</div></div>
    <div class="center"><span class="gpill" style="background:${col}">${T("grp")} ${m.group}</span>${scoreHtml}</div>
-   <div class="side away">${flagHTML(m.away,"flag")}<div class="tinfo"><div class="tname">${sname(m.away)}</div><div class="tcode">${CODE[m.away]}</div>${goalsFor(m.away)}</div></div>
+   <div class="side away">${flagHTML(m.away,"flag")}<div class="tinfo"><div class="tname">${sname(m.away)}</div><div class="tcode">${flagHTML(m.away,"fl")}</div>${goalsFor(m.away)}</div></div>
    <div class="venue"><b>&#128205; ${m.venue}</b> &middot; ${cname(m.city)}${played?`<span class="offtag">${T("official")}</span>`:isLive?`<span class="offtag livetag"><span class="livedotsm"></span> ${T("live")}</span>`:""}${(played||isLive)?`<button class="cardbtn" onclick="SC.open(${m.id})" title="${T("scBtn")}" aria-label="${T("scBtn")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>${T("scBtn")}</button>`:""}${shareLinks(m)}</div>${qualHtml}`;
   list.appendChild(card);
  });
@@ -1562,7 +1562,7 @@ function buildScorers(){
  const rows=list.map((p,i)=>`<tr>
    <td class="pos">${i+1}</td>
    <td class="tm">${ISO[p.t]?flagHTML(p.t,"fl"):""}<span class="nm">${p.n}</span></td>
-   <td>${CODE[p.t]||sname(p.t||"")}</td>
+   <td>${flagHTML(p.t,"fl")}</td>
    <td class="pts">${p.g}</td>
   </tr>`).join("");
  wrap.innerHTML=`<div class="gcard"><div class="gh"><div class="gbadge" style="background:var(--gold)">&#9917;</div><h4>${T("scHead")}</h4><small>${list.length} ${T("scSub")}</small></div>
