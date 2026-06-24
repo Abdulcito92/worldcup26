@@ -151,7 +151,7 @@ html[lang="ar"] .favonly{font-family:'Changa';letter-spacing:0}
 html[dir="rtl"] .fchip{padding:4px 5px 4px 11px}
 .fchip:hover{border-color:var(--line2);color:var(--ink)}
 .fchip.sel{background:rgba(255,206,58,.13);border-color:rgba(255,206,58,.55);color:var(--gold)}
-.fchip .fl{width:20px;height:20px;border-radius:50%}.flc{width:16px;height:16px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.fchip .fl{width:20px;height:20px;border-radius:50%}.qlock{display:inline-flex;align-items:center;color:var(--grass);font-weight:900;font-size:12px;margin-inline-start:5px;line-height:1}.flc{width:16px;height:16px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
 .favtag{position:absolute;top:-9px;inset-inline-end:14px;background:var(--gold);color:#1d1402;font-family:'Archivo';font-weight:900;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.4)}
 .match.favm{border-color:rgba(255,206,58,.45)}
 
@@ -1443,7 +1443,7 @@ function assignThirds(){
  return res;
 }
 function bSlot(team,lbl,lock){
- if(team)return `<div class="bslot">${flagHTML(team,"fl")}<span class="nm" title="${team}">${sname(team)}</span></div>`;
+ if(team)return `<div class="bslot">${flagHTML(team,"fl")}<span class="nm" title="${team}">${sname(team)}</span>${lock?`<span class="qlock" title="${LANG==='ar'?'مكانه مثبّت في دور الـ32':'Spot locked in R32'}">✓</span>`:''}</div>`;
  return `<div class="bslot tbd"><span class="ph"></span><span class="nm">${lbl}</span></div>`;
 }
 function bTie(n,m,slotA,slotB,allLock,cls){
@@ -1472,7 +1472,7 @@ function buildBracket(){
  };
  const tie32=n=>{
   const r=resolve32(n);
-  return bTie(n,r.m,bSlot(r.A.team,r.A.lbl),bSlot(r.B.team,r.B.lbl),r.A.lock&&r.B.lock);
+  return bTie(n,r.m,bSlot(r.A.team,r.A.lbl,r.A.lock),bSlot(r.B.team,r.B.lbl,r.B.lock),r.A.lock&&r.B.lock);
  };
  const tieKO=(n,cls)=>{
   const m=BKO[n];
