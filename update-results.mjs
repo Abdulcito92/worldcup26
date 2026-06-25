@@ -169,9 +169,23 @@ const newScorers = `const SCORERS=${JSON.stringify(mergedScorers)};`;
 
 let out = src
   .replace(officialRe, newOfficial)
-  .replace(/const LIVE_BYKEY=\{[\s\S]*?\n\};/, newLive)
+  .replace(/const LIVE_BYKEY=\{[\s\S]*?\};/, newLive)
   .replace(/const GOALS_BYKEY=\{[\s\S]*?\n\};/, newGoals)
   .replace(/const SCORERS=\[[\s\S]*?\];/, newScorers);
+
+// SAFETY GATE: never write index.html if the result would crash the page.
+{
+  const required = ['const OFFICIAL_BYKEY=', 'const LIVE_BYKEY=', 'const GOALS_MANUAL=', 'const SCORERS=', '</html>'];
+  for (const tok of required) {
+    if (!out.includes(tok)) { console.error('ABORT: generated file is missing ' + tok + ' - not writing.'); process.exit(1); }
+  }
+  const sm = out.match(/<script[^>]*>([\s\S]*?)<\/script>/);
+  if (!sm) { console.error('ABORT: no inline <script> found - not writing.'); process.exit(1); }
+  try { new Function(sm[1]); } catch (e) { console.error('ABORT: inline script would not parse: ' + e.message); process.exit(1); }
+  const grabGM = (t) => { const a = t.indexOf('const GOALS_MANUAL='); const b = t.indexOf('\nconst GOALS_BYKEY', a); return (a < 0 || b < 0) ? null : t.slice(a, b); };
+  if (grabGM(src) !== null && grabGM(out) !== grabGM(src)) { console.error('ABORT: GOALS_MANUAL block was altered - not writing.'); process.exit(1); }
+  if (out.length < src.length - 4000) { console.error('ABORT: output shrank too much (' + src.length + ' -> ' + out.length + ') - not writing.'); process.exit(1); }
+}
 
 if (out === src) {
   console.log('No data changes; leaving index.html untouched.');
