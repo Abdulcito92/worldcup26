@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-25T21:49:22.828Z",
-  "updatedLabel": "updated 26 Jun, 12:49 am KSA",
+  "updated": "2026-06-25T22:19:20.064Z",
+  "updatedLabel": "updated 26 Jun, 01:19 am KSA",
   "rows": [
     {
       "name": "NooR 18",
@@ -219,16 +219,16 @@
       "md": 2
     },
     {
-      "name": "TahaHk",
-      "rank": 37,
-      "total": 164,
-      "md": 5
-    },
-    {
       "name": "Blues os",
-      "rank": 38,
+      "rank": 37,
       "total": 163,
       "md": 28
+    },
+    {
+      "name": "TahaHk",
+      "rank": 38,
+      "total": 163,
+      "md": 4
     },
     {
       "name": "Peace maker13",
@@ -257,8 +257,8 @@
     {
       "name": "HappySaid",
       "rank": 43,
-      "total": 139,
-      "md": 3
+      "total": 138,
+      "md": 2
     },
     {
       "name": "Abu-munir",
@@ -275,14 +275,14 @@
     {
       "name": "Maziiz7",
       "rank": 46,
-      "total": 99,
-      "md": 2
+      "total": 98,
+      "md": 1
     },
     {
       "name": "Bashtokyo",
       "rank": 47,
-      "total": 74,
-      "md": 4
+      "total": 73,
+      "md": 3
     }
   ]
 }
