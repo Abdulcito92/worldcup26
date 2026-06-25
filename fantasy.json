@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-25T02:21:29.965Z",
-  "updatedLabel": "updated 25 Jun, 05:21 am KSA",
+  "updated": "2026-06-25T02:48:28.514Z",
+  "updatedLabel": "updated 25 Jun, 05:48 am KSA",
   "rows": [
     {
       "name": "NooR 18",
@@ -53,14 +53,14 @@
     {
       "name": "ABOazooz-21",
       "rank": 9,
-      "total": 251,
-      "md": 40
+      "total": 252,
+      "md": 41
     },
     {
       "name": "Sulaiman-10",
       "rank": 10,
-      "total": 249,
-      "md": 50
+      "total": 250,
+      "md": 51
     },
     {
       "name": "Hala Khala",
@@ -83,8 +83,8 @@
     {
       "name": "Moh-15",
       "rank": 14,
-      "total": 227,
-      "md": 31
+      "total": 233,
+      "md": 37
     },
     {
       "name": "Lionel team",
@@ -99,28 +99,28 @@
       "md": 34
     },
     {
-      "name": "Hamoudi27",
-      "rank": 17,
-      "total": 220,
-      "md": 28
-    },
-    {
       "name": "Foz1993",
-      "rank": 18,
+      "rank": 17,
       "total": 218,
       "md": 27
     },
     {
       "name": "AzozN91",
-      "rank": 19,
+      "rank": 18,
       "total": 214,
       "md": 35
     },
     {
       "name": "CYKA BLYAT NAHUI",
-      "rank": 20,
+      "rank": 19,
       "total": 214,
       "md": 31
+    },
+    {
+      "name": "Hamoudi27",
+      "rank": 20,
+      "total": 213,
+      "md": 21
     },
     {
       "name": "awrmrshybh",
@@ -149,14 +149,14 @@
     {
       "name": "Mustafa alawl",
       "rank": 25,
-      "total": 204,
-      "md": 2
+      "total": 206,
+      "md": 4
     },
     {
       "name": "Mohamedabdelfattah",
       "rank": 26,
-      "total": 200,
-      "md": 4
+      "total": 202,
+      "md": 6
     },
     {
       "name": "halaraibi",
@@ -165,70 +165,70 @@
       "md": 6
     },
     {
-      "name": "ROMAN 7",
+      "name": "THE ENGINEER 37",
       "rank": 28,
+      "total": 188,
+      "md": 21
+    },
+    {
+      "name": "ROMAN 7",
+      "rank": 29,
       "total": 185,
       "md": 15
     },
     {
-      "name": "Abdulcito",
-      "rank": 29,
-      "total": 181,
-      "md": 17
-    },
-    {
       "name": "Trix King",
       "rank": 30,
-      "total": 179,
-      "md": 1
+      "total": 185,
+      "md": 7
     },
     {
       "name": "Trextani",
       "rank": 31,
-      "total": 176,
-      "md": 9
+      "total": 184,
+      "md": 17
     },
     {
-      "name": "THE ENGINEER 37",
+      "name": "Abdulcito",
       "rank": 32,
-      "total": 172,
-      "md": 5
+      "total": 181,
+      "md": 17
+    },
+    {
+      "name": "Zzz14",
+      "rank": 33,
+      "total": 177,
+      "md": 16
+    },
+    {
+      "name": "Coch seiiire",
+      "rank": 34,
+      "total": 175,
+      "md": 14
     },
     {
       "name": "2511376929",
-      "rank": 33,
+      "rank": 35,
       "total": 172,
       "md": 0
     },
     {
-      "name": "Zzz14",
-      "rank": 34,
-      "total": 169,
-      "md": 8
-    },
-    {
       "name": "Peace maker13",
-      "rank": 35,
+      "rank": 36,
       "total": 166,
       "md": 42
     },
     {
       "name": "Krrr",
-      "rank": 36,
+      "rank": 37,
       "total": 164,
       "md": 0
     },
     {
       "name": "Blues os",
-      "rank": 37,
-      "total": 163,
-      "md": 28
-    },
-    {
-      "name": "Coch seiiire",
       "rank": 38,
       "total": 163,
-      "md": 2
+      "md": 28
     },
     {
       "name": "TahaHk",
@@ -281,8 +281,8 @@
     {
       "name": "Bashtokyo",
       "rank": 47,
-      "total": 71,
-      "md": 1
+      "total": 72,
+      "md": 2
     }
   ]
 }
