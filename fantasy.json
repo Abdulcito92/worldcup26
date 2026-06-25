@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-25T00:53:35.230Z",
-  "updatedLabel": "updated 25 Jun, 03:53 am KSA",
+  "updated": "2026-06-25T01:02:07.344Z",
+  "updatedLabel": "updated 25 Jun, 04:02 am KSA",
   "rows": [
     {
       "name": "NooR 18",
@@ -280,9 +280,9 @@
     },
     {
       "name": "Azzrulbanjarboyz",
-      "rank": 47,
-      "total": 0,
-      "md": 0
+      "rank": null,
+      "total": null,
+      "md": null
     }
   ]
 }
