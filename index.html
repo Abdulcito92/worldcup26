@@ -1996,24 +1996,28 @@ window.SC=SC;
 (function(){function add(){document.querySelectorAll("#funzoneList .fzmedia").forEach(function(m){if(m.querySelector(".fzcarsa"))return;var s=document.createElement("span");s.className="fzcarsa";s.setAttribute("aria-hidden","true");m.appendChild(s);});}var fl=document.getElementById("funzoneList");if(fl){try{new MutationObserver(add).observe(fl,{childList:true});}catch(e){}add();}document.addEventListener("DOMContentLoaded",add);setTimeout(add,1500);setTimeout(add,4000);})();
 
 
-/* === Knockout fixture cards (date-grouped, auto-filled from bracket resolver) === */
-function buildKO(){try{
-var list=document.getElementById('matchList');if(!list)return;
-Array.prototype.forEach.call(list.querySelectorAll('.match.kocard,.kohead'),function(e){e.remove();});
+/* === Knockout matches integrated into the day rail === */
+(function(){if(typeof qualInfo==='function'&&!qualInfo.__ko){var _qi=qualInfo;window.qualInfo=function(g){if(typeof g==='string'&&!/^[A-L]$/.test(g))return{rem:[],locked:{},no2:{},dead:{},need:{}};return _qi.apply(this,arguments);};window.qualInfo.__ko=1;}})();
+function koRoundCode(id){id=+id;return id<=88?'R32':id<=96?'R16':id<=100?'QF':id<=102?'SF':id===103?'3RD':'F';}
+function koRoundName(id){var ar=(typeof LANG!=='undefined'&&LANG==='ar');id=+id;if(id<=88)return ar?'دور الـ32':'Round of 32';if(id<=96)return ar?'دور الـ16':'Round of 16';if(id<=100)return ar?'ربع النهائي':'Quarter-final';if(id<=102)return ar?'نصف النهائي':'Semi-final';if(id===103)return ar?'تحديد المركز الثالث':'Third place';return ar?'النهائي':'Final';}
+var __koDatesAdded=false;
+function syncKO(){try{
+if(typeof M==='undefined'||typeof DATES==='undefined')return;
 if(typeof buildBracket==='function'){try{buildBracket();}catch(e){}}
-var bv=document.getElementById('bracketView');if(!bv)return;
 var SCHED=Object.assign({},(typeof B32!=='undefined'?B32:{}),(typeof BKO!=='undefined'?BKO:{}));
-var ar=(typeof LANG!=='undefined'&&LANG==='ar');
-function rl(id){id=+id;if(id<=88)return ar?'دور الـ32':'R32';if(id<=96)return ar?'دور الـ16':'R16';if(id<=100)return ar?'ربع النهائي':'QF';if(id<=102)return ar?'نصف النهائي':'SF';if(id===103)return ar?'المركز الثالث':'3rd';return ar?'النهائي':'Final';}
-var MON=ar?['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-function fmtDate(dd){if(!dd)return '';var p=dd.split('-');return ar?((+p[2])+' '+MON[+p[1]-1]):(MON[+p[1]-1]+' '+(+p[2]));}
-var arr=Array.prototype.slice.call(bv.querySelectorAll('.bm')).map(function(bm){var mm=bm.textContent.match(/M(\d+)/);if(!mm)return null;var id=+mm[1];var cell=bm.closest('.bcell')||bm.parentElement;var slots=Array.prototype.slice.call(cell.querySelectorAll('.bslot')).slice(0,2);var sp=bm.children;var ttxt=sp[1]?sp[1].textContent.trim():'';return{id:id,slots:slots,sched:SCHED[id],ttxt:ttxt};}).filter(Boolean);
-arr.sort(function(a,b){var da=(a.sched&&a.sched.dd)||'zz',db=(b.sched&&b.sched.dd)||'zz';if(da!==db)return da<db?-1:1;return a.id-b.id;});
-function side(slot,cls){if(!slot)return '<div class="side '+cls+'"><span class="flag flagfb">--</span><div class="tinfo"><div class="tname">TBD</div></div></div>';var img=slot.querySelector('img');var nm=slot.querySelector('.nm');var name=nm?nm.textContent.trim():(slot.textContent.trim()||'TBD');var conf=/qlock/.test(slot.className);var flag=(img&&img.src&&img.src.indexOf('undefined')<0)?('<img class="flag" loading="lazy" src="'+img.src+'" alt="'+(img.alt||'')+'">'):'<span class="flag flagfb">•</span>';return '<div class="side '+cls+'">'+flag+'<div class="tinfo"><div class="tname"'+(conf?'':' style="opacity:.6;font-style:italic"')+'>'+name+'</div></div></div>';}
-var lastDate='';
-arr.forEach(function(m){var dd=(m.sched&&m.sched.dd)||'';if(dd!==lastDate){var h=document.createElement('div');h.className='kohead';h.style.cssText='grid-column:1/-1;margin:18px 6px 4px;font-weight:800;color:var(--cyan);font-size:16px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px';h.textContent='📅 '+fmtDate(dd);list.appendChild(h);lastDate=dd;}var card=document.createElement('div');card.className='match kocard';card.style.opacity='1';var ven=m.sched?(m.sched.v||''):'';card.innerHTML='<div class="gtag" style="background:#ffd34d"></div>'+side(m.slots[0],'home')+'<div class="center"><span class="gpill" style="background:#ffd34d;color:#1a1a2e">'+rl(m.id)+' · M'+m.id+'</span><div class="score tbd">VS</div><div class="ktime">'+m.ttxt+(ven?(' · '+ven):'')+'</div></div>'+side(m.slots[1],'away');list.appendChild(card);});
+var bv=document.getElementById('bracketView');var res={};
+if(bv){Array.prototype.slice.call(bv.querySelectorAll('.bm')).forEach(function(bm){var mm=bm.textContent.match(/M(\d+)/);if(!mm)return;var id=+mm[1];var cell=bm.closest('.bcell')||bm.parentElement;var slots=Array.prototype.slice.call(cell.querySelectorAll('.bslot')).slice(0,2);function tm(sl){if(!sl)return 'TBD';var img=sl.querySelector('img');var nm=sl.querySelector('.nm');if(img&&img.alt&&img.src&&img.src.indexOf('undefined')<0)return img.alt;return nm?nm.textContent.trim():'TBD';}res[id]={h:tm(slots[0]),a:tm(slots[1])};});}
+Object.keys(SCHED).map(Number).sort(function(a,b){return a-b;}).forEach(function(id){var sc=SCHED[id];var r=res[id]||{h:'TBD',a:'TBD'};var row=null;for(var i=0;i<M.length;i++){if(M[i].id===5000+id){row=M[i];break;}}if(!row){M.push({id:5000+id,koId:id,date:sc.dd,group:koRoundCode(id),home:r.h,away:r.a,venue:sc.v,city:sc.c||'',time:sc.time,ko:true});}else{row.home=r.h;row.away=r.a;}});
+if(!__koDatesAdded){var dd=[];for(var k in SCHED){if(DATES.indexOf(SCHED[k].dd)<0&&dd.indexOf(SCHED[k].dd)<0)dd.push(SCHED[k].dd);}dd.forEach(function(x){DATES.push(x);});DATES.sort();__koDatesAdded=true;}
+if(typeof buildRail==='function'){try{buildRail();}catch(e){}}
 }catch(e){}}
-(function(){if(typeof buildMatches==='function'&&!buildMatches.__ko){var _bm=buildMatches;buildMatches=function(){var r=_bm.apply(this,arguments);try{buildKO();}catch(e){}return r;};buildMatches.__ko=1;}try{buildKO();}catch(e){}})();
+function fixKOpills(){try{if(typeof activeDate==='undefined')return;var koRow=null;for(var i=0;i<M.length;i++){if(M[i].ko&&M[i].date===activeDate){koRow=M[i];break;}}if(!koRow)return;var rn=koRoundName(koRow.koId);Array.prototype.slice.call(document.querySelectorAll('#matchList .match .gpill')).forEach(function(p){p.textContent=rn;});}catch(e){}}
+(function(){
+if(typeof buildMatches==='function'&&!buildMatches.__ko){var _bm=buildMatches;window.buildMatches=function(){var r=_bm.apply(this,arguments);try{fixKOpills();}catch(e){}return r;};window.buildMatches.__ko=1;}
+if(typeof renderAll==='function'&&!renderAll.__ko){var _ra=renderAll;window.renderAll=function(){var r=_ra.apply(this,arguments);try{syncKO();}catch(e){}return r;};window.renderAll.__ko=1;}
+if(typeof rebuildDerived==='function'&&!rebuildDerived.__ko){var _rd=rebuildDerived;window.rebuildDerived=function(){var r=_rd.apply(this,arguments);try{syncKO();}catch(e){}return r;};window.rebuildDerived.__ko=1;}
+try{syncKO();}catch(e){}
+})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
