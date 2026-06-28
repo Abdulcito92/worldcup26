@@ -2024,6 +2024,23 @@ if(typeof renderAll==='function'&&!renderAll.__ko){var _ra=renderAll;window.rend
 if(typeof rebuildDerived==='function'&&!rebuildDerived.__ko){var _rd=rebuildDerived;window.rebuildDerived=function(){var r=_rd.apply(this,arguments);try{syncKO();}catch(e){}return r;};window.rebuildDerived.__ko=1;}
 try{syncKO();}catch(e){}
 })();
+/* === Default to today's matchday (day starts 6:00 AM KSA) === */
+function goToday(){try{
+if(typeof DATES==='undefined'||!DATES.length)return;
+var ksa=new Date(Date.now()+3*3600*1000);
+if(ksa.getUTCHours()<6)ksa.setUTCDate(ksa.getUTCDate()-1);
+var et=ksa.toISOString().slice(0,10);
+if(DATES.indexOf(et)<0){var best=DATES[0],bd=1e15;DATES.forEach(function(x){var diff=Math.abs(new Date(x)-new Date(et));if(diff<bd){bd=diff;best=x;}});et=best;}
+if(typeof activeDate!=='undefined')activeDate=et;
+if(typeof buildRail==='function')buildRail();
+if(typeof buildMatches==='function')buildMatches();
+var ap=document.querySelector('#dayrail .daypill.active');if(ap&&ap.scrollIntoView)ap.scrollIntoView({inline:'center',block:'nearest'});
+}catch(e){}}
+(function(){
+try{var dr=document.getElementById('dayrail');if(dr)dr.addEventListener('click',function(){window.__userPicked=1;},true);}catch(e){}
+try{goToday();}catch(e){}
+setTimeout(function(){if(!window.__userPicked){try{goToday();}catch(e){}}},500);
+})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
