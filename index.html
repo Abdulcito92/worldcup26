@@ -2064,6 +2064,18 @@ function advanceKO(){try{_mW={};_mT={};_tm=tieMap();Object.keys(BKO).forEach(fun
 var _prevBB=buildBracket;window.buildBracket=buildBracket=function(){var r=_prevBB.apply(this,arguments);advanceKO();return r;};
 try{buildBracket();if(typeof syncKO==='function')syncKO();}catch(e){}
 }catch(e){}})();
+
+/* === Fix third-place allocation (official FIFA table): Switzerland(WB) vs Algeria(3rd J) === */
+(function(){try{
+if(typeof assignThirds!=='function')return;
+var T3PIN={79:'E',82:'I',85:'J'};
+var _at=assignThirds;
+assignThirds=window.assignThirds=function(){
+var res=_at.apply(this,arguments);
+try{var byG={};for(var n in res){if(res[n]&&res[n].g)byG[res[n].g]=res[n];}var ok=true;for(var s in T3PIN){if(!byG[T3PIN[s]]){ok=false;break;}}if(ok){for(var s2 in T3PIN){res[s2]=byG[T3PIN[s2]];}}}catch(e){}
+return res;};
+try{if(typeof buildBracket==='function')buildBracket();if(typeof syncKO==='function')syncKO();}catch(e){}
+}catch(e){}})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
