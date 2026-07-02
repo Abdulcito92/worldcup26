@@ -2108,6 +2108,33 @@ function fixPens(){try{
 if(typeof buildMatches==='function'){var _pm=buildMatches;buildMatches=window.buildMatches=function(){var r=_pm.apply(this,arguments);fixPens();return r;};}
 try{if(typeof buildMatches==='function')buildMatches();}catch(e){}
 }catch(e){}})();
+
+/* === Bracket results + strike losers === */
+(function(){try{
+if(typeof BKO==='undefined')return;
+var PENS={"Germany|Paraguay":{r:[1,1],p:[3,4]},"Netherlands|Morocco":{r:[1,1],p:[2,3]}};
+function dOf(n){var m=(typeof B32!=='undefined'&&B32[n])||BKO[n];return m?m.dd:null;}
+function addScore(slot,g){var old=slot.querySelector('.bsc');if(old)old.remove();var s=document.createElement('span');s.className='bsc';s.textContent=g;s.style.cssText='margin-inline-start:auto;font-weight:800;font-size:13px;padding-inline:6px';slot.appendChild(s);}
+function strike(slot){var nm=slot.querySelector('.nm');if(nm)nm.style.textDecoration='line-through';slot.style.opacity='0.5';}
+function addPen(t,p){var bm=t.querySelector('.bm');if(!bm||bm.querySelector('.bpen'))return;var s=document.createElement('span');s.className='bpen';s.textContent=' ('+p[0]+'-'+p[1]+' pen)';s.style.cssText='font-size:10px;color:var(--dim);margin-inline-start:4px';bm.appendChild(s);}
+function decorate(){try{
+ var bv=document.getElementById('bracketView');if(!bv)return;
+ bv.querySelectorAll('.btie').forEach(function(t){
+  var bm=t.querySelector('.bm');var mm=bm&&bm.textContent.match(/M([0-9]+)/);if(!mm)return;
+  var n=+mm[1];var slots=[].slice.call(t.querySelectorAll('.bslot'));if(slots.length<2)return;
+  var nm0=slots[0].querySelector('.nm'),nm1=slots[1].querySelector('.nm');if(!nm0||!nm1)return;
+  var home=nm0.getAttribute('title'),away=nm1.getAttribute('title');if(!home||!away)return;
+  var pe=PENS[home+'|'+away];var hs,as,loser=null;
+  if(pe){hs=pe.r[0];as=pe.r[1];loser=pe.p[0]>pe.p[1]?slots[1]:slots[0];}
+  else{var d=dOf(n);if(!d)return;var sc=(typeof OFFICIAL_BYKEY!=='undefined'&&OFFICIAL_BYKEY[d+'|'+home+'|'+away])||null;if(!sc||typeof sc.h!=='number')return;hs=sc.h;as=sc.a;loser=sc.h>sc.a?slots[1]:(sc.a>sc.h?slots[0]:null);}
+  addScore(slots[0],hs);addScore(slots[1],as);
+  if(loser)strike(loser);
+  if(pe)addPen(t,pe.p);
+ });
+}catch(e){}}
+if(typeof buildBracket==='function'){var _rb=buildBracket;window.buildBracket=buildBracket=function(){var r=_rb.apply(this,arguments);decorate();return r;};}
+try{if(typeof buildBracket==='function')buildBracket();}catch(e){}
+}catch(e){}})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
