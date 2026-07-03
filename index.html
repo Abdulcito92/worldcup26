@@ -815,9 +815,9 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-07-03T03:28:23.603Z";
+const LAST_UPDATED="2026-07-03T17:11:00.829Z";
 const SCORERS=[{"n":"Kylian Mbappé","t":"France","g":6},{"n":"Lionel Messi","t":"Argentina","g":6},{"n":"Erling Haaland","t":"Norway","g":5},{"n":"Harry Kane","t":"England","g":5},{"n":"Vinicius Junior","t":"Brazil","g":4},{"n":"Ousmane Dembélé","t":"France","g":4},{"n":"Ismaïla Sarr","t":"Senegal","g":4},{"n":"Julián Quiñones","t":"Mexico","g":3},{"n":"Folarin Balogun","t":"USA","g":3},{"n":"Ismael Saibari","t":"Morocco","g":3},{"n":"Kai Havertz","t":"Germany","g":3},{"n":"Deniz Undav","t":"Germany","g":3},{"n":"Elijah Just","t":"New Zealand","g":3},{"n":"Yoane Wissa","t":"DR Congo","g":3},{"n":"Johan Manzambi","t":"Switzerland","g":3},{"n":"Jonathan David","t":"Canada","g":3},{"n":"Matheus Cunha","t":"Brazil","g":3},{"n":"Brian Brobbey","t":"Netherlands","g":3},{"n":"Cody Gakpo","t":"Netherlands","g":3},{"n":"Raúl Jiménez","t":"Mexico","g":2},{"n":"Cyle Larin","t":"Canada","g":2},{"n":"Crysencio Summerville","t":"Netherlands","g":2},{"n":"Daichi Kamada","t":"Japan","g":2},{"n":"Amad Diallo","t":"Ivory Coast","g":2},{"n":"Yasin Ayari","t":"Sweden","g":2},{"n":"Mikel Oyarzabal","t":"Spain","g":4},{"n":"Cristiano Ronaldo","t":"Portugal","g":3},{"n":"Breel Embolo","t":"Switzerland","g":2}];
-const OFFICIAL_BYKEY={"2026-07-02|Portugal|Croatia":{h:2,a:1},"2026-07-02|Spain|Austria":{h:3,a:0},"2026-07-02|Switzerland|Algeria":{h:2,a:0},
+const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
  "2026-06-11|South Korea|Czechia":{h:2,a:1},
  "2026-06-12|Canada|Bosnia & Herzegovina":{h:1,a:1},
@@ -900,6 +900,9 @@ const OFFICIAL_BYKEY={"2026-07-02|Portugal|Croatia":{h:2,a:1},"2026-07-02|Spain|
  "2026-07-01|Belgium|Senegal":{h:3,a:2},
  "2026-07-01|England|DR Congo":{h:2,a:1},
  "2026-07-01|USA|Bosnia & Herzegovina":{h:2,a:0},
+ "2026-07-02|Portugal|Croatia":{h:2,a:1},
+ "2026-07-02|Spain|Austria":{h:3,a:0},
+ "2026-07-02|Switzerland|Algeria":{h:2,a:0},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
