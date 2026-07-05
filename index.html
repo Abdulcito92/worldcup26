@@ -351,7 +351,7 @@ img.flag,img.fl{object-fit:cover}
 .brlegend{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap;color:var(--muted);font-size:12px}
 .brlegend span{display:flex;align-items:center;gap:8px}
 .bdot{width:9px;height:9px;border-radius:50%}
-.bracketwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-behavior:smooth;padding:24px 2px 10px;direction:ltr}
+.bracketwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-behavior:smooth;padding:24px 2px 10px;direction:ltr}@media(max-width:860px){.bracketwrap{max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-x pan-y}}
 .bracketwrap::-webkit-scrollbar{height:8px}.bracketwrap::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
 .btree{display:flex;gap:26px;min-width:1240px;align-items:stretch}
 .bcol{flex:1;min-width:196px;display:flex;flex-direction:column}
@@ -2155,7 +2155,7 @@ function buildShareRoot(){
  for(var i=0;i<all.length;i++){var el=all[i];if(el.classList)el.classList.remove('rv');el.style.opacity='';el.style.animation='none';el.style.transform='none';}
  var root=document.createElement('div'); root.id='shareRoot';
  root.style.cssText='position:absolute;left:-99999px;top:0;width:'+w+'px;background:#0b0e17;padding:22px;box-sizing:content-box;font-family:sans-serif';
- var st=document.createElement('style'); st.textContent='#shareRoot .bm,#shareRoot .bv,#shareRoot .nm,#shareRoot .bpen{display:none!important}#shareRoot .bslot{padding:6px 8px!important}'; root.appendChild(st);
+ var st=document.createElement('style'); st.textContent='#shareRoot .bm,#shareRoot .bv,#shareRoot .nm,#shareRoot .bpen{display:none!important}#shareRoot .bslot{padding:7px 12px!important;gap:10px!important}#shareRoot .bslot .fl,#shareRoot .bslot img{width:40px!important;height:40px!important;border-radius:7px!important}#shareRoot .bsc{font-size:18px!important}'; root.appendChild(st);
  var hdr=document.createElement('div'); hdr.style.cssText='display:flex;align-items:center;gap:12px;margin-bottom:14px';
  hdr.innerHTML='<img src="logo.jpeg" crossorigin="anonymous" style="width:58px;height:58px;border-radius:12px;object-fit:cover"><div><div style="font-size:24px;font-weight:900;color:#e8b400">WORLD CUP 2026</div><div style="font-size:13px;color:#9aa6b8">ABDULCITO MATCHCENTER</div></div>';
  root.appendChild(hdr); root.appendChild(clone);
