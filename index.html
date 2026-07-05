@@ -2001,7 +2001,7 @@ const SC=(()=>{
  function close(){if(ov){ov.classList.remove("open");document.body.style.overflow="";}}
 
  async function open(id){
-  const m=M[id];if(!m)return;
+  const m=(M[id]||M.find(function(_x){return _x&&_x.id===id;}));if(!m)return;
   ensureModal();
   curBlob=null;imgEl.style.display="none";imgEl.removeAttribute("src");loadEl.style.display="flex";
   ov.classList.add("open");document.body.style.overflow="hidden";
@@ -2146,27 +2146,46 @@ try{if(typeof buildBracket==='function')buildBracket();}catch(e){}
 
 /* === Share bracket image === */
 (function(){try{
-function ar(){return document.documentElement.getAttribute('dir')==='rtl';}
 function loadH2C(){return new Promise(function(res,rej){if(window.html2canvas)return res();var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';s.onload=function(){res();};s.onerror=function(){rej(new Error('load'));};document.head.appendChild(s);});}
+function buildShareRoot(){
+ var tree=document.querySelector('.btree'); if(!tree)return null;
+ var w=tree.offsetWidth||1240;
+ var clone=tree.cloneNode(true);
+ var all=clone.querySelectorAll('*');
+ for(var i=0;i<all.length;i++){var el=all[i];if(el.classList)el.classList.remove('rv');el.style.opacity='';el.style.animation='none';el.style.transform='none';}
+ var root=document.createElement('div'); root.id='shareRoot';
+ root.style.cssText='position:absolute;left:-99999px;top:0;width:'+w+'px;background:#0b0e17;padding:22px;box-sizing:content-box;font-family:sans-serif';
+ var st=document.createElement('style'); st.textContent='#shareRoot .bm,#shareRoot .bv,#shareRoot .nm,#shareRoot .bpen{display:none!important}#shareRoot .bslot{padding:6px 8px!important}'; root.appendChild(st);
+ var hdr=document.createElement('div'); hdr.style.cssText='display:flex;align-items:center;gap:12px;margin-bottom:14px';
+ hdr.innerHTML='<img src="logo.jpeg" crossorigin="anonymous" style="width:58px;height:58px;border-radius:12px;object-fit:cover"><div><div style="font-size:24px;font-weight:900;color:#e8b400">WORLD CUP 2026</div><div style="font-size:13px;color:#9aa6b8">ABDULCITO MATCHCENTER</div></div>';
+ root.appendChild(hdr); root.appendChild(clone);
+ var ft=document.createElement('div'); ft.style.cssText='display:flex;align-items:center;gap:16px;margin-top:16px;padding-top:12px;border-top:1px solid #223';
+ ft.innerHTML='<span style="font-size:12px;color:#9aa6b8">Sponsors</span><img src="kareem-protein.png" crossorigin="anonymous" style="height:30px"><img src="carsa.png" crossorigin="anonymous" style="height:30px">';
+ root.appendChild(ft);
+ document.body.appendChild(root); return root;
+}
 async function shareBracket(btn){
- var tree=document.querySelector('.btree'); if(!tree)return;
- var old=btn.textContent; btn.disabled=true; btn.textContent=ar()?'\u23F3 \u062C\u0627\u0631\u064A\u2026':'\u23F3 Preparing\u2026';
+ var old=btn.textContent; btn.disabled=true; btn.textContent='\u23F3 Preparing\u2026';
+ var root=null;
  try{
   await loadH2C();
-  var sc=Math.min(2, 4000/Math.max(tree.offsetWidth||1240, tree.offsetHeight||2144));
-  var canvas=await html2canvas(tree,{backgroundColor:'#0b0e17',useCORS:true,scale:sc,logging:false,imageTimeout:9000});
-  var blob=await new Promise(function(res){canvas.toBlob(function(b){res(b);},'image/png');});
+  root=buildShareRoot(); if(!root)throw new Error('tree');
+  await new Promise(function(r){setTimeout(r,350);});
+  var sc=Math.min(2, 3900/Math.max(root.offsetWidth, root.offsetHeight));
+  var canvas=await html2canvas(root,{backgroundColor:'#0b0e17',useCORS:true,scale:sc,logging:false,imageTimeout:9000});
+  var blob=await new Promise(function(r){canvas.toBlob(function(b){r(b);},'image/png');});
   if(!blob)throw new Error('blob');
   var file=new File([blob],'worldcup26-bracket.png',{type:'image/png'});
-  if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:ar()?'\u0634\u062C\u0631\u0629 \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 26':'World Cup 26 Bracket'}); }
+  if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:'World Cup 26 Bracket'}); }
   else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='worldcup26-bracket.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},4000); }
- }catch(e){ try{alert(ar()?'\u062A\u0639\u0630\u0651\u0631 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u0635\u0648\u0631\u0629':'Could not create image');}catch(_){} }
+ }catch(e){ try{alert('Could not create image');}catch(_){} }
+ finally{ if(root&&root.parentNode)root.parentNode.removeChild(root); }
  btn.disabled=false; btn.textContent=old;
 }
 function addBtn(){
  var wrap=document.querySelector('.bracketwrap'); if(!wrap||document.getElementById('shareBracketBtn'))return;
  var b=document.createElement('button'); b.id='shareBracketBtn';
- b.textContent=ar()?'\uD83D\uDCF7 \u0634\u0627\u0631\u0643 \u0635\u0648\u0631\u0629 \u0627\u0644\u0634\u062C\u0631\u0629':'\uD83D\uDCF7 Share bracket image';
+ b.textContent='\uD83D\uDCF7 Share bracket image';
  b.style.cssText='display:inline-flex;align-items:center;gap:6px;margin:2px 2px 12px;padding:10px 18px;border-radius:12px;border:none;background:var(--gold,#e8b400);color:#160a02;font-weight:800;font-size:13px;cursor:pointer';
  b.onclick=function(){shareBracket(b);};
  wrap.parentNode.insertBefore(b,wrap);
