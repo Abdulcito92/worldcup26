@@ -530,7 +530,7 @@ html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
   <div class="inner">
     <span class="kicker"><span class="live"></span> <span data-t="kicker">Kicks off June 11 · USA · Canada · Mexico</span></span>
     <h1 id="heroH1"><span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span></h1>
-    <p class="sub" id="heroSub">The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.</p>
+    <p class="sub" id="heroSub">The full record of the first <b>48-team</b> World Cup. All 104 results, every scorer, and Spain&rsquo;s road to the title.</p>
     <div class="cta">
       <button class="btn p" id="ctaFix" data-t="ctaFix">▸ Today's fixtures</button>
       <button class="btn s" id="ctaStand" data-t="ctaBracket">The bracket</button>
@@ -549,7 +549,7 @@ html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
   <section id="matchesView">
     <div class="sectionhead">
       <div class="t" id="mcTitle">The <em>Matchcenter</em></div>
-      <div class="d" data-t="mcDesc">72 group games across 16 cities. Pick a day, follow every kickoff in KSA time.</div>
+      <div class="d" data-t="mcDesc">All 104 matches across 16 cities, from the opener to the final. Pick a day to see every result and scorer.</div>
     </div>
     <div class="statband" id="statband"></div>
     <div class="favbar">
@@ -583,14 +583,14 @@ html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
   <section id="bracketView" class="hidden">
     <div class="sectionhead">
       <div class="brhead-l"><div class="t" id="brTitle">Kareem <em>Brackets</em></div><a class="brspon" href="https://www.instagram.com/kareemprotein" target="_blank" rel="noopener" aria-label="Kareem Protein on Instagram"><span class="brspon-l" data-t="presentedBy">presented by</span><span class="brspon-chip"><img src="kareem-protein.png" alt="Kareem Protein"></span></a></div>
-      <div class="d" data-t="brDesc">Projected live from the current standings. If the tables stay as they are, this is who plays who.</div>
+      <div class="d" data-t="brDesc">The final bracket. Every knockout result from the Round of 32 to Spain lifting the trophy.</div>
     </div>
     <div class="brlegend">
-      <span><i class="bdot" style="background:var(--gold)"></i> <span data-t="brProj">Projected from current standings</span></span>
-      <span><i class="bdot" style="background:var(--grass)"></i> <span data-t="brLock">Group decided — locked in</span></span>
+      <span><i class="bdot" style="background:var(--gold)"></i> <span data-t="brProj">Final result</span></span>
+      <span><i class="bdot" style="background:var(--grass)"></i> <span data-t="brLock">Confirmed</span></span>
     </div>
-    <div class="bracketwrap"><div class="btree" id="btree"></div></div>
-    <p class="hint" style="margin-top:10px" data-t="brHint">Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.</p>
+    <div class="bracketwrap" id="bracketwrapAnchor"><div class="btree" id="btree"></div></div>
+    <p class="hint" style="margin-top:10px" data-t="brHint">Official FIFA bracket, matches 73 to 104. Winners advance on the scores shown, with penalty shootouts and extra time marked.</p>
   </section>
 
   <!-- FANTASY -->
@@ -602,7 +602,7 @@ html[lang="ar"] .brspon-l{font-family:'Changa';letter-spacing:0}
 
   <!-- SCORERS -->
   <section id="scorersView" class="hidden">
-    <div class="sectionhead"><div class="t" id="scTitle">Golden <em>Boot</em></div><div class="d" data-t="scDesc">Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.</div></div>
+    <div class="sectionhead"><div class="t" id="scTitle">Golden <em>Boot</em></div><div class="d" data-t="scDesc">Final top scorers and official tournament awards.</div></div>
     <div class="thirds" id="scorersList" style="margin-top:18px"></div>
   </section>
 
@@ -815,7 +815,7 @@ function toKSA(dateStr,timeStr){
 
 // ---------- STATE ----------
 // OFFICIAL = real match results, auto-filled every 15 min during the tournament. id:{h,a}
-const LAST_UPDATED="2026-07-18T23:06:47.009Z";
+const LAST_UPDATED="2026-07-20T00:30:00.000Z";
 const SCORERS=[{"n":"Kylian Mbappé","t":"France","g":10},{"n":"Lionel Messi","t":"Argentina","g":8},{"n":"Erling Haaland","t":"Norway","g":7},{"n":"Harry Kane","t":"England","g":6},{"n":"Vinicius Junior","t":"Brazil","g":4},{"n":"Ousmane Dembélé","t":"France","g":6},{"n":"Ismaïla Sarr","t":"Senegal","g":4},{"n":"Julián Quiñones","t":"Mexico","g":4},{"n":"Folarin Balogun","t":"USA","g":3},{"n":"Ismael Saibari","t":"Morocco","g":3},{"n":"Kai Havertz","t":"Germany","g":3},{"n":"Deniz Undav","t":"Germany","g":3},{"n":"Elijah Just","t":"New Zealand","g":3},{"n":"Yoane Wissa","t":"DR Congo","g":3},{"n":"Johan Manzambi","t":"Switzerland","g":3},{"n":"Jonathan David","t":"Canada","g":3},{"n":"Matheus Cunha","t":"Brazil","g":3},{"n":"Brian Brobbey","t":"Netherlands","g":3},{"n":"Cody Gakpo","t":"Netherlands","g":3},{"n":"Raúl Jiménez","t":"Mexico","g":3},{"n":"Cyle Larin","t":"Canada","g":2},{"n":"Crysencio Summerville","t":"Netherlands","g":2},{"n":"Daichi Kamada","t":"Japan","g":2},{"n":"Amad Diallo","t":"Ivory Coast","g":2},{"n":"Yasin Ayari","t":"Sweden","g":2},{"n":"Mikel Oyarzabal","t":"Spain","g":5},{"n":"Cristiano Ronaldo","t":"Portugal","g":3},{"n":"Breel Embolo","t":"Switzerland","g":2},{"n":"Jude Bellingham","t":"England","g":7},{"n":"Romelu Lukaku","t":"Belgium","g":3},{"n":"Charles De Ketelaere","t":"Belgium","g":3},{"n":"Lautaro Martínez","t":"Argentina","g":3},{"n":"Bradley Barcola","t":"France","g":3}];
 const OFFICIAL_BYKEY={
  "2026-06-11|Mexico|South Africa":{h:2,a:0},
@@ -916,13 +916,19 @@ const OFFICIAL_BYKEY={
  "2026-07-07|Switzerland|Colombia":{h:0,a:0},
  "2026-07-09|France|Morocco":{h:2,a:0},
  "2026-07-10|Spain|Belgium":{h:2,a:1},
+ "2026-07-11|Argentina|Switzerland":{h:3,a:1},
+ "2026-07-11|Norway|England":{h:1,a:2},
+ "2026-07-14|France|Spain":{h:0,a:2},
+ "2026-07-15|England|Argentina":{h:1,a:2},
+ "2026-07-18|France|England":{h:4,a:6},
+ "2026-07-19|Spain|Argentina":{h:1,a:0},
 };
 // In-play scores (written by update-results.mjs; needs the livescore API tier). key: date|home|away
 const LIVE_BYKEY={
 
 };
 // Manually entered goals (used when the API tier does not return goal events). Not touched by the updater.
-const GOALS_MANUAL={"2026-07-05|Brazil|Norway":[{t:"Norway",p:"E. Haaland",m:"79"},{t:"Norway",p:"E. Haaland",m:"90"},{t:"Brazil",p:"Neymar (pen)",m:"90+10"}],"2026-07-05|Mexico|England":[{t:"England",p:"J. Bellingham",m:"36"},{t:"England",p:"J. Bellingham",m:"38"},{t:"Mexico",p:"J. Quiñones",m:"42"},{t:"England",p:"H. Kane (pen)",m:"60"},{t:"Mexico",p:"R. Jiménez (pen)",m:"69"}],"2026-07-06|Portugal|Spain":[{t:"Spain",p:"M. Merino",m:"90+1"}],"2026-07-06|USA|Belgium":[{t:"Belgium",p:"C. De Ketelaere",m:"9"},{t:"USA",p:"M. Tillman",m:"31"},{t:"Belgium",p:"C. De Ketelaere",m:"33"},{t:"Belgium",p:"H. Vanaken",m:"57"},{t:"Belgium",p:"R. Lukaku",m:"90+3"}],"2026-07-07|Argentina|Egypt":[{t:"Egypt",p:"Y. Ibrahim",m:"15"},{t:"Egypt",p:"M. Zico",m:"67"},{t:"Argentina",p:"C. Romero",m:"79"},{t:"Argentina",p:"L. Messi",m:"83"},{t:"Argentina",p:"E. Fernández",m:"90+2"}],"2026-07-07|Switzerland|Colombia":[],"2026-07-09|France|Morocco":[{t:"France",p:"K. Mbappé",m:"60"},{t:"France",p:"O. Dembélé",m:"66"}],"2026-07-10|Spain|Belgium":[{t:"Spain",p:"F. Ruiz",m:"30"},{t:"Belgium",p:"C. De Ketelaere",m:"41"},{t:"Spain",p:"M. Merino",m:"88"}],"2026-07-04|Canada|Morocco":[{t:"Morocco",p:"A. Ounahi",m:"50"},{t:"Morocco",p:"A. Ounahi",m:"82"},{t:"Morocco",p:"S. Rahimi",m:"90+3"}],"2026-07-04|Paraguay|France":[{t:"France",p:"K. Mbappé (pen)",m:"70"}],"2026-07-03|Colombia|Ghana":[{t:"Colombia",p:"J. Arias",m:"14"}],"2026-07-03|Argentina|Cape Verde":[{t:"Argentina",p:"L. Messi",m:"29"},{t:"Argentina",p:"Li. Martínez",m:"92"},{t:"Argentina",p:"Diney (OG)",m:"111"},{t:"Cape Verde",p:"D. Duarte",m:"59"},{t:"Cape Verde",p:"Lopes Cabral",m:"103"}],"2026-07-03|Australia|Egypt":[{t:"Australia",p:"Hany (OG)",m:"55"},{t:"Egypt",p:"Ashour",m:"13"}],"2026-07-02|Portugal|Croatia":[{t:"Portugal",p:"C. Ronaldo (pen)",m:"68"},{t:"Portugal",p:"G. Ramos",m:"90+4"},{t:"Croatia",p:"I. Perišić",m:"53"}],"2026-07-02|Spain|Austria":[{t:"Spain",p:"M. Oyarzabal",m:"36"},{t:"Spain",p:"P. Porro",m:"66"},{t:"Spain",p:"M. Oyarzabal",m:"89"}],"2026-07-02|Switzerland|Algeria":[{t:"Switzerland",p:"B. Embolo",m:"10"},{t:"Switzerland",p:"D. Ndoye",m:"46"}],"2026-06-28|South Africa|Canada":[{t:"Canada",p:"S. Eustáquio",m:"90+2"}],"2026-06-29|Germany|Paraguay":[{t:"Germany",p:"K. Havertz",m:"54"},{t:"Paraguay",p:"J. Enciso",m:"42"}],"2026-06-29|Netherlands|Morocco":[{t:"Netherlands",p:"C. Gakpo",m:"72"},{t:"Morocco",p:"I. Diop",m:"90+1"}],"2026-06-29|Brazil|Japan":[{t:"Brazil",p:"Casemiro",m:"56"},{t:"Brazil",p:"G. Martinelli",m:"90+5"},{t:"Japan",p:"K. Sano",m:"29"}],"2026-06-30|France|Sweden":[{t:"France",p:"K. Mbappé",m:"45"},{t:"France",p:"B. Barcola",m:"53"},{t:"France",p:"K. Mbappé",m:"74"}],"2026-06-30|Ivory Coast|Norway":[{t:"Ivory Coast",p:"Amad Diallo",m:"74"},{t:"Norway",p:"A. Nusa",m:"39"},{t:"Norway",p:"E. Haaland",m:"86"}],"2026-06-30|Mexico|Ecuador":[{t:"Mexico",p:"J. Quiñones",m:"22"},{t:"Mexico",p:"R. Jiménez",m:"31"}],"2026-07-01|England|DR Congo":[{t:"England",p:"H. Kane",m:"75"},{t:"England",p:"H. Kane",m:"86"},{t:"DR Congo",p:"B. Cipenga",m:"7"}],"2026-07-01|USA|Bosnia & Herzegovina":[{t:"USA",p:"F. Balogun",m:"45"},{t:"USA",p:"M. Tillman",m:"82"}],"2026-07-01|Belgium|Senegal":[{t:"Belgium",p:"R. Lukaku",m:"86"},{t:"Belgium",p:"Y. Tielemans",m:"89"},{t:"Belgium",p:"Y. Tielemans (pen)",m:"120+5"},{t:"Senegal",p:"H. Diarra",m:"25"},{t:"Senegal",p:"I. Sarr",m:"51"}],"2026-06-27|Jordan|Argentina":[{t:"Argentina",p:"G. Lo Celso",m:"19"},{t:"Argentina",p:"L. Martínez (pen)",m:"32"},{t:"Jordan",p:"M. Al-Tamari",m:"55"},{t:"Argentina",p:"L. Messi",m:"80"}],"2026-06-27|Algeria|Austria":[{t:"Austria",p:"M. Arnautović",m:"28"},{t:"Algeria",p:"R. Belghali",m:"45"},{t:"Austria",p:"M. Sabitzer",m:"55"},{t:"Algeria",p:"R. Mahrez",m:"90+2"},{t:"Algeria",p:"R. Mahrez",m:"90+3"},{t:"Austria",p:"S. Kalajdžić",m:"90+5"}],"2026-06-27|DR Congo|Uzbekistan":[{t:"Uzbekistan",p:"E. Shomurodov",m:"10"},{t:"DR Congo",p:"Y. Wissa (pen)",m:"68"},{t:"DR Congo",p:"F. Mayele",m:"78"},{t:"DR Congo",p:"Y. Wissa",m:"90+1"}],"2026-06-27|Panama|England":[{t:"England",p:"J. Bellingham",m:"62"},{t:"England",p:"H. Kane",m:"67"}],"2026-06-27|Croatia|Ghana":[{t:"Croatia",p:"P. Sučić",m:"31"},{t:"Ghana",p:"D. Luckassen",m:"73"},{t:"Croatia",p:"N. Vlašić",m:"83"}],"2026-06-26|Norway|France":[{t:"France",p:"O. Dembélé",m:"7"},{t:"France",p:"O. Dembélé",m:"20"},{t:"Norway",p:"T. Aasgaard",m:"21"},{t:"France",p:"O. Dembélé",m:"32"},{t:"France",p:"D. Doué",m:"90+4"}],"2026-06-26|Senegal|Iraq":[{t:"Senegal",p:"H. Diarra",m:"4"},{t:"Senegal",p:"I. Sarr",m:"56"},{t:"Senegal",p:"P. Gueye",m:"59"},{t:"Senegal",p:"P. Gueye",m:"71"},{t:"Senegal",p:"I. Ndiaye",m:"82"}],"2026-06-26|New Zealand|Belgium":[{t:"Belgium",p:"L. Trossard",m:"28"},{t:"Belgium",p:"L. Trossard",m:"50"},{t:"Belgium",p:"K. De Bruyne",m:"66"},{t:"New Zealand",p:"E. Just",m:"84"},{t:"Belgium",p:"R. Lukaku",m:"86"},{t:"Belgium",p:"A. Saelemaekers",m:"90+4"}],"2026-06-26|Uruguay|Spain":[{t:"Spain",p:"Á. Baena",m:"42"}],"2026-06-26|Egypt|Iran":[{t:"Egypt",p:"M. Saber",m:"5"},{t:"Iran",p:"R. Rezaeian",m:"14"}],"2026-06-25|Türkiye|USA":[{t:"USA",p:"A. Trusty",m:"3"},{t:"Türkiye",p:"A. Güler",m:"10"},{t:"Türkiye",p:"B. Yılmaz",m:"31"},{t:"USA",p:"S. Berhalter",m:"49"},{t:"Türkiye",p:"K. Ayhan",m:"90+8"}],"2026-06-25|Japan|Sweden":[{t:"Japan",p:"D. Maeda",m:"56"},{t:"Sweden",p:"A. Elanga",m:"62"}],"2026-06-25|Tunisia|Netherlands":[{t:"Netherlands",p:"E. Skhiri (OG)",m:"3"},{t:"Netherlands",p:"B. Brobbey",m:"7"},{t:"Tunisia",p:"H. Mastouri",m:"54"},{t:"Netherlands",p:"J. van Hecke",m:"62"}],"2026-06-25|Ecuador|Germany":[{t:"Germany",p:"L. Sané",m:"2"},{t:"Ecuador",p:"N. Angulo",m:"9"},{t:"Ecuador",p:"G. Plata",m:"77"}],"2026-06-25|Curaçao|Ivory Coast":[{t:"Ivory Coast",p:"N. Pépé",m:"7"},{t:"Ivory Coast",p:"N. Pépé",m:"64"}],"2026-06-24|Czechia|Mexico":[{t:"Mexico",p:"M. Chávez",m:"55"},{t:"Mexico",p:"J. Quiñones",m:"61"},{t:"Mexico",p:"Á. Fidalgo",m:"90+4"}],"2026-06-24|South Africa|South Korea":[{t:"South Africa",p:"T. Maseko",m:"63"}],"2026-06-24|Scotland|Brazil":[{t:"Brazil",p:"Vinícius Jr.",m:"7"},{t:"Brazil",p:"Vinícius Jr.",m:"45+3"},{t:"Brazil",p:"M. Cunha",m:"60"}],"2026-06-24|Morocco|Haiti":[{t:"Haiti",p:"Y. Bounou (OG)",m:"10"},{t:"Morocco",p:"A. Hakimi",m:"39"},{t:"Haiti",p:"W. Isidor",m:"43"},{t:"Morocco",p:"I. Saibari",m:"45+1"},{t:"Morocco",p:"S. Rahimi",m:"78"},{t:"Morocco",p:"G. Yassine",m:"89"}],
+const GOALS_MANUAL={"2026-07-11|Norway|England":[{t:"Norway",p:"A. Schjelderup",m:"36"},{t:"England",p:"J. Bellingham",m:"45+2"},{t:"England",p:"J. Bellingham",m:"93"}],"2026-07-11|Argentina|Switzerland":[{t:"Argentina",p:"A. Mac Allister",m:"10"},{t:"Switzerland",p:"D. Ndoye",m:"67"},{t:"Argentina",p:"J. Álvarez",m:"112"},{t:"Argentina",p:"L. Martínez",m:"120+1"}],"2026-07-14|France|Spain":[{t:"Spain",p:"M. Oyarzabal (pen)",m:"22"},{t:"Spain",p:"P. Porro",m:"58"}],"2026-07-15|England|Argentina":[{t:"England",p:"A. Gordon",m:"55"},{t:"Argentina",p:"E. Fernández",m:"85"},{t:"Argentina",p:"L. Martínez",m:"90+2"}],"2026-07-18|France|England":[{t:"England",p:"D. Rice",m:"3"},{t:"England",p:"E. Konsa",m:"18"},{t:"England",p:"B. Saka",m:"37"},{t:"England",p:"B. Saka",m:"45+1"},{t:"France",p:"K. Mbappé",m:"48"},{t:"France",p:"B. Barcola",m:"54"},{t:"France",p:"K. Mbappé",m:"66"},{t:"England",p:"B. Saka (pen)",m:"87"},{t:"France",p:"O. Dembélé",m:"90+6"},{t:"England",p:"J. Bellingham",m:"90+8"}],"2026-07-19|Spain|Argentina":[{t:"Spain",p:"F. Torres",m:"106"}],"2026-07-05|Brazil|Norway":[{t:"Norway",p:"E. Haaland",m:"79"},{t:"Norway",p:"E. Haaland",m:"90"},{t:"Brazil",p:"Neymar (pen)",m:"90+10"}],"2026-07-05|Mexico|England":[{t:"England",p:"J. Bellingham",m:"36"},{t:"England",p:"J. Bellingham",m:"38"},{t:"Mexico",p:"J. Quiñones",m:"42"},{t:"England",p:"H. Kane (pen)",m:"60"},{t:"Mexico",p:"R. Jiménez (pen)",m:"69"}],"2026-07-06|Portugal|Spain":[{t:"Spain",p:"M. Merino",m:"90+1"}],"2026-07-06|USA|Belgium":[{t:"Belgium",p:"C. De Ketelaere",m:"9"},{t:"USA",p:"M. Tillman",m:"31"},{t:"Belgium",p:"C. De Ketelaere",m:"33"},{t:"Belgium",p:"H. Vanaken",m:"57"},{t:"Belgium",p:"R. Lukaku",m:"90+3"}],"2026-07-07|Argentina|Egypt":[{t:"Egypt",p:"Y. Ibrahim",m:"15"},{t:"Egypt",p:"M. Zico",m:"67"},{t:"Argentina",p:"C. Romero",m:"79"},{t:"Argentina",p:"L. Messi",m:"83"},{t:"Argentina",p:"E. Fernández",m:"90+2"}],"2026-07-07|Switzerland|Colombia":[],"2026-07-09|France|Morocco":[{t:"France",p:"K. Mbappé",m:"60"},{t:"France",p:"O. Dembélé",m:"66"}],"2026-07-10|Spain|Belgium":[{t:"Spain",p:"F. Ruiz",m:"30"},{t:"Belgium",p:"C. De Ketelaere",m:"41"},{t:"Spain",p:"M. Merino",m:"88"}],"2026-07-04|Canada|Morocco":[{t:"Morocco",p:"A. Ounahi",m:"50"},{t:"Morocco",p:"A. Ounahi",m:"82"},{t:"Morocco",p:"S. Rahimi",m:"90+3"}],"2026-07-04|Paraguay|France":[{t:"France",p:"K. Mbappé (pen)",m:"70"}],"2026-07-03|Colombia|Ghana":[{t:"Colombia",p:"J. Arias",m:"14"}],"2026-07-03|Argentina|Cape Verde":[{t:"Argentina",p:"L. Messi",m:"29"},{t:"Argentina",p:"Li. Martínez",m:"92"},{t:"Argentina",p:"Diney (OG)",m:"111"},{t:"Cape Verde",p:"D. Duarte",m:"59"},{t:"Cape Verde",p:"Lopes Cabral",m:"103"}],"2026-07-03|Australia|Egypt":[{t:"Australia",p:"Hany (OG)",m:"55"},{t:"Egypt",p:"Ashour",m:"13"}],"2026-07-02|Portugal|Croatia":[{t:"Portugal",p:"C. Ronaldo (pen)",m:"68"},{t:"Portugal",p:"G. Ramos",m:"90+4"},{t:"Croatia",p:"I. Perišić",m:"53"}],"2026-07-02|Spain|Austria":[{t:"Spain",p:"M. Oyarzabal",m:"36"},{t:"Spain",p:"P. Porro",m:"66"},{t:"Spain",p:"M. Oyarzabal",m:"89"}],"2026-07-02|Switzerland|Algeria":[{t:"Switzerland",p:"B. Embolo",m:"10"},{t:"Switzerland",p:"D. Ndoye",m:"46"}],"2026-06-28|South Africa|Canada":[{t:"Canada",p:"S. Eustáquio",m:"90+2"}],"2026-06-29|Germany|Paraguay":[{t:"Germany",p:"K. Havertz",m:"54"},{t:"Paraguay",p:"J. Enciso",m:"42"}],"2026-06-29|Netherlands|Morocco":[{t:"Netherlands",p:"C. Gakpo",m:"72"},{t:"Morocco",p:"I. Diop",m:"90+1"}],"2026-06-29|Brazil|Japan":[{t:"Brazil",p:"Casemiro",m:"56"},{t:"Brazil",p:"G. Martinelli",m:"90+5"},{t:"Japan",p:"K. Sano",m:"29"}],"2026-06-30|France|Sweden":[{t:"France",p:"K. Mbappé",m:"45"},{t:"France",p:"B. Barcola",m:"53"},{t:"France",p:"K. Mbappé",m:"74"}],"2026-06-30|Ivory Coast|Norway":[{t:"Ivory Coast",p:"Amad Diallo",m:"74"},{t:"Norway",p:"A. Nusa",m:"39"},{t:"Norway",p:"E. Haaland",m:"86"}],"2026-06-30|Mexico|Ecuador":[{t:"Mexico",p:"J. Quiñones",m:"22"},{t:"Mexico",p:"R. Jiménez",m:"31"}],"2026-07-01|England|DR Congo":[{t:"England",p:"H. Kane",m:"75"},{t:"England",p:"H. Kane",m:"86"},{t:"DR Congo",p:"B. Cipenga",m:"7"}],"2026-07-01|USA|Bosnia & Herzegovina":[{t:"USA",p:"F. Balogun",m:"45"},{t:"USA",p:"M. Tillman",m:"82"}],"2026-07-01|Belgium|Senegal":[{t:"Belgium",p:"R. Lukaku",m:"86"},{t:"Belgium",p:"Y. Tielemans",m:"89"},{t:"Belgium",p:"Y. Tielemans (pen)",m:"120+5"},{t:"Senegal",p:"H. Diarra",m:"25"},{t:"Senegal",p:"I. Sarr",m:"51"}],"2026-06-27|Jordan|Argentina":[{t:"Argentina",p:"G. Lo Celso",m:"19"},{t:"Argentina",p:"L. Martínez (pen)",m:"32"},{t:"Jordan",p:"M. Al-Tamari",m:"55"},{t:"Argentina",p:"L. Messi",m:"80"}],"2026-06-27|Algeria|Austria":[{t:"Austria",p:"M. Arnautović",m:"28"},{t:"Algeria",p:"R. Belghali",m:"45"},{t:"Austria",p:"M. Sabitzer",m:"55"},{t:"Algeria",p:"R. Mahrez",m:"90+2"},{t:"Algeria",p:"R. Mahrez",m:"90+3"},{t:"Austria",p:"S. Kalajdžić",m:"90+5"}],"2026-06-27|DR Congo|Uzbekistan":[{t:"Uzbekistan",p:"E. Shomurodov",m:"10"},{t:"DR Congo",p:"Y. Wissa (pen)",m:"68"},{t:"DR Congo",p:"F. Mayele",m:"78"},{t:"DR Congo",p:"Y. Wissa",m:"90+1"}],"2026-06-27|Panama|England":[{t:"England",p:"J. Bellingham",m:"62"},{t:"England",p:"H. Kane",m:"67"}],"2026-06-27|Croatia|Ghana":[{t:"Croatia",p:"P. Sučić",m:"31"},{t:"Ghana",p:"D. Luckassen",m:"73"},{t:"Croatia",p:"N. Vlašić",m:"83"}],"2026-06-26|Norway|France":[{t:"France",p:"O. Dembélé",m:"7"},{t:"France",p:"O. Dembélé",m:"20"},{t:"Norway",p:"T. Aasgaard",m:"21"},{t:"France",p:"O. Dembélé",m:"32"},{t:"France",p:"D. Doué",m:"90+4"}],"2026-06-26|Senegal|Iraq":[{t:"Senegal",p:"H. Diarra",m:"4"},{t:"Senegal",p:"I. Sarr",m:"56"},{t:"Senegal",p:"P. Gueye",m:"59"},{t:"Senegal",p:"P. Gueye",m:"71"},{t:"Senegal",p:"I. Ndiaye",m:"82"}],"2026-06-26|New Zealand|Belgium":[{t:"Belgium",p:"L. Trossard",m:"28"},{t:"Belgium",p:"L. Trossard",m:"50"},{t:"Belgium",p:"K. De Bruyne",m:"66"},{t:"New Zealand",p:"E. Just",m:"84"},{t:"Belgium",p:"R. Lukaku",m:"86"},{t:"Belgium",p:"A. Saelemaekers",m:"90+4"}],"2026-06-26|Uruguay|Spain":[{t:"Spain",p:"Á. Baena",m:"42"}],"2026-06-26|Egypt|Iran":[{t:"Egypt",p:"M. Saber",m:"5"},{t:"Iran",p:"R. Rezaeian",m:"14"}],"2026-06-25|Türkiye|USA":[{t:"USA",p:"A. Trusty",m:"3"},{t:"Türkiye",p:"A. Güler",m:"10"},{t:"Türkiye",p:"B. Yılmaz",m:"31"},{t:"USA",p:"S. Berhalter",m:"49"},{t:"Türkiye",p:"K. Ayhan",m:"90+8"}],"2026-06-25|Japan|Sweden":[{t:"Japan",p:"D. Maeda",m:"56"},{t:"Sweden",p:"A. Elanga",m:"62"}],"2026-06-25|Tunisia|Netherlands":[{t:"Netherlands",p:"E. Skhiri (OG)",m:"3"},{t:"Netherlands",p:"B. Brobbey",m:"7"},{t:"Tunisia",p:"H. Mastouri",m:"54"},{t:"Netherlands",p:"J. van Hecke",m:"62"}],"2026-06-25|Ecuador|Germany":[{t:"Germany",p:"L. Sané",m:"2"},{t:"Ecuador",p:"N. Angulo",m:"9"},{t:"Ecuador",p:"G. Plata",m:"77"}],"2026-06-25|Curaçao|Ivory Coast":[{t:"Ivory Coast",p:"N. Pépé",m:"7"},{t:"Ivory Coast",p:"N. Pépé",m:"64"}],"2026-06-24|Czechia|Mexico":[{t:"Mexico",p:"M. Chávez",m:"55"},{t:"Mexico",p:"J. Quiñones",m:"61"},{t:"Mexico",p:"Á. Fidalgo",m:"90+4"}],"2026-06-24|South Africa|South Korea":[{t:"South Africa",p:"T. Maseko",m:"63"}],"2026-06-24|Scotland|Brazil":[{t:"Brazil",p:"Vinícius Jr.",m:"7"},{t:"Brazil",p:"Vinícius Jr.",m:"45+3"},{t:"Brazil",p:"M. Cunha",m:"60"}],"2026-06-24|Morocco|Haiti":[{t:"Haiti",p:"Y. Bounou (OG)",m:"10"},{t:"Morocco",p:"A. Hakimi",m:"39"},{t:"Haiti",p:"W. Isidor",m:"43"},{t:"Morocco",p:"I. Saibari",m:"45+1"},{t:"Morocco",p:"S. Rahimi",m:"78"},{t:"Morocco",p:"G. Yassine",m:"89"}],
  "2026-06-23|Colombia|DR Congo":[{t:"Colombia",p:"D. Muñoz",m:"76"}],
  "2026-06-23|Portugal|Uzbekistan":[{t:"Portugal",p:"C. Ronaldo",m:"6"},{t:"Portugal",p:"N. Mendes",m:"17"},{t:"Portugal",p:"C. Ronaldo",m:"39"},{t:"Portugal",p:"A. Nematov (OG)",m:"60"},{t:"Portugal",p:"R. Leão",m:"87"}],
  "2026-06-22|France|Iraq":[{t:"France",p:"K. Mbappé",m:"14"},{t:"France",p:"K. Mbappé",m:"54"},{t:"France",p:"O. Dembélé",m:"66"}],
@@ -1115,10 +1121,10 @@ en:{
  navFixtures:"Fixtures",navStandings:"Standings",navBracket:"Kareem Brackets",navScorers:"Scorers",navFantasy:"Fantasy",navFunZone:"CARSA Fun Zone",sponsorsTitle:"Our Sponsors",presentedBy:"presented by",
  kicker:"Kicks off June 11 · USA · Canada · Mexico",
  heroH1:'<span class="g">EVERY</span> GOAL.<br><span class="o">EVERY</span> <span class="g">NATION.</span>',
- heroSub:'The day-by-day home of the first <b>48-team</b> World Cup — every kickoff in KSA time, live tables and the road to the final.',
+ heroSub:'The full record of the first <b>48-team</b> World Cup. All 104 results, every scorer, and Spain&rsquo;s road to the title.',
  ctaFix:"▸ Today's fixtures",ctaBracket:"The bracket",scroll:"Scroll",
  synced:"Auto-refreshes every 15 min",lastUpd:"Last updated",
- mcTitle:'The <em>Matchcenter</em>',mcDesc:"72 group games across 16 cities. Pick a day, follow every kickoff in KSA time.",
+ mcTitle:'The <em>Matchcenter</em>',mcDesc:"All 104 matches across 16 cities, from the opener to the final. Pick a day to see every result and scorer.",
  stTeams:"Teams",stGroups:"Groups",stGames:"Group games",stCities:"Host cities",stTotal:"Total matches",stGoals:"Goals scored",
  myTeams:"★ My teams",pickTeams:"Pick teams",favOnly:"Favorites only",fav:"FAV",
  noFav:"No matches for your favorite teams on this day. Switch off the filter or pick more teams.",
@@ -1126,15 +1132,15 @@ en:{
  leg1:"Top 2 — through",leg2:"3rd — in contention",
  thTitle:'Race for the <em>Round of 32</em>',thDesc:"The 8 best third-placed teams join the 12 group winners and 12 runners-up in the knockouts.",
  thirdsHead:"Best Third-Placed Teams",thirdsSub:"top 8 advance",qIn:"Qualify",qOut:"Out",
- brTitle:'Kareem <em>Brackets</em>',brDesc:"Projected live from the current standings. If the tables stay as they are, this is who plays who.",
- brProj:"Projected from current standings",brLock:"Group decided — locked in",
- brHint:"Official FIFA bracket structure (matches 73–104). Third-place pairings follow the allowed groups for each slot; FIFA confirms exact assignments when the group stage ends.",
+ brTitle:'Kareem <em>Brackets</em>',brDesc:"The final bracket. Every knockout result from the Round of 32 to Spain lifting the trophy.",
+ brProj:"Final result",brLock:"Confirmed",
+ brHint:"Official FIFA bracket, matches 73 to 104. Winners advance on the scores shown, with penalty shootouts and extra time marked.",
  r32:"Round of 32",r16:"Round of 16",qf:"Quarter-finals",sf:"Semi-finals",fin:"Final",third:"Third place",
  w1:"Winner",w2:"Runner-up",t3:"3rd of",wOf:"Winner M",lOf:"Loser M",
  fnTitle:'Fantasy <em>League</em>',fnDesc:"Your ABDULCITO league on FIFA Fantasy. Points fill in once matchdays begin. Snapshot taken 10 June 2026.",
  fnOpen:"Open league on FIFA",fnHint:"League code P2XKZ4FQ. Use the Join my league button to invite friends.",
  manager:"Manager",mdPts:"MD pts",total:"Total",managers:"managers",
- scTitle:'Golden <em>Boot</em>',scDesc:"Top scorers of the tournament. Updates automatically every 15 minutes once matches begin.",
+ scTitle:'Golden <em>Boot</em>',scDesc:"Final top scorers and official tournament awards.",
  fzTitle:'CARSA <em>Fun Zone</em>',fzDesc:"Turn yourself into the World Cup. Pick a prompt, copy it, then open ChatGPT and attach your own photo.",
  fzStep1:"Pick a prompt below and copy it.",fzStep2:"Open ChatGPT and upload your photo.",fzStep3:"Paste the prompt, send, and share your result.",
  fzResult:"Abdulhadi's result",fzAddResult:"Add your result image here",fzYourPhoto:"Preview your photo",fzExample:"Example",fzYours:"Yours",fzOpenGPT:"Open ChatGPT",
@@ -1165,10 +1171,10 @@ ar:{
  navFixtures:"المباريات",navStandings:"الترتيب",navBracket:"إقصائيات كريم",navScorers:"الهدافون",navFantasy:"الفانتزي",navFunZone:"ترفيه كارسا",sponsorsTitle:"رعاتنا",presentedBy:"برعاية",
  kicker:"تنطلق 11 يونيو · أمريكا · كندا · المكسيك",
  heroH1:'<span class="g">كل</span> هدف.<br>و<span class="g">كل</span> منتخب.',
- heroSub:'بيتك اليومي لأول كأس عالم بـ<b>48 منتخباً</b> — كل المباريات بتوقيت السعودية، جداول مباشرة والطريق إلى النهائي.',
+ heroSub:'السجل الكامل لأول كأس عالم بـ<b>48 منتخباً</b>. نتائج المباريات الـ104، كل الهدافين، وطريق إسبانيا إلى اللقب.',
  ctaFix:"▸ مباريات اليوم",ctaBracket:"شجرة البطولة",scroll:"مرر",
  synced:"تحديث تلقائي كل 15 دقيقة",lastUpd:"آخر تحديث",
- mcTitle:'مركز <em>المباريات</em>',mcDesc:"72 مباراة مجموعات في 16 مدينة. اختر اليوم وتابع كل المباريات بتوقيت السعودية.",
+ mcTitle:'مركز <em>المباريات</em>',mcDesc:"جميع المباريات الـ104 في 16 مدينة، من الافتتاح حتى النهائي. اختر اليوم لتشاهد كل نتيجة وكل هدّاف.",
  stTeams:"منتخباً",stGroups:"مجموعة",stGames:"مباراة مجموعات",stCities:"مدينة مضيفة",stTotal:"إجمالي المباريات",stGoals:"الأهداف المسجلة",
  myTeams:"★ منتخباتي",pickTeams:"اختر المنتخبات",favOnly:"المفضلة فقط",fav:"مفضلة",
  noFav:"لا مباريات لمنتخباتك المفضلة في هذا اليوم. أوقف الفلتر أو أضف منتخبات.",
@@ -1176,15 +1182,15 @@ ar:{
  leg1:"الأول والثاني — تأهل",leg2:"الثالث — في المنافسة",
  thTitle:'السباق إلى <em>دور الـ32</em>',thDesc:"أفضل 8 منتخبات في المركز الثالث تنضم إلى متصدري المجموعات الـ12 ووصفائها في الإقصائيات.",
  thirdsHead:"أفضل أصحاب المركز الثالث",thirdsSub:"أفضل 8 يتأهلون",qIn:"متأهل",qOut:"خارج",
- brTitle:'إقصائيات <em>كريم</em>',brDesc:"إسقاط مباشر من الترتيب الحالي. إذا بقيت الجداول كما هي، فهذه هي المواجهات.",
- brProj:"إسقاط من الترتيب الحالي",brLock:"حُسمت المجموعة — مؤكد",
- brHint:"هيكل FIFA الرسمي (المباريات 73–104). مواجهات أصحاب المركز الثالث تتبع المجموعات المسموحة لكل خانة، وتؤكدها FIFA بعد نهاية دور المجموعات.",
+ brTitle:'إقصائيات <em>كريم</em>',brDesc:"الشجرة النهائية. كل نتائج الأدوار الإقصائية من دور الـ32 حتى تتويج إسبانيا باللقب.",
+ brProj:"نتيجة نهائية",brLock:"مؤكد",
+ brHint:"شجرة FIFA الرسمية، المباريات من 73 إلى 104. يتأهل الفائز حسب النتائج المعروضة، مع توضيح ركلات الترجيح والأشواط الإضافية.",
  r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",fin:"النهائي",third:"المركز الثالث",
  w1:"متصدر",w2:"وصيف",t3:"ثالث",wOf:"الفائز بـ م",lOf:"الخاسر من م",
  fnTitle:'دوري <em>الفانتزي</em>',fnDesc:"دوريك ABDULCITO في FIFA Fantasy. النقاط تُحتسب مع انطلاق الجولات. آخر لقطة 10 يونيو 2026.",
  fnOpen:"افتح الدوري في FIFA",fnHint:"رمز الدوري P2XKZ4FQ. استخدم زر انضم لدوريي لدعوة أصدقائك.",
  manager:"المدير",mdPts:"نقاط الجولة",total:"المجموع",managers:"مديراً",
- scTitle:'الحذاء <em>الذهبي</em>',scDesc:"هدافو البطولة. يتحدث تلقائياً كل 15 دقيقة مع انطلاق المباريات.",
+ scTitle:'الحذاء <em>الذهبي</em>',scDesc:"الهدافون النهائيون وجوائز البطولة الرسمية.",
  fzTitle:'ترفيه <em>كارسا</em>',fzDesc:"حوّل نفسك إلى نجم كأس العالم. اختر برومبت، انسخه، ثم افتح ChatGPT وأرفق صورتك.",
  fzStep1:"اختر برومبت من الأسفل وانسخه.",fzStep2:"افتح ChatGPT وارفع صورتك.",fzStep3:"الصق البرومبت، أرسل، وشارك نتيجتك.",
  fzResult:"نتيجة عبدالهادي",fzAddResult:"أضف صورة نتيجتك هنا",fzYourPhoto:"اعرض صورتك",fzExample:"مثال",fzYours:"صورتك",fzOpenGPT:"افتح ChatGPT",
@@ -1254,7 +1260,7 @@ function fmtDay(d){
 
 // ---------- STAT BAND ----------
 function totalGoals(){
- try{const src=(typeof STAND!=="undefined"&&STAND)?STAND:(typeof OFFICIAL!=="undefined"?OFFICIAL:{});
+ try{const src=(typeof OFFICIAL_BYKEY!=="undefined"&&Object.keys(OFFICIAL_BYKEY).length)?OFFICIAL_BYKEY:((typeof STAND!=="undefined"&&STAND)?STAND:(typeof OFFICIAL!=="undefined"?OFFICIAL:{}));
   return Object.values(src).reduce((s,r)=>s+(r&&r.h!=null?+r.h:0)+(r&&r.a!=null?+r.a:0),0);}catch(e){return 0;}
 }
 function buildStats(){
@@ -2038,8 +2044,8 @@ if(typeof M==='undefined'||typeof DATES==='undefined')return;
 if(typeof buildBracket==='function'){try{buildBracket();}catch(e){}}
 var SCHED=Object.assign({},(typeof B32!=='undefined'?B32:{}),(typeof BKO!=='undefined'?BKO:{}));
 var bv=document.getElementById('bracketView');var res={};
-if(bv){Array.prototype.slice.call(bv.querySelectorAll('.bm')).forEach(function(bm){var mm=bm.textContent.match(/M(\d+)/);if(!mm)return;var id=+mm[1];var cell=bm.closest('.bcell')||bm.parentElement;var slots=Array.prototype.slice.call(cell.querySelectorAll('.bslot')).slice(0,2);function tm(sl){if(!sl)return 'TBD';var img=sl.querySelector('img');var nm=sl.querySelector('.nm');if(img&&img.alt&&img.src&&img.src.indexOf('undefined')<0)return img.alt;return nm?nm.textContent.trim():'TBD';}res[id]={h:tm(slots[0]),a:tm(slots[1])};});}
-function __tmin(t){var m=String(t).match(/(\d+):(\d+)\s*(AM|PM)/i);if(!m)return 0;var h=+m[1]%12;if(/pm/i.test(m[3]))h+=12;return h*60+ +m[2];}Object.keys(SCHED).map(Number).sort(function(a,b){var sa=SCHED[a],sb=SCHED[b];if(sa.dd!==sb.dd)return sa.dd<sb.dd?-1:1;return __tmin(sa.time)-__tmin(sb.time);}).forEach(function(id){var sc=SCHED[id];var r=res[id]||{h:'TBD',a:'TBD'};var row=null;for(var i=0;i<M.length;i++){if(M[i].id===5000+id){row=M[i];break;}}if(!row){M.push({id:5000+id,koId:id,date:sc.dd,group:koRoundCode(id),home:r.h,away:r.a,venue:sc.v,city:sc.c||'',time:sc.time,ko:true});}else{row.home=r.h;row.away=r.a;}});
+if(bv){Array.prototype.slice.call(bv.querySelectorAll('.bm')).forEach(function(bm){var mm=bm.textContent.match(/M(\d+)/);if(!mm)return;var id=+mm[1];var cell=bm.closest('.btie')||bm.closest('.bcell')||bm.parentElement;var slots=Array.prototype.slice.call(cell.querySelectorAll('.bslot')).slice(0,2);function tm(sl){if(!sl)return 'TBD';var img=sl.querySelector('img');var nm=sl.querySelector('.nm');if(img&&img.alt&&img.src&&img.src.indexOf('undefined')<0)return img.alt;return nm?nm.textContent.trim():'TBD';}res[id]={h:tm(slots[0]),a:tm(slots[1])};});}
+function __tmin(t){var m=String(t).match(/(\d+):(\d+)\s*(AM|PM)/i);if(!m)return 0;var h=+m[1]%12;if(/pm/i.test(m[3]))h+=12;return h*60+ +m[2];}Object.keys(SCHED).map(Number).sort(function(a,b){var sa=SCHED[a],sb=SCHED[b];if(sa.dd!==sb.dd)return sa.dd<sb.dd?-1:1;return __tmin(sa.time)-__tmin(sb.time);}).forEach(function(id){var sc=SCHED[id];var r=res[id]||{h:'TBD',a:'TBD'};var row=null;for(var i=0;i<M.length;i++){if(M[i].id===5000+id){row=M[i];break;}}if(!row){row={id:5000+id,koId:id,date:sc.dd,group:koRoundCode(id),home:r.h,away:r.a,venue:sc.v,city:sc.c||'',time:sc.time,ko:true};M.push(row);}else{row.home=r.h;row.away=r.a;}try{var ofr=(typeof OFFICIAL_BYKEY!=='undefined')&&OFFICIAL_BYKEY[row.date+'|'+row.home+'|'+row.away];if(ofr&&typeof ofr.h==='number')OFFICIAL[row.id]=ofr;else delete OFFICIAL[row.id];}catch(e){}});
 if(!__koDatesAdded){var dd=[];for(var k in SCHED){if(DATES.indexOf(SCHED[k].dd)<0&&dd.indexOf(SCHED[k].dd)<0)dd.push(SCHED[k].dd);}dd.forEach(function(x){DATES.push(x);});DATES.sort();__koDatesAdded=true;}
 if(typeof buildRail==='function'){try{buildRail();}catch(e){}}
 }catch(e){}}
@@ -2075,7 +2081,7 @@ setTimeout(function(){if(!window.__userPicked){try{goToday();}catch(e){}}},500);
 /* === Auto-advance knockout winners === */
 (function(){try{
 if(typeof BKO==='undefined'||typeof buildBracket!=='function')return;
-var KO_WIN={73:"Canada",74:"Paraguay",75:"Morocco",88:"Egypt"};
+var KO_WIN={73:"Canada",74:"Paraguay",75:"Morocco",88:"Egypt",96:"Switzerland"};
 var _mW={},_mT={},_tm=null;
 function R32(n){return typeof B32!=='undefined'&&B32[n];}
 function koDate(n){var m=R32(n)||BKO[n];return m?m.dd:null;}
@@ -2105,7 +2111,7 @@ try{if(typeof buildBracket==='function')buildBracket();if(typeof syncKO==='funct
 
 /* === Penalty shootout display === */
 (function(){try{
-var PENS={"Germany|Paraguay":{r:[1,1],p:[3,4]},"Netherlands|Morocco":{r:[1,1],p:[2,3]},"Australia|Egypt":{r:[1,1],p:[2,4]}};
+var PENS={"Germany|Paraguay":{r:[1,1],p:[3,4]},"Netherlands|Morocco":{r:[1,1],p:[2,3]},"Australia|Egypt":{r:[1,1],p:[2,4]},"Switzerland|Colombia":{r:[0,0],p:[4,3]}};
 function isAr(){return (document.documentElement.getAttribute('dir')==='rtl')||(document.documentElement.lang==='ar');}
 function fixPens(){try{
  document.querySelectorAll('#matchList .match').forEach(function(c){
@@ -2128,7 +2134,7 @@ try{if(typeof buildMatches==='function')buildMatches();}catch(e){}
 /* === Bracket results + strike losers === */
 (function(){try{
 if(typeof BKO==='undefined')return;
-var PENS={"Germany|Paraguay":{r:[1,1],p:[3,4]},"Netherlands|Morocco":{r:[1,1],p:[2,3]},"Australia|Egypt":{r:[1,1],p:[2,4]}};
+var PENS={"Germany|Paraguay":{r:[1,1],p:[3,4]},"Netherlands|Morocco":{r:[1,1],p:[2,3]},"Australia|Egypt":{r:[1,1],p:[2,4]},"Switzerland|Colombia":{r:[0,0],p:[4,3]}};
 function dOf(n){var m=(typeof B32!=='undefined'&&B32[n])||BKO[n];return m?m.dd:null;}
 function addScore(slot,g){var old=slot.querySelector('.bsc');if(old)old.remove();var s=document.createElement('span');s.className='bsc';s.textContent=g;s.style.cssText='margin-inline-start:auto;font-weight:800;font-size:13px;padding-inline:6px';slot.appendChild(s);}
 function strike(slot){var nm=slot.querySelector('.nm');if(nm)nm.style.textDecoration='line-through';slot.style.opacity='0.5';}
@@ -2200,6 +2206,84 @@ function addBtn(){
 }
 if(typeof buildBracket==='function'){var _sbb=buildBracket;window.buildBracket=buildBracket=function(){var r=_sbb.apply(this,arguments);try{addBtn();}catch(e){}return r;};}
 try{addBtn();}catch(e){}
+}catch(e){}})();
+
+/* === Tournament complete: champion, awards, final Golden Boot, extra-time labels === */
+(function(){try{
+var isAr=function(){return typeof LANG!=='undefined'&&LANG==='ar';};
+var tn=function(t){return (typeof sname==='function')?sname(t):t;};
+var fl=function(t){return (typeof flagHTML==='function')?flagHTML(t,'fl'):'';};
+/* Matches decided after extra time (home|away as listed in the matchcenter) */
+var AET={"Argentina|Cape Verde":1,"Belgium|Senegal":1,"Norway|England":1,"Argentina|Switzerland":1,"Spain|Argentina":1};
+function markAET(){try{
+ document.querySelectorAll('#matchList .match').forEach(function(c){
+  var h=c.querySelector('.side.home img'),a=c.querySelector('.side.away img');if(!h||!a)return;
+  if(!AET[h.alt+'|'+a.alt])return;
+  var sc=c.querySelector('.center .score');if(!sc||sc.parentElement.querySelector('.aetline'))return;
+  var d=document.createElement('div');d.className='aetline';
+  d.style.cssText='font-size:11px;color:var(--dim);margin-top:2px;text-align:center;white-space:nowrap';
+  d.textContent=isAr()?'بعد الأشواط الإضافية':'After extra time';
+  sc.insertAdjacentElement('afterend',d);
+ });
+ document.querySelectorAll('#bracketView .btie').forEach(function(t){
+  var s=t.querySelectorAll('.bslot .nm');if(s.length<2)return;
+  var k=(s[0].getAttribute('title')||'')+'|'+(s[1].getAttribute('title')||'');
+  var bm=t.querySelector('.bm');if(!AET[k]||!bm||bm.querySelector('.baet'))return;
+  var e=document.createElement('span');e.className='baet';e.textContent=' (AET)';e.style.cssText='font-size:10px;color:var(--dim);margin-inline-start:4px';bm.appendChild(e);
+ });
+}catch(e){}}
+/* Official final figures for the Golden Boot podium and chasers */
+var GB_FINAL=[["France","Mbapp",10],["Argentina","Messi",8],["England","Bellingham",7],["Norway","Haaland",7],["England","Kane",6],["France","Demb",6]];
+var nz=function(x){return String(x||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();};
+if(typeof aggregateScorers==='function'){
+ var _ag=aggregateScorers;
+ window.aggregateScorers=aggregateScorers=function(){
+  var raw=_ag.apply(this,arguments)||[];var map={},order=[];
+  raw.forEach(function(e){if(!e||!e.n)return;if(/\((og|o\.g\.)\)/i.test(e.n))return;
+   var nm=e.n.replace(/\s*\([^)]*\)\s*$/,'').trim();var key=e.t+'|'+nz(nm).replace(/[^a-z]/g,'');
+   if(!map[key]){map[key]={n:nm,t:e.t,g:0};order.push(key);}map[key].g+=(e.g||0);});
+  var list=order.map(function(k){return map[k];});
+  GB_FINAL.forEach(function(f){
+   var hit=list.filter(function(p){return p.t===f[0]&&nz(p.n).indexOf(nz(f[1]))>=0;}).sort(function(a,b){return a.n.length-b.n.length;})[0];
+   if(hit)hit.g=f[2];
+  });
+  return list.sort(function(a,b){return (b.g||0)-(a.g||0)||a.n.localeCompare(b.n);});
+ };
+}
+function honoursHTML(){
+ var ar=isAr();
+ var aw=[
+  ['🏆',ar?'البطل':'Champions','Spain',ar?'إسبانيا':'Spain',ar?'اللقب الثاني بعد 2010':'Second title, after 2010'],
+  ['🥈',ar?'الوصيف':'Runners-up','Argentina',ar?'الأرجنتين':'Argentina',ar?'خسر النهائي 1-0 بعد التمديد':'Lost the final 1-0 after extra time'],
+  ['🥉',ar?'المركز الثالث':'Third place','England',ar?'إنجلترا':'England',ar?'فاز على فرنسا 6-4':'Beat France 6-4'],
+  ['⚽',ar?'الحذاء الذهبي':'Golden Boot','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'10 أهداف':'10 goals'],
+  ['🌟',ar?'الكرة الذهبية':'Golden Ball','Spain',ar?'رودري':'Rodri',ar?'أفضل لاعب في البطولة':'Best player of the tournament'],
+  ['🧤',ar?'القفاز الذهبي':'Golden Glove','Spain',ar?'أوناي سيمون':'Unai Simón',ar?'أفضل حارس':'Best goalkeeper'],
+  ['✨',ar?'أفضل لاعب شاب':'Best Young Player','Spain',ar?'باو كوبارسي':'Pau Cubarsí',ar?'إسبانيا':'Spain'],
+  ['🥈',ar?'الكرة الفضية / الحذاء الفضي':'Silver Ball / Silver Boot','Argentina',ar?'ليونيل ميسي':'Lionel Messi',ar?'8 أهداف':'8 goals'],
+  ['🥉',ar?'الكرة البرونزية':'Bronze Ball','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'هدّاف البطولة':'Tournament top scorer'],
+  ['🥉',ar?'الحذاء البرونزي':'Bronze Boot','England',ar?'بيلينغهام وهالاند':'Bellingham and Haaland',ar?'7 أهداف لكل منهما':'7 goals each']
+ ];
+ var cells=aw.map(function(a){return '<div class="hn-cell"><div class="hn-ic">'+a[0]+'</div><div class="hn-tx"><div class="hn-k">'+a[1]+'</div><div class="hn-v">'+fl(a[2])+'<span>'+a[3]+'</span></div><div class="hn-s">'+a[4]+'</div></div></div>';}).join('');
+ return '<div class="hn-final"><div class="hn-kick">'+(ar?'النهائي · 19 يوليو 2026 · ملعب ميتلايف':'Final · 19 July 2026 · MetLife Stadium')+'</div>'+
+  '<div class="hn-score"><span class="hn-t">'+fl('Spain')+'<b>'+tn('Spain')+'</b></span><span class="hn-n">1 – 0</span><span class="hn-t"><b>'+tn('Argentina')+'</b>'+fl('Argentina')+'</span></div>'+
+  '<div class="hn-sub">'+(ar?'فيران توريس 106\' · بعد الأشواط الإضافية · الحضور 80,663':'Ferran Torres 106\' · after extra time · attendance 80,663')+'</div></div>'+
+  '<div class="hn-grid">'+cells+'</div>';
+}
+function placeHonours(anchorId,boxId){
+ var a=document.getElementById(anchorId);if(!a||!a.parentNode)return;
+ var b=document.getElementById(boxId);
+ if(!b){b=document.createElement('div');b.id=boxId;b.className='gcard hn-box';a.parentNode.insertBefore(b,a);}
+ b.innerHTML=honoursHTML();
+}
+var st=document.createElement('style');
+st.textContent='.brlegend{display:none}.hn-box{margin-top:18px;padding:18px}.hn-final{text-align:center;padding:6px 0 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}.hn-kick{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}.hn-score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:10px 0 6px}.hn-score .hn-t:first-child{justify-self:end}.hn-score .hn-t:last-child{justify-self:start}.hn-t{display:flex;align-items:center;gap:8px;font-size:18px;min-width:0}@media(max-width:520px){.hn-t{font-size:14px;gap:5px}.hn-t img{width:22px!important;height:15px!important}.hn-n{font-size:24px!important}}.hn-t img,.hn-v img{width:30px;height:20px;object-fit:cover;border-radius:3px}.hn-n{font-size:32px;font-weight:900}.hn-sub{font-size:13px;color:var(--dim)}.hn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}.hn-cell{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04)}.hn-ic{font-size:22px;line-height:1}.hn-k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}.hn-v{display:flex;align-items:center;gap:6px;font-weight:800;margin-top:3px}.hn-v img{width:22px;height:15px}.hn-s{font-size:12px;color:var(--dim);margin-top:2px}';
+document.head.appendChild(st);
+function wrap(fn,after){if(typeof window[fn]!=='function')return;var o=window[fn];window[fn]=function(){var r=o.apply(this,arguments);try{after();}catch(e){}return r;};try{eval(fn+'=window[fn]');}catch(e){}}
+wrap('buildMatches',function(){markAET();try{var ko=M.filter(function(m){return m.ko&&m.date===activeDate;})[0];var el=document.getElementById('dayMd');if(ko&&el&&typeof koRoundName==='function')el.textContent=koRoundName(ko.koId);}catch(e){}});
+wrap('buildBracket',function(){markAET();placeHonours('bracketwrapAnchor','hnBracket');});
+wrap('buildScorers',function(){placeHonours('scorersList','hnScorers');});
+try{buildScorers();buildBracket();buildMatches();}catch(e){}
 }catch(e){}})();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3493ccd23ccc4b2f95e4b7000055e5c9"}'></script><!-- End Cloudflare Web Analytics -->
