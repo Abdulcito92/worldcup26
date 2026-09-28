@@ -1816,7 +1816,7 @@ applyLang();renderAll();onScroll();navHint();
 // ---------- LIVE REAL-TIME ----------
 // Set LIVE_WORKER_URL to your Cloudflare Worker URL for ~30s real-time scores updated in place (no reload).
 // Leave it empty to keep the GitHub-timed behaviour (reload every 2 min while a match is live).
-const LIVE_WORKER_URL="https://wc-live.mr-abdul337.workers.dev";
+const LIVE_WORKER_URL=""; // tournament finished 19 Jul 2026; live polling off (worker was: https://wc-live.mr-abdul337.workers.dev)
 function rebuildDerived(){
  for(const k in OFFICIAL)delete OFFICIAL[k];
  M.forEach(m=>{const r=OFFICIAL_BYKEY[keyOf(m)];if(r)OFFICIAL[m.id]=r;});
