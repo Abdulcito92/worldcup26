@@ -2233,7 +2233,7 @@ function markAET(){try{
  });
 }catch(e){}}
 /* Official final figures for the Golden Boot podium and chasers */
-var GB_FINAL=[["France","Mbapp",10],["Argentina","Messi",8],["England","Bellingham",7],["Norway","Haaland",7],["England","Kane",6],["France","Demb",6]];
+var GB_FINAL=[["France","Mbapp",10],["Argentina","Messi",8],["England","Bellingham",7],["Norway","Haaland",7],["England","Kane",6],["France","Demb",6]]; /* official order; ties broken by assists (Bellingham won Bronze Boot) */
 var nz=function(x){return String(x||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();};
 if(typeof aggregateScorers==='function'){
  var _ag=aggregateScorers;
@@ -2245,30 +2245,37 @@ if(typeof aggregateScorers==='function'){
   var list=order.map(function(k){return map[k];});
   GB_FINAL.forEach(function(f){
    var hit=list.filter(function(p){return p.t===f[0]&&nz(p.n).indexOf(nz(f[1]))>=0;}).sort(function(a,b){return a.n.length-b.n.length;})[0];
-   if(hit)hit.g=f[2];
+   if(hit){hit.g=f[2];hit._r=GB_FINAL.indexOf(f);}
   });
-  return list.sort(function(a,b){return (b.g||0)-(a.g||0)||a.n.localeCompare(b.n);});
+  return list.sort(function(a,b){var ra=a._r==null?99:a._r,rb=b._r==null?99:b._r;return (b.g||0)-(a.g||0)||ra-rb||a.n.localeCompare(b.n);});
  };
 }
 function honoursHTML(){
  var ar=isAr();
- var aw=[
-  ['🏆',ar?'البطل':'Champions','Spain',ar?'إسبانيا':'Spain',ar?'اللقب الثاني بعد 2010':'Second title, after 2010'],
-  ['🥈',ar?'الوصيف':'Runners-up','Argentina',ar?'الأرجنتين':'Argentina',ar?'خسر النهائي 1-0 بعد التمديد':'Lost the final 1-0 after extra time'],
-  ['🥉',ar?'المركز الثالث':'Third place','England',ar?'إنجلترا':'England',ar?'فاز على فرنسا 6-4':'Beat France 6-4'],
-  ['⚽',ar?'الحذاء الذهبي':'Golden Boot','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'10 أهداف':'10 goals'],
-  ['🌟',ar?'الكرة الذهبية':'Golden Ball','Spain',ar?'رودري':'Rodri',ar?'أفضل لاعب في البطولة':'Best player of the tournament'],
-  ['🧤',ar?'القفاز الذهبي':'Golden Glove','Spain',ar?'أوناي سيمون':'Unai Simón',ar?'أفضل حارس':'Best goalkeeper'],
-  ['✨',ar?'أفضل لاعب شاب':'Best Young Player','Spain',ar?'باو كوبارسي':'Pau Cubarsí',ar?'إسبانيا':'Spain'],
-  ['🥈',ar?'الكرة الفضية / الحذاء الفضي':'Silver Ball / Silver Boot','Argentina',ar?'ليونيل ميسي':'Lionel Messi',ar?'8 أهداف':'8 goals'],
-  ['🥉',ar?'الكرة البرونزية':'Bronze Ball','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'هدّاف البطولة':'Tournament top scorer'],
-  ['🥉',ar?'الحذاء البرونزي':'Bronze Boot','England',ar?'بيلينغهام وهالاند':'Bellingham and Haaland',ar?'7 أهداف لكل منهما':'7 goals each']
+ var G=[
+  [ar?'النتيجة النهائية':'Final standings',[
+   ['🏆',ar?'البطل':'Champions','Spain',ar?'إسبانيا':'Spain',ar?'اللقب الثاني بعد 2010':'Second title, after 2010'],
+   ['🥈',ar?'الوصيف':'Runners-up','Argentina',ar?'الأرجنتين':'Argentina',ar?'خسر النهائي 1-0 بعد التمديد':'Lost the final 1-0 after extra time'],
+   ['🥉',ar?'المركز الثالث':'Third place','England',ar?'إنجلترا':'England',ar?'فاز على فرنسا 6-4':'Beat France 6-4']]],
+  [ar?'الحذاء: الأكثر تسجيلاً':'Boot: most goals',[
+   ['👟',ar?'الحذاء الذهبي · الهداف الأول':'Golden Boot · Top scorer','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'10 أهداف':'10 goals'],
+   ['👟',ar?'الحذاء الفضي · الهداف الثاني':'Silver Boot · 2nd top scorer','Argentina',ar?'ليونيل ميسي':'Lionel Messi',ar?'8 أهداف':'8 goals'],
+   ['👟',ar?'الحذاء البرونزي · الهداف الثالث':'Bronze Boot · 3rd top scorer','England',ar?'جود بيلينغهام':'Jude Bellingham',ar?'7 أهداف':'7 goals']]],
+  [ar?'الكرة: أفضل لاعب (تصويت، ليست للأهداف)':'Ball: best player (voted, not goals)',[
+   ['🌟',ar?'الكرة الذهبية · أفضل لاعب':'Golden Ball · Best player','Spain',ar?'رودري':'Rodri',ar?'إسبانيا':'Spain'],
+   ['🌟',ar?'الكرة الفضية · ثاني أفضل لاعب':'Silver Ball · 2nd best player','Argentina',ar?'ليونيل ميسي':'Lionel Messi',ar?'الأرجنتين':'Argentina'],
+   ['🌟',ar?'الكرة البرونزية · ثالث أفضل لاعب':'Bronze Ball · 3rd best player','France',ar?'كيليان مبابي':'Kylian Mbappé',ar?'فرنسا':'France']]],
+  [ar?'جوائز أخرى':'Other awards',[
+   ['🧤',ar?'القفاز الذهبي':'Golden Glove','Spain',ar?'أوناي سيمون':'Unai Simón',ar?'أفضل حارس':'Best goalkeeper'],
+   ['✨',ar?'أفضل لاعب شاب':'Best Young Player','Spain',ar?'باو كوبارسي':'Pau Cubarsí',ar?'إسبانيا':'Spain'],
+   ['🤝',ar?'جائزة اللعب النظيف':'Fair Play','Netherlands',ar?'هولندا':'Netherlands',ar?'أنظف منتخب في البطولة':'Cleanest team of the tournament']]]
  ];
- var cells=aw.map(function(a){return '<div class="hn-cell"><div class="hn-ic">'+a[0]+'</div><div class="hn-tx"><div class="hn-k">'+a[1]+'</div><div class="hn-v">'+fl(a[2])+'<span>'+a[3]+'</span></div><div class="hn-s">'+a[4]+'</div></div></div>';}).join('');
+ var cell=function(a){return '<div class="hn-cell"><div class="hn-ic">'+a[0]+'</div><div class="hn-tx"><div class="hn-k">'+a[1]+'</div><div class="hn-v">'+fl(a[2])+'<span>'+a[3]+'</span></div><div class="hn-s">'+a[4]+'</div></div></div>';};
+ var cells=G.map(function(g){return '<div class="hn-gh">'+g[0]+'</div><div class="hn-grid">'+g[1].map(cell).join('')+'</div>';}).join('');
  return '<div class="hn-final"><div class="hn-kick">'+(ar?'النهائي · 19 يوليو 2026 · ملعب ميتلايف':'Final · 19 July 2026 · MetLife Stadium')+'</div>'+
   '<div class="hn-score"><span class="hn-t">'+fl('Spain')+'<b>'+tn('Spain')+'</b></span><span class="hn-n">1 – 0</span><span class="hn-t"><b>'+tn('Argentina')+'</b>'+fl('Argentina')+'</span></div>'+
   '<div class="hn-sub">'+(ar?'فيران توريس 106\' · بعد الأشواط الإضافية · الحضور 80,663':'Ferran Torres 106\' · after extra time · attendance 80,663')+'</div></div>'+
-  '<div class="hn-grid">'+cells+'</div>';
+  cells;
 }
 function placeHonours(anchorId,boxId){
  var a=document.getElementById(anchorId);if(!a||!a.parentNode)return;
@@ -2277,7 +2284,7 @@ function placeHonours(anchorId,boxId){
  b.innerHTML=honoursHTML();
 }
 var st=document.createElement('style');
-st.textContent='.brlegend{display:none}.hn-box{margin-top:18px;padding:18px}.hn-final{text-align:center;padding:6px 0 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}.hn-kick{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}.hn-score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:10px 0 6px}.hn-score .hn-t:first-child{justify-self:end}.hn-score .hn-t:last-child{justify-self:start}.hn-t{display:flex;align-items:center;gap:8px;font-size:18px;min-width:0}@media(max-width:520px){.hn-t{font-size:14px;gap:5px}.hn-t img{width:22px!important;height:15px!important}.hn-n{font-size:24px!important}}.hn-t img,.hn-v img{width:30px;height:20px;object-fit:cover;border-radius:3px}.hn-n{font-size:32px;font-weight:900}.hn-sub{font-size:13px;color:var(--dim)}.hn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}.hn-cell{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04)}.hn-ic{font-size:22px;line-height:1}.hn-k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}.hn-v{display:flex;align-items:center;gap:6px;font-weight:800;margin-top:3px}.hn-v img{width:22px;height:15px}.hn-s{font-size:12px;color:var(--dim);margin-top:2px}';
+st.textContent='.brlegend{display:none}.hn-box{margin-top:18px;padding:18px}.hn-final{text-align:center;padding:6px 0 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}.hn-kick{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}.hn-score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:10px 0 6px}.hn-score .hn-t:first-child{justify-self:end}.hn-score .hn-t:last-child{justify-self:start}.hn-t{display:flex;align-items:center;gap:8px;font-size:18px;min-width:0}@media(max-width:520px){.hn-t{font-size:14px;gap:5px}.hn-t img{width:22px!important;height:15px!important}.hn-n{font-size:24px!important}}.hn-t img,.hn-v img{width:30px;height:20px;object-fit:cover;border-radius:3px}.hn-n{font-size:32px;font-weight:900}.hn-sub{font-size:13px;color:var(--dim)}.hn-gh{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:14px 0 8px}.hn-gh:first-child{margin-top:0}.hn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}@media(max-width:760px){.hn-grid{grid-template-columns:1fr}}.hn-cell{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04)}.hn-ic{font-size:22px;line-height:1}.hn-k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}.hn-v{display:flex;align-items:center;gap:6px;font-weight:800;margin-top:3px}.hn-v img{width:22px;height:15px}.hn-s{font-size:12px;color:var(--dim);margin-top:2px}';
 document.head.appendChild(st);
 function wrap(fn,after){if(typeof window[fn]!=='function')return;var o=window[fn];window[fn]=function(){var r=o.apply(this,arguments);try{after();}catch(e){}return r;};try{eval(fn+'=window[fn]');}catch(e){}}
 wrap('buildMatches',function(){markAET();try{var ko=M.filter(function(m){return m.ko&&m.date===activeDate;})[0];var el=document.getElementById('dayMd');if(ko&&el&&typeof koRoundName==='function')el.textContent=koRoundName(ko.koId);}catch(e){}});
